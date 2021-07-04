@@ -1,3 +1,6 @@
+import ColorBox from '../ColorBox/ColorBox';
+import './Palette.css';
+
 interface ColorPalette {
   paletteName: string;
   id: string;
@@ -6,7 +9,7 @@ interface ColorPalette {
 }
 
 interface PaletteProps {
-  palettes: ColorPalette[];
+  palettes: ColorPalette;
 }
 
 const Palette = ({ palettes }: PaletteProps): JSX.Element => {
@@ -14,7 +17,13 @@ const Palette = ({ palettes }: PaletteProps): JSX.Element => {
     <div className='Palette'>
       {/* Navbar */}
 
-      <div className='PaletteColors'>{/* bunch of color boxes */}</div>
+      <div className='PaletteColors'>
+        {palettes.colors.map(
+          ({ color, name }): JSX.Element => (
+            <ColorBox background={color} name={name} />
+          )
+        )}
+      </div>
 
       {/* Footer */}
     </div>
