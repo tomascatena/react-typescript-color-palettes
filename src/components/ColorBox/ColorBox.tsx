@@ -7,9 +7,16 @@ interface ColorBoxProps {
 
 const ColorBox = ({ background, name }: ColorBoxProps): JSX.Element => {
   return (
-    <div className='ColorBox' style={{ background: background }}>
-      <span>{name}</span>
-      <span>MORE</span>
+    <div className='ColorBox' style={{ background }}>
+      <div className='CopyContainer'>
+        <div className='BoxContent'>
+          <span>{name}</span>
+        </div>
+
+        <button className='CopyButton'>Copy</button>
+      </div>
+
+      <span className='SeeMore'>More</span>
     </div>
   );
 };

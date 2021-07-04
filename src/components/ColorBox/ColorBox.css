@@ -5,4 +5,54 @@
   display: inline-block;
   position: relative;
   cursor: pointer;
+  margin-bottom: -4px;
+}
+
+.CopyButton {
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  line-height: 20px;
+  text-transform: uppercase;
+  border: none;
+  opacity: 0;
+}
+
+.ColorBox:hover .CopyButton {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.BoxContent {
+  position: absolute;
+  padding: 10px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.SeeMore {
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: none;
+  color: #fff;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  text-transform: uppercase;
 }
