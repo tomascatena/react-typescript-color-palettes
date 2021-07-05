@@ -20,7 +20,7 @@ const Palette = ({ palettes }: PaletteProps): JSX.Element => {
       <div className='PaletteColors'>
         {palettes.colors.map(
           ({ color, name }): JSX.Element => (
-            <ColorBox background={color} name={name} />
+            <ColorBox key={`${name}-${color}`} background={color} name={name} />
           )
         )}
       </div>
