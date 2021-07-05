@@ -7,12 +7,12 @@ interface ColorBoxProps {
 }
 
 const ColorBox = ({ background, name }: ColorBoxProps): JSX.Element => {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<Boolean>(false);
 
-  const changeCopyState = () => {
+  const changeCopyState = (): void => {
     setCopied(true);
 
-    setTimeout(() => {
+    setTimeout((): void => {
       setCopied(false);
     }, 1500);
   };

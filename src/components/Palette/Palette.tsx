@@ -1,8 +1,13 @@
 import ColorBox from '../ColorBox/ColorBox';
-import 'rc-slider/assets/index.css';
 import './Palette.css';
-import Slider from 'rc-slider';
 import { useState } from 'react';
+import Navbar from '../Navbar/Navbar';
+
+enum ColorFormats {
+  hex = 'hex',
+  rgb = 'rgb',
+  rgba = 'rgba',
+}
 
 interface ColorPaletteWithShades {
   paletteName: string;
@@ -24,29 +29,36 @@ interface PaletteProps {
 }
 
 const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
-  const [level, setLevel]: [number, (newLevel: number) => void] = useState(500);
+  const [level, setLevel] = useState<number>(500);
+  const [colorFormat, setColorFormat] = useState<ColorFormats>(
+    ColorFormats.hex
+  );
 
   const changeLevel = (newLevel: number): void => {
     setLevel(newLevel);
   };
 
+  const changeFormat = (event: React.ChangeEvent<{ value: unknown }>): void => {
+    setColorFormat(event.target.value as ColorFormats);
+  };
+
   return (
     <div className='Palette'>
-      <div className='slider'>
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onAfterChange={changeLevel}
-        />
-      </div>
-      {/* Navbar */}
+      <Navbar
+        level={level}
+        changeLevel={changeLevel}
+        handleFormatChange={changeFormat}
+        colorFormat={colorFormat}
+      />
 
       <div className='PaletteColors'>
         {colorPalette.colors[level].map(
-          ({ hex, name }): JSX.Element => (
-            <ColorBox key={`${name}-${hex}`} background={hex} name={name} />
+          (colorObj): JSX.Element => (
+            <ColorBox
+              key={`${colorObj.name}-${colorObj.hex}`}
+              background={colorObj[colorFormat]}
+              name={colorObj.name}
+            />
           )
         )}
       </div>
