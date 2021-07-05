@@ -1,9 +1,8 @@
 import ColorBox from '../ColorBox/ColorBox';
+import 'rc-slider/assets/index.css';
 import './Palette.css';
 import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import { useState } from 'react';
-import { number } from 'yargs';
 
 interface ColorPaletteWithShades {
   paletteName: string;
@@ -33,14 +32,16 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
 
   return (
     <div className='Palette'>
+      <div className='slider'>
+        <Slider
+          defaultValue={level}
+          min={100}
+          max={900}
+          step={100}
+          onAfterChange={changeLevel}
+        />
+      </div>
       {/* Navbar */}
-      <Slider
-        defaultValue={level}
-        min={100}
-        max={900}
-        step={100}
-        onAfterChange={changeLevel}
-      />
 
       <div className='PaletteColors'>
         {colorPalette.colors[level].map(
