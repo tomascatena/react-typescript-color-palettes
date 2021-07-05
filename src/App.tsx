@@ -8,7 +8,7 @@ const App = (): JSX.Element => {
 
   return (
     <div className='App'>
-      <Palette palettes={seedPalettes[2]} />
+      <Palette colorPalette={generatePalette(seedPalettes[2])} />
     </div>
   );
 };

@@ -1,26 +1,51 @@
 import ColorBox from '../ColorBox/ColorBox';
 import './Palette.css';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import { useState } from 'react';
+import { number } from 'yargs';
 
-interface ColorPalette {
+interface ColorPaletteWithShades {
   paletteName: string;
   id: string;
   emoji: string;
-  colors: { name: string; color: string }[];
+  colors: {
+    [key: number]: {
+      id: string;
+      name: string;
+      hex: string;
+      rgb: string;
+      rgba: string;
+    }[];
+  };
 }
 
 interface PaletteProps {
-  palettes: ColorPalette;
+  colorPalette: ColorPaletteWithShades;
 }
 
-const Palette = ({ palettes }: PaletteProps): JSX.Element => {
+const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
+  const [level, setLevel]: [number, (newLevel: number) => void] = useState(500);
+
+  const changeLevel = (newLevel: number): void => {
+    setLevel(newLevel);
+  };
+
   return (
     <div className='Palette'>
       {/* Navbar */}
+      <Slider
+        defaultValue={level}
+        min={100}
+        max={900}
+        step={100}
+        onAfterChange={changeLevel}
+      />
 
       <div className='PaletteColors'>
-        {palettes.colors.map(
-          ({ color, name }): JSX.Element => (
-            <ColorBox key={`${name}-${color}`} background={color} name={name} />
+        {colorPalette.colors[level].map(
+          ({ hex, name }): JSX.Element => (
+            <ColorBox key={`${name}-${hex}`} background={hex} name={name} />
           )
         )}
       </div>
