@@ -59,7 +59,10 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
         )}
       </div>
 
-      {/* Footer */}
+      <footer className='paletteFooter'>
+        {colorPalette.paletteName}
+        <span className='emoji'>{colorPalette.emoji}</span>
+      </footer>
     </div>
   );
 };
