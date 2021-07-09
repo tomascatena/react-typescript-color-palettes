@@ -3,6 +3,7 @@ import Palette from './components/Palette/Palette';
 import seedPalettes from './seedPalettes';
 import './App.css';
 import { generatePalette } from './colorHelpers';
+import PaletteList from './components/PaletteList/PaletteList';
 
 interface ColorPalette {
   paletteName: string;
@@ -18,9 +19,13 @@ const App = (): JSX.Element => {
 
   return (
     <Switch>
-      <Route exact path='/'>
-        <h1>Palette List Goes Here</h1>
-      </Route>
+      <Route
+        exact
+        path='/'
+        render={() => {
+          return <PaletteList palettes={seedPalettes} />;
+        }}
+      ></Route>
 
       <Route
         exact
