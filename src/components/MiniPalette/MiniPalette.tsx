@@ -1,6 +1,5 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles, createStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 const styles = createStyles({
   root: {
@@ -26,6 +25,7 @@ const styles = createStyles({
   },
   title: {
     display: 'flex',
+    justifyContent: 'space-between',
   },
   emoji: {
     marginLeft: '.5rem',
@@ -49,17 +49,11 @@ const MiniPalette = ({
 }: MiniPaletteProps): JSX.Element => {
   return (
     <div className={classes.root}>
-      <div className={classes.colors}>
-        {colors.map((color) => (
-          <span>{color.name}</span>
-        ))}
-      </div>
+      <div className={classes.colors}></div>
 
-      <Link to={`/palette/${id}`}>
-        <h5 className={classes.title}>
-          {paletteName} <span className={classes.emoji}>{emoji}</span>
-        </h5>
-      </Link>
+      <h5 className={classes.title}>
+        {paletteName} <span className={classes.emoji}>{emoji}</span>
+      </h5>
     </div>
   );
 };
