@@ -14,7 +14,14 @@ const styles = createStyles({
     },
   },
   colors: {
-    backgroundColor: 'grey',
+    backgroundColor: '#dae1e4',
+    height: '150px',
+    width: '100%',
+    borderRadius: '5px',
+    overflow: 'hidden',
+  },
+  title: {
+    display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: '0',
@@ -23,13 +30,17 @@ const styles = createStyles({
     fontSize: '1rem',
     position: 'relative',
   },
-  title: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
   emoji: {
     marginLeft: '.5rem',
     fontSize: '1.5rem',
+  },
+  miniColorBox: {
+    height: '25%',
+    width: '20%',
+    display: 'inline-block',
+    margin: '0 auto',
+    position: 'relative',
+    marginBottom: '-3.5px',
   },
 });
 
@@ -47,9 +58,19 @@ const MiniPalette = ({
   emoji,
   id,
 }: MiniPaletteProps): JSX.Element => {
+  const miniColorBoxes = colors.map(({ color, name }): JSX.Element => {
+    return (
+      <div
+        className={classes.miniColorBox}
+        style={{ backgroundColor: color }}
+        key={name}
+      ></div>
+    );
+  });
+
   return (
     <div className={classes.root}>
-      <div className={classes.colors}></div>
+      <div className={classes.colors}>{miniColorBoxes}</div>
 
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>

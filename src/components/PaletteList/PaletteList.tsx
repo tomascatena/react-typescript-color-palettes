@@ -5,17 +5,17 @@ import { WithStyles, createStyles } from '@material-ui/core';
 const styles = createStyles({
   root: {
     backgroundColor: 'blue',
-    height: '100%',
+    minHeight: '100vh',
     display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
   container: {
-    width: '70%',
-    display: 'flex',
+    flex: '0 0 70%',
     alignItems: 'flex-start',
-    flexDirection: 'column',
     flexWrap: 'wrap',
+    display: 'flex',
   },
   palettes: {
     boxSizing: 'border-box',
@@ -29,6 +29,7 @@ const styles = createStyles({
     justifyContent: 'space-between',
     width: '100%',
     color: '#fff',
+    padding: '1rem 0',
   },
 });
 
