@@ -47,3 +47,8 @@
 .rc-slider-rail {
   height: 8px;
 }
+
+.selectContainer {
+  margin-left: auto;
+  margin-right: 1rem;
+}

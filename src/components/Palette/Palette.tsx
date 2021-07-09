@@ -38,16 +38,12 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
     setLevel(newLevel);
   };
 
-  const changeFormat = (event: React.ChangeEvent<{ value: unknown }>): void => {
-    setColorFormat(event.target.value as ColorFormats);
-  };
-
   return (
     <div className='Palette'>
       <Navbar
         level={level}
         changeLevel={changeLevel}
-        handleFormatChange={changeFormat}
+        setColorFormat={setColorFormat}
         colorFormat={colorFormat}
       />
 

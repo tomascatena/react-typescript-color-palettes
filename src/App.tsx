@@ -4,8 +4,6 @@ import './App.css';
 import { generatePalette } from './colorHelpers';
 
 const App = (): JSX.Element => {
-  console.log(generatePalette(seedPalettes[0]));
-
   return (
     <div className='App'>
       <Palette colorPalette={generatePalette(seedPalettes[2])} />
