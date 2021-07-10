@@ -1,6 +1,7 @@
 import useStyles from './NewPaletteFormStyles';
 import { useState } from 'react';
 import clsx from 'clsx';
+import chroma from 'chroma-js';
 
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,7 +23,9 @@ interface NewPaletteFormProps {}
 const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(true);
+  const [currentColor, setCurrentColor] = useState<string>('blue');
+  const [colors, setCColors] = useState<string[]>(['blue', 'teal', 'green']);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -30,6 +33,10 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const createNewColor = () => {
+    setCColors([...colors, currentColor]);
   };
 
   return (
@@ -89,13 +96,24 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
         </Button>
 
         <ChromePicker
-          color='green'
+          color={currentColor}
           onChangeComplete={(newColor) => {
-            console.log(newColor);
+            setCurrentColor(newColor.hex);
           }}
         />
 
-        <Button variant='contained' color='primary'>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={createNewColor}
+          style={{
+            backgroundColor: currentColor,
+            color:
+              chroma(currentColor).luminance() >= 0.3
+                ? 'rgba(0, 0, 0, 0.7)'
+                : '#fff',
+          }}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -105,6 +123,12 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
         })}
       >
         <div className={classes.drawerHeader} />
+
+        <ul>
+          {colors.map((color) => (
+            <li style={{ backgroundColor: color }}>{color}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
