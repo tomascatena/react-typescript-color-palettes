@@ -54,6 +54,7 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
               key={`${colorObj.name}-${colorObj.hex}`}
               background={colorObj[colorFormat]}
               name={colorObj.name}
+              id={colorObj.id}
             />
           )
         )}

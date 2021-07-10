@@ -10,6 +10,7 @@ const styles = createStyles({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    paddingBottom: '2rem',
   },
   container: {
     flex: '0 0 70%',
@@ -21,7 +22,7 @@ const styles = createStyles({
     width: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    gridGap: '5%',
+    gridGap: '2rem',
   },
   nav: {
     display: 'flex',

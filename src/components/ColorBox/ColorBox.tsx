@@ -1,14 +1,17 @@
 import './ColorBox.css';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface ColorBoxProps {
   background: string;
   name: string;
+  id: string;
 }
 
-const ColorBox = ({ background, name }: ColorBoxProps): JSX.Element => {
+const ColorBox = ({ background, name, id }: ColorBoxProps): JSX.Element => {
+  const location = useLocation();
+
   const [copied, setCopied] = useState<Boolean>(false);
 
   const changeCopyState = (): void => {
@@ -40,7 +43,10 @@ const ColorBox = ({ background, name }: ColorBoxProps): JSX.Element => {
           <button className='CopyButton'>Copy</button>
         </div>
 
-        <Link to={`/`} onClick={(e) => e.stopPropagation()}>
+        <Link
+          to={`${location.pathname}/${id}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           <span className='SeeMore'>More</span>
         </Link>
       </div>
