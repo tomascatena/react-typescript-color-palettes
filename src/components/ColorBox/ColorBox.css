@@ -57,6 +57,14 @@
   text-transform: uppercase;
 }
 
+.lightText {
+  color: #fff;
+}
+
+.ColorBox .darkText {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .copyOverlay {
   opacity: 0;
   z-index: 0;

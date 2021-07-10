@@ -54,9 +54,9 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
             <div
               className='ColorBox'
               style={{ background: colorObj[colorFormat] }}
+              key={`${colorObj.name}-${colorObj.hex}`}
             >
               <ColorBox
-                key={`${colorObj.name}-${colorObj.hex}`}
                 background={colorObj[colorFormat]}
                 name={colorObj.name}
                 id={colorObj.id}
