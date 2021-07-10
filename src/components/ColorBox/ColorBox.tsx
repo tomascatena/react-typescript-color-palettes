@@ -22,11 +22,13 @@ const styles = createStyles({
   },
   copyText: {
     color: (props: Props) =>
-      chroma(props.background).luminance() >= 0.3 ? '#000' : '#fff',
+      chroma(props.background).luminance() >= 0.3
+        ? 'rgba(0, 0, 0, 0.7)'
+        : '#fff',
   },
   colorName: {
     color: (props: Props) =>
-      chroma(props.background).luminance() <= 0.1 ? '#fff' : '#000',
+      chroma(props.background).luminance() <= 0.1 ? '#fff' : 'rgba(0, 0, 0, 1)',
   },
   seeMore: {
     background: 'rgba(255, 255, 255, 0.3)',
@@ -64,6 +66,69 @@ const styles = createStyles({
     opacity: 0,
     cursor: 'pointer',
   },
+  boxContent: {
+    position: 'absolute',
+    padding: '10px',
+    width: '100%',
+    left: 0,
+    bottom: 0,
+    color: '#000',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontSize: '12px',
+  },
+  copyMessage: {
+    position: 'fixed',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: '3rem',
+    transform: 'scale(0.1)',
+    opacity: 0,
+    color: '#fff',
+
+    '& h1': {
+      fontWeight: 800,
+      textShadow: '1px 2px #000',
+      background: 'rgba(255, 255, 255, 0.2)',
+      width: '100%',
+      marginBottom: '0',
+      padding: '1rem',
+      textTransform: 'uppercase',
+    },
+
+    '& p': {
+      fontSize: '3rem',
+      fontWeight: 100,
+    },
+  },
+  showCopyMessage: {
+    opacity: 1,
+    transform: 'scale(1)',
+    zIndex: 2,
+    transition: 'all 0.4s ease-in-out',
+    transitionDelay: '0.3s',
+  },
+  copyOverlay: {
+    opacity: 0,
+    zIndex: 0,
+    width: '100%',
+    height: '100%',
+    transition: 'transform 0.6s ease-in-out',
+    transform: 'scale(0.1)',
+  },
+  showOverlay: {
+    opacity: '1',
+    transform: 'scale(50)',
+    zIndex: 1,
+    position: 'absolute',
+  },
 });
 
 interface Props {
@@ -91,8 +156,6 @@ const ColorBox = ({
 
   const [copied, setCopied] = useState<Boolean>(false);
 
-  const isLightColor = chroma(background).luminance() >= 0.3;
-
   const changeCopyState = (): void => {
     setCopied(true);
 
@@ -105,17 +168,21 @@ const ColorBox = ({
     <CopyToClipboard text={background} onCopy={changeCopyState}>
       <div className={classes.colorBox} style={{ background }}>
         <div
-          className={`copyOverlay ${copied && 'show'}`}
+          className={`${classes.copyOverlay} ${copied && classes.showOverlay}`}
           style={{ background }}
         />
 
-        <div className={`copyMessage ${copied && 'show'}`}>
+        <div
+          className={`${classes.copyMessage} ${
+            copied && classes.showCopyMessage
+          }`}
+        >
           <h1>copied!</h1>
           <p className={classes.copyText}>{background}</p>
         </div>
 
-        <div className='CopyContainer'>
-          <div className='BoxContent'>
+        <div>
+          <div className={classes.boxContent}>
             <span className={classes.colorName}>{name}</span>
           </div>
 
