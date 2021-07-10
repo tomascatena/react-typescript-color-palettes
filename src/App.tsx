@@ -4,7 +4,7 @@ import seedPalettes from './seedPalettes';
 import './App.css';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './components/PaletteList/PaletteList';
-import SingleColorPalette from './components/SingleColorPalette.jsx/SingleColorPalette';
+import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette';
 
 interface ColorPalette {
   paletteName: string;
@@ -47,9 +47,22 @@ const App = (): JSX.Element => {
         }}
       />
       <Route
-        path='/palette/:paletteID/:colorId'
-        render={() => {
-          return <SingleColorPalette />;
+        path='/palette/:paletteId/:colorId'
+        render={(routeProps) => {
+          if (!findPalette(routeProps.match.params.paletteId)) {
+            return <Redirect to='/'></Redirect>;
+          } else {
+            return (
+              <div className='App'>
+                <SingleColorPalette
+                  colorPalette={generatePalette(
+                    findPalette(routeProps.match.params.paletteId)
+                  )}
+                  colorId={routeProps.match.params.colorId}
+                />
+              </div>
+            );
+          }
         }}
       />{' '}
     </Switch>

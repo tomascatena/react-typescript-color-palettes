@@ -7,9 +7,15 @@ interface ColorBoxProps {
   background: string;
   name: string;
   id: string;
+  showMoreLink?: boolean;
 }
 
-const ColorBox = ({ background, name, id }: ColorBoxProps): JSX.Element => {
+const ColorBox = ({
+  background,
+  name,
+  id,
+  showMoreLink = true,
+}: ColorBoxProps): JSX.Element => {
   const location = useLocation();
 
   const [copied, setCopied] = useState<Boolean>(false);
@@ -43,12 +49,14 @@ const ColorBox = ({ background, name, id }: ColorBoxProps): JSX.Element => {
           <button className='CopyButton'>Copy</button>
         </div>
 
-        <Link
-          to={`${location.pathname}/${id}`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <span className='SeeMore'>More</span>
-        </Link>
+        {showMoreLink && (
+          <Link
+            to={`${location.pathname}/${id}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className='SeeMore'>More</span>
+          </Link>
+        )}
       </div>
     </CopyToClipboard>
   );
