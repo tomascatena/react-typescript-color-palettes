@@ -8,19 +8,11 @@ import { Link } from 'react-router-dom';
 
 const styles = createStyles({
   root: {
+    minHeight: '100vh',
     height: '100vh',
-    width: '100vw',
     overflow: 'hidden',
   },
-  colorBox: {
-    width: '20%',
-    height: '50%',
-    margin: '0 auto',
-    display: 'inline-block',
-    position: 'relative',
-    cursor: 'pointer',
-    marginBottom: '-4px',
-  },
+  colorBox: {},
   singleColorPalette: {
     height: '90%',
   },
@@ -123,18 +115,13 @@ const SingleColorPalette = ({
 
   const colorBoxes = shades.map((color) => {
     return (
-      <div
-        className={classes.colorBox}
-        style={{ background: color[colorFormat] }}
-      >
-        <ColorBox
-          key={`${color.name}-${color.hex}`}
-          background={color[colorFormat]}
-          name={color.name}
-          id={color.id}
-          showMoreLink={false}
-        />
-      </div>
+      <ColorBox
+        key={`${color.name}-${color.hex}`}
+        background={color[colorFormat]}
+        name={color.name}
+        id={color.id}
+        showMoreLink={false}
+      />
     );
   });
 

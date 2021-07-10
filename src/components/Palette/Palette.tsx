@@ -51,17 +51,12 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
       <div className='PaletteColors'>
         {colorPalette.colors[level].map(
           (colorObj): JSX.Element => (
-            <div
-              className='ColorBox'
-              style={{ background: colorObj[colorFormat] }}
-              key={`${colorObj.name}-${colorObj.hex}`}
-            >
-              <ColorBox
-                background={colorObj[colorFormat]}
-                name={colorObj.name}
-                id={colorObj.id}
-              />
-            </div>
+            <ColorBox
+              background={colorObj[colorFormat]}
+              name={colorObj.name}
+              id={colorObj.id}
+              showMoreLink
+            />
           )
         )}
       </div>
