@@ -30,7 +30,10 @@ const ColorBox = ({
 
   return (
     <CopyToClipboard text={background} onCopy={changeCopyState}>
-      <div className='ColorBox' style={{ background }}>
+      <div
+        className='ColorBox'
+        style={{ background, height: '100%', width: '100%' }}
+      >
         <div
           className={`copyOverlay ${copied && 'show'}`}
           style={{ background }}

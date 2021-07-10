@@ -4,16 +4,50 @@ import { useState, useEffect } from 'react';
 import ColorBox from '../ColorBox/ColorBox';
 import Navbar from '../Navbar/Navbar';
 import PaletteFooter from '../PaletteFooter/PaletteFooter';
+import { Link } from 'react-router-dom';
 
 const styles = createStyles({
-  palette: {
+  root: {
     height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
+    width: '100vw',
     overflow: 'hidden',
   },
-  paletteColors: {
+  colorBox: {
+    width: '20%',
+    height: '50%',
+    margin: '0 auto',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    marginBottom: '-4px',
+  },
+  singleColorPalette: {
     height: '90%',
+  },
+  goBack: {
+    display: 'inline-block',
+    cursor: 'pointer',
+    position: 'absolute',
+    height: '45%',
+    width: '20%',
+  },
+  goBackButton: {
+    width: '100px',
+    height: '30px',
+    position: 'absolute',
+    display: 'inline-block',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
+    outline: 'none',
+    background: 'rgba(255, 255, 255, 0.3)',
+    fontSize: '1rem',
+    lineHeight: '30px',
+    textTransform: 'uppercase',
+    border: 'none',
+    textDecoration: 'none',
+    color: '#fff',
   },
 });
 
@@ -89,21 +123,36 @@ const SingleColorPalette = ({
 
   const colorBoxes = shades.map((color) => {
     return (
-      <ColorBox
-        key={`${color.name}-${color.hex}`}
-        background={color[colorFormat]}
-        name={color.name}
-        id={color.id}
-        showMoreLink={false}
-      />
+      <div
+        className={classes.colorBox}
+        style={{ background: color[colorFormat] }}
+      >
+        <ColorBox
+          key={`${color.name}-${color.hex}`}
+          background={color[colorFormat]}
+          name={color.name}
+          id={color.id}
+          showMoreLink={false}
+        />
+      </div>
     );
   });
 
   return (
-    <div className={classes.palette}>
+    <div className={classes.root}>
       <Navbar colorFormat={colorFormat} setColorFormat={setColorFormat} />
 
-      <div className={classes.paletteColors}>{colorBoxes}</div>
+      <div className={classes.singleColorPalette}>
+        {colorBoxes}
+        <div className={classes.goBack} style={{ background: '#000' }}>
+          <Link
+            className={classes.goBackButton}
+            to={`/palette/${colorPalette.id}`}
+          >
+            Go Back
+          </Link>
+        </div>
+      </div>
 
       <PaletteFooter colorPalette={colorPalette} />
     </div>
