@@ -1,6 +1,8 @@
 import './ColorBox.css';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 interface ColorBoxProps {
   background: string;
   name: string;
@@ -38,7 +40,9 @@ const ColorBox = ({ background, name }: ColorBoxProps): JSX.Element => {
           <button className='CopyButton'>Copy</button>
         </div>
 
-        <span className='SeeMore'>More</span>
+        <Link to={`/`} onClick={(e) => e.stopPropagation()}>
+          <span className='SeeMore'>More</span>
+        </Link>
       </div>
     </CopyToClipboard>
   );

@@ -46,6 +46,13 @@ const App = (): JSX.Element => {
           }
         }}
       ></Route>
+
+      <Route
+        path='/palette/:paletteID/:colorId'
+        render={() => {
+          return <h1>Single Color Page</h1>;
+        }}
+      ></Route>
     </Switch>
   );
 };
