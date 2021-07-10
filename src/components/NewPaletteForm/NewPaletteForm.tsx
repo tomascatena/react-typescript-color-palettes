@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
+import DraggableColorBox from '../DraggableColorBox/DraggableColorBox';
 
 import { ChromePicker } from 'react-color';
 
@@ -124,11 +125,9 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
       >
         <div className={classes.drawerHeader} />
 
-        <ul>
-          {colors.map((color) => (
-            <li style={{ backgroundColor: color }}>{color}</li>
-          ))}
-        </ul>
+        {colors.map((color) => (
+          <DraggableColorBox color={color} />
+        ))}
       </main>
     </div>
   );
