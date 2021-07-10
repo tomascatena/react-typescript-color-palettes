@@ -13,6 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Button from '@material-ui/core/Button';
+
+import { ChromePicker } from 'react-color';
 
 interface NewPaletteFormProps {}
 
@@ -48,6 +51,7 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant='h6' noWrap>
             Persistent drawer
           </Typography>
@@ -71,7 +75,29 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
             )}
           </IconButton>
         </div>
+
         <Divider />
+
+        <Typography variant='h4'>Design Your Palette</Typography>
+
+        <Button variant='contained' color='secondary'>
+          Clear Palette
+        </Button>
+
+        <Button variant='contained' color='primary'>
+          Random Color
+        </Button>
+
+        <ChromePicker
+          color='green'
+          onChangeComplete={(newColor) => {
+            console.log(newColor);
+          }}
+        />
+
+        <Button variant='contained' color='primary'>
+          Add Color
+        </Button>
       </Drawer>
       <main
         className={clsx(classes.content, {
