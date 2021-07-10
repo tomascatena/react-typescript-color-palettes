@@ -2,6 +2,8 @@ import { withStyles } from '@material-ui/styles';
 import { WithStyles, createStyles } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import ColorBox from '../ColorBox/ColorBox';
+import Navbar from '../Navbar/Navbar';
+import PaletteFooter from '../PaletteFooter/PaletteFooter';
 
 const styles = createStyles({
   palette: {
@@ -26,8 +28,15 @@ interface ColorPaletteWithShades {
       hex: string;
       rgb: string;
       rgba: string;
+      level: number;
     }[];
   };
+}
+
+enum ColorFormats {
+  hex = 'hex',
+  rgb = 'rgb',
+  rgba = 'rgba',
 }
 
 interface SingleColorPaletteProps extends WithStyles<typeof styles> {
@@ -35,13 +44,16 @@ interface SingleColorPaletteProps extends WithStyles<typeof styles> {
   colorId: string;
 }
 
-type ColorShades = {
+type SingleColor = {
   id: string;
   name: string;
   hex: string;
   rgb: string;
   rgba: string;
-}[];
+  level: number;
+};
+
+type ColorShades = SingleColor[];
 
 const SingleColorPalette = ({
   classes,
@@ -49,6 +61,9 @@ const SingleColorPalette = ({
   colorId,
 }: SingleColorPaletteProps) => {
   const [shades, setShades] = useState<ColorShades>([]);
+  const [colorFormat, setColorFormat] = useState<ColorFormats>(
+    ColorFormats.hex
+  );
 
   useEffect(() => {
     setShades(gatherShades(colorPalette, colorId));
@@ -62,12 +77,11 @@ const SingleColorPalette = ({
     let allColors = palette.colors;
 
     for (let key in allColors) {
-      colorShades.push(
-        ...allColors[key].filter(
-          (color: { [key: string]: string }): boolean =>
-            color.id === colorToFilterBy
-        )
+      let singleColor = allColors[key].find(
+        (color) => color.id === colorToFilterBy
       );
+
+      colorShades.push(singleColor as SingleColor);
     }
 
     return colorShades.slice(1);
@@ -77,7 +91,7 @@ const SingleColorPalette = ({
     return (
       <ColorBox
         key={`${color.name}-${color.hex}`}
-        background={color.hex}
+        background={color[colorFormat]}
         name={color.name}
         id={color.id}
         showMoreLink={false}
@@ -87,8 +101,11 @@ const SingleColorPalette = ({
 
   return (
     <div className={classes.palette}>
-      <h1>Single Color Palette</h1>
+      <Navbar colorFormat={colorFormat} setColorFormat={setColorFormat} />
+
       <div className={classes.paletteColors}>{colorBoxes}</div>
+
+      <PaletteFooter colorPalette={colorPalette} />
     </div>
   );
 };

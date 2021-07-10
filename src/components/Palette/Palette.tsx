@@ -2,6 +2,7 @@ import ColorBox from '../ColorBox/ColorBox';
 import './Palette.css';
 import { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
+import PaletteFooter from '../PaletteFooter/PaletteFooter';
 
 enum ColorFormats {
   hex = 'hex',
@@ -60,10 +61,7 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
         )}
       </div>
 
-      <footer className='paletteFooter'>
-        {colorPalette.paletteName}
-        <span className='emoji'>{colorPalette.emoji}</span>
-      </footer>
+      <PaletteFooter colorPalette={colorPalette} />
     </div>
   );
 };

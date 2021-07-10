@@ -16,9 +16,9 @@ enum ColorFormats {
 }
 
 interface NavbarProps {
-  level: number;
+  level?: number;
   colorFormat: ColorFormats;
-  changeLevel: (newLevel: number) => void;
+  changeLevel?: (newLevel: number) => void;
   setColorFormat: (colorFormat: ColorFormats) => void;
 }
 
@@ -47,19 +47,21 @@ const Navbar = ({
         <Link to='/'>ReactTSColorPalette</Link>
       </div>
 
-      <div className='sliderContainer'>
-        <span>Level: {level}</span>
+      {changeLevel && (
+        <div className='sliderContainer'>
+          <span>Level: {level}</span>
 
-        <div className='slider'>
-          <Slider
-            defaultValue={level}
-            min={100}
-            max={900}
-            step={100}
-            onAfterChange={changeLevel}
-          />
+          <div className='slider'>
+            <Slider
+              defaultValue={level}
+              min={100}
+              max={900}
+              step={100}
+              onAfterChange={changeLevel}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className='selectContainer'>
         <Select onChange={handleFormatChange} value={colorFormat}>

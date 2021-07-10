@@ -18,6 +18,7 @@ interface ColorPaletteWithShades {
       hex: string;
       rgb: string;
       rgba: string;
+      level: number;
     }[];
   };
 }
@@ -45,6 +46,7 @@ export const generatePalette = (
         newPalette.colors[levels[i]].push({
           id: name.toLowerCase().replace(/ /g, '-'),
           name: `${name} ${levels[i]}`,
+          level: levels[i],
           hex: scale[i],
           rgb: chroma(scale[i]).css(),
           rgba: chroma(scale[i])

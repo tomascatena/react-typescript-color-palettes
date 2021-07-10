@@ -54,7 +54,7 @@ const PaletteList = ({ classes, palettes }: PaletteListProps): JSX.Element => {
 
         <div className={classes.palettes}>
           {palettes.map((palette) => {
-            return <MiniPalette {...palette} />;
+            return <MiniPalette key={palette.id} {...palette} />;
           })}
         </div>
       </div>
