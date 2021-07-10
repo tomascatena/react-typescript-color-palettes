@@ -8,7 +8,7 @@ const styles = createStyles({
     overflow: 'hidden',
   },
   paletteColors: {
-    height: '90%',
+    height: '88%',
   },
 });
 

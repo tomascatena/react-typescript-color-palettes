@@ -7,13 +7,13 @@ const styles = createStyles({
     overflow: 'hidden',
   },
   singleColorPalette: {
-    height: '90%',
+    height: '88%',
   },
   goBack: {
     display: 'inline-block',
     cursor: 'pointer',
     position: 'absolute',
-    height: '45%',
+    height: '44%',
     width: '20%',
   },
   goBackButton: {

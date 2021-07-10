@@ -1,5 +1,4 @@
 import 'rc-slider/assets/index.css';
-import './Navbar.css';
 import Slider from 'rc-slider';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,6 +7,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { withStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
+import NavbarStyles from './NavbarStyles';
 
 enum ColorFormats {
   hex = 'hex',
@@ -15,7 +17,7 @@ enum ColorFormats {
   rgba = 'rgba',
 }
 
-interface NavbarProps {
+interface NavbarProps extends WithStyles<typeof NavbarStyles> {
   level?: number;
   colorFormat: ColorFormats;
   changeLevel?: (newLevel: number) => void;
@@ -23,6 +25,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({
+  classes,
   level,
   colorFormat,
   changeLevel,
@@ -42,16 +45,16 @@ const Navbar = ({
   };
 
   return (
-    <header className='navbar'>
-      <div className='logo'>
+    <header className={classes.navbar}>
+      <div className={classes.logo}>
         <Link to='/'>ReactTSColorPalette</Link>
       </div>
 
       {changeLevel && (
-        <div className='sliderContainer'>
+        <div>
           <span>Level: {level}</span>
 
-          <div className='slider'>
+          <div className={classes.slider}>
             <Slider
               defaultValue={level}
               min={100}
@@ -63,7 +66,7 @@ const Navbar = ({
         </div>
       )}
 
-      <div className='selectContainer'>
+      <div className={classes.selectContainer}>
         <Select onChange={handleFormatChange} value={colorFormat}>
           <MenuItem value='hex'>HEX - #ffffff</MenuItem>
           <MenuItem value='rgb'>RGB - rgb(255,255,255)</MenuItem>
@@ -76,7 +79,7 @@ const Navbar = ({
         open={open}
         autoHideDuration={3000}
         message={
-          <span id='message-id'>
+          <span className={classes.formatChangeMessage} id='message-id'>
             Format Changed To {colorFormat.toUpperCase()}!
           </span>
         }
@@ -99,4 +102,4 @@ const Navbar = ({
   );
 };
 
-export default Navbar;
+export default withStyles(NavbarStyles)(Navbar);
