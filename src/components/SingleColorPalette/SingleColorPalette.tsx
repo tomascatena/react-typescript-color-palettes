@@ -12,7 +12,6 @@ const styles = createStyles({
     height: '100vh',
     overflow: 'hidden',
   },
-  colorBox: {},
   singleColorPalette: {
     height: '90%',
   },

@@ -9,6 +9,10 @@ const styles = createStyles({
     justifyContent: 'flex-end',
     alignItems: 'center',
     fontWeight: 'bold',
+
+    '& span': {
+      margin: 'auto 1rem',
+    },
   },
 });
 

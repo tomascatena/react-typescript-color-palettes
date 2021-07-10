@@ -3,6 +3,20 @@ import './Palette.css';
 import { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import PaletteFooter from '../PaletteFooter/PaletteFooter';
+import { withStyles } from '@material-ui/styles';
+import { WithStyles, createStyles } from '@material-ui/core';
+
+const styles = createStyles({
+  palette: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+  },
+  paletteColors: {
+    height: '90%',
+  },
+});
 
 enum ColorFormats {
   hex = 'hex',
@@ -25,11 +39,11 @@ interface ColorPaletteWithShades {
   };
 }
 
-interface PaletteProps {
+interface PaletteProps extends WithStyles<typeof styles> {
   colorPalette: ColorPaletteWithShades;
 }
 
-const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
+const Palette = ({ classes, colorPalette }: PaletteProps): JSX.Element => {
   const [level, setLevel] = useState<number>(500);
   const [colorFormat, setColorFormat] = useState<ColorFormats>(
     ColorFormats.hex
@@ -40,7 +54,7 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
   };
 
   return (
-    <div className='Palette'>
+    <div className={classes.palette}>
       <Navbar
         level={level}
         changeLevel={changeLevel}
@@ -48,7 +62,7 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
         colorFormat={colorFormat}
       />
 
-      <div className='PaletteColors'>
+      <div className={classes.paletteColors}>
         {colorPalette.colors[level].map(
           (colorObj): JSX.Element => (
             <ColorBox
@@ -66,4 +80,4 @@ const Palette = ({ colorPalette }: PaletteProps): JSX.Element => {
   );
 };
 
-export default Palette;
+export default withStyles(styles)(Palette);
