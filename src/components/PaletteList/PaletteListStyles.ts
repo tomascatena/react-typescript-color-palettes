@@ -25,9 +25,20 @@ const styles = createStyles({
   nav: {
     display: 'flex',
     justifyContent: 'space-between',
+    justifyItems: 'center',
     width: '100%',
     color: '#fff',
     padding: '1rem 0',
+
+    '& a': {
+      color: '#fff',
+      textDecoration: 'none',
+      alignSelf: 'center',
+      border: '1px solid black',
+      padding: '.5rem',
+      borderRadius: '.4rem',
+      backgroundColor: 'rgba(0,0,0,0.3)',
+    },
   },
 });
 

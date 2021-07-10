@@ -5,6 +5,7 @@ import './App.css';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './components/PaletteList/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette';
+import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
 
 interface ColorPalette {
   paletteName: string;
@@ -25,6 +26,13 @@ const App = (): JSX.Element => {
         path='/'
         render={() => {
           return <PaletteList palettes={seedPalettes} />;
+        }}
+      />
+      <Route
+        exact
+        path='/palette/new'
+        render={() => {
+          return <NewPaletteForm />;
         }}
       />
       <Route

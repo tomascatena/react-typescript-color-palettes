@@ -2,6 +2,7 @@ import MiniPalette from '../MiniPalette/MiniPalette';
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
 import PaletteListStyles from './PaletteListStyles';
+import { Link } from 'react-router-dom';
 
 interface ColorPalette {
   paletteName: string;
@@ -20,6 +21,7 @@ const PaletteList = ({ classes, palettes }: PaletteListProps): JSX.Element => {
       <div className={classes.container}>
         <nav className={classes.nav}>
           <h1>React Colors</h1>
+          <Link to={`/palette/new`}>Create Palette</Link>
         </nav>
 
         <div className={classes.palettes}>
