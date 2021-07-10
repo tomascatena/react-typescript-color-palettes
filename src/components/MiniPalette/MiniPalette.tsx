@@ -1,52 +1,10 @@
 import { withStyles } from '@material-ui/styles';
-import { WithStyles, createStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core';
 import { MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import MiniPaletteStyles from './MiniPaletteStyles';
 
-const styles = createStyles({
-  root: {
-    backgroundColor: '#FFF',
-    border: '1px solid black',
-    borderRadius: '5px',
-    padding: '.5rem',
-    position: 'relative',
-    overflow: 'hidden',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  colors: {
-    backgroundColor: '#dae1e4',
-    height: '150px',
-    width: '100%',
-    borderRadius: '5px',
-    overflow: 'hidden',
-  },
-  title: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: '0',
-    color: '#000',
-    paddingTop: '.5rem',
-    fontSize: '1rem',
-    position: 'relative',
-  },
-  emoji: {
-    marginLeft: '.5rem',
-    fontSize: '1.5rem',
-  },
-  miniColorBox: {
-    height: '25%',
-    width: '20%',
-    display: 'inline-block',
-    margin: '0 auto',
-    position: 'relative',
-    marginBottom: '-3.5px',
-  },
-});
-
-interface MiniPaletteProps extends WithStyles<typeof styles> {
+interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   paletteName: string;
   id: string;
   emoji: string;
@@ -87,4 +45,4 @@ const MiniPalette = ({
   );
 };
 
-export default withStyles(styles)(MiniPalette);
+export default withStyles(MiniPaletteStyles)(MiniPalette);

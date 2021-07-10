@@ -1,22 +1,11 @@
 import ColorBox from '../ColorBox/ColorBox';
-import './Palette.css';
+import './PaletteStyles.ts';
 import { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import PaletteFooter from '../PaletteFooter/PaletteFooter';
 import { withStyles } from '@material-ui/styles';
-import { WithStyles, createStyles } from '@material-ui/core';
-
-const styles = createStyles({
-  palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden',
-  },
-  paletteColors: {
-    height: '90%',
-  },
-});
+import { WithStyles } from '@material-ui/core';
+import PaletteStyles from './PaletteStyles';
 
 enum ColorFormats {
   hex = 'hex',
@@ -39,7 +28,7 @@ interface ColorPaletteWithShades {
   };
 }
 
-interface PaletteProps extends WithStyles<typeof styles> {
+interface PaletteProps extends WithStyles<typeof PaletteStyles> {
   colorPalette: ColorPaletteWithShades;
 }
 
@@ -80,4 +69,4 @@ const Palette = ({ classes, colorPalette }: PaletteProps): JSX.Element => {
   );
 };
 
-export default withStyles(styles)(Palette);
+export default withStyles(PaletteStyles)(Palette);
