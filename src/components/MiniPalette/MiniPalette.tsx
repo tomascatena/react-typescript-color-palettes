@@ -1,5 +1,7 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles, createStyles } from '@material-ui/core';
+import { MouseEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const styles = createStyles({
   root: {
@@ -58,6 +60,8 @@ const MiniPalette = ({
   emoji,
   id,
 }: MiniPaletteProps): JSX.Element => {
+  const history = useHistory();
+
   const miniColorBoxes = colors.map(({ color, name }): JSX.Element => {
     return (
       <div
@@ -68,8 +72,12 @@ const MiniPalette = ({
     );
   });
 
+  const goToPalette = (e: MouseEvent<HTMLDivElement>, id: string): void => {
+    history.push(`/palette/${id}`);
+  };
+
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={(e) => goToPalette(e, id)}>
       <div className={classes.colors}>{miniColorBoxes}</div>
 
       <h5 className={classes.title}>

@@ -15,7 +15,6 @@ const styles = createStyles({
     flex: '0 0 70%',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    display: 'flex',
   },
   palettes: {
     boxSizing: 'border-box',
