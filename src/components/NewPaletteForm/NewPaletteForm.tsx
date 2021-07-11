@@ -15,12 +15,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
-import DraggableColorBox from '../DraggableColorBox/DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import { ChromePicker } from 'react-color';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import DraggableColorList from '../DraggableColorList/DraggableColorList';
+import { arrayMove } from 'react-sortable-hoc';
 
 interface ColorPalette {
   paletteName: string;
@@ -60,6 +61,9 @@ const NewPaletteForm = ({
   const createNewColor = () => {
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
+
+    setCurrentColor('ffffff');
+    setNewColorName('');
   };
 
   const handleColorNameChange = (
@@ -91,6 +95,16 @@ const NewPaletteForm = ({
     setColors(colors.filter((color) => color.name !== colorName));
   };
 
+  const onSortEnd = ({
+    oldIndex,
+    newIndex,
+  }: {
+    oldIndex: number;
+    newIndex: number;
+  }) => {
+    setColors(arrayMove(colors, oldIndex, newIndex));
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule(
       'isColorNameUnique',
@@ -101,9 +115,7 @@ const NewPaletteForm = ({
       }
     );
     ValidatorForm.addValidationRule('isColorUnique', (): boolean => {
-      return colors.every(
-        ({ color }) => color.toLowerCase() !== currentColor.toLowerCase()
-      );
+      return colors.every(({ color }) => color !== currentColor);
     });
     ValidatorForm.addValidationRule(
       'isPaletteNameUnique',
@@ -242,13 +254,12 @@ const NewPaletteForm = ({
       >
         <div className={classes.drawerHeader} />
 
-        {colors.map((color) => (
-          <DraggableColorBox
-            key={`${color.name}-${color.color}`}
-            color={color}
-            removeColorFromPalette={handleRemoveColorFromPalette}
-          />
-        ))}
+        <DraggableColorList
+          colors={colors}
+          handleRemoveColorFromPalette={handleRemoveColorFromPalette}
+          onSortEnd={onSortEnd}
+          axis='xy'
+        />
       </main>
     </div>
   );
