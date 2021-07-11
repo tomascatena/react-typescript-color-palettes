@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 interface ColorPalette {
@@ -56,7 +56,7 @@ const PaletteFormNav = ({
   };
 
   return (
-    <Fragment>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         color='default'
@@ -77,9 +77,11 @@ const PaletteFormNav = ({
           </IconButton>
 
           <Typography variant='h6' noWrap>
-            Persistent drawer
+            Create A Palette
           </Typography>
+        </Toolbar>
 
+        <div className={classes.navButtons}>
           <ValidatorForm
             onSubmit={handleCreateNewPalette}
             onError={(errors) => console.log(errors)}
@@ -99,16 +101,16 @@ const PaletteFormNav = ({
             <Button variant='contained' color='primary' type='submit'>
               Save Palette
             </Button>
-
-            <Link to='/'>
-              <Button variant='contained' color='secondary'>
-                Go Back
-              </Button>
-            </Link>
           </ValidatorForm>
-        </Toolbar>
+
+          <Link to='/'>
+            <Button variant='contained' color='secondary'>
+              Go Back
+            </Button>
+          </Link>
+        </div>
       </AppBar>
-    </Fragment>
+    </div>
   );
 };
 
