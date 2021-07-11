@@ -32,6 +32,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navButtons: {
       display: 'flex',
+
+      '& button': {
+        marginRight: '1rem',
+      },
+
+      '& a': {
+        textDecoration: 'none',
+      },
     },
   })
 );

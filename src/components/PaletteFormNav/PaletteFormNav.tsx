@@ -83,17 +83,15 @@ const PaletteFormNav = ({
         </Toolbar>
 
         <div className={classes.navButtons}>
+          <Link to='/'>
+            <Button variant='contained'>Go Back</Button>
+          </Link>
+
           <PaletteMetaForm
             newPaletteName={newPaletteName}
             handlePaletteNameChange={handlePaletteNameChange}
             handleCreateNewPalette={handleCreateNewPalette}
           />
-
-          <Link to='/'>
-            <Button variant='contained' color='secondary'>
-              Go Back
-            </Button>
-          </Link>
         </div>
       </AppBar>
     </div>
