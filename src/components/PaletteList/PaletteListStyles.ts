@@ -32,12 +32,8 @@ const styles = createStyles({
 
     '& a': {
       color: '#fff',
-      textDecoration: 'none',
       alignSelf: 'center',
-      border: '1px solid black',
-      padding: '.5rem',
-      borderRadius: '.4rem',
-      backgroundColor: 'rgba(0,0,0,0.3)',
+      fontSize: '1rem',
     },
   },
 });

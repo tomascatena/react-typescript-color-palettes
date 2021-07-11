@@ -61,6 +61,7 @@ const PaletteFormNav = ({
       <AppBar
         color='default'
         position='fixed'
+        elevation={0}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -90,6 +91,7 @@ const PaletteFormNav = ({
               value={newPaletteName}
               onChange={handlePaletteNameChange}
               name='newPaletteName'
+              autoComplete='off'
               label='palette name'
               validators={['required', 'isPaletteNameUnique']}
               errorMessages={[

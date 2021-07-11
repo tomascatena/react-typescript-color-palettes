@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import useStyles from './NewPaletteColorPickerStyles';
 import chroma from 'chroma-js';
 import Button from '@material-ui/core/Button';
@@ -41,26 +40,30 @@ const NewPaletteColorPicker = ({
   };
 
   return (
-    <Fragment>
-      <ChromePicker
-        color={currentColor}
-        onChangeComplete={(newColor) => {
-          setCurrentColor(newColor.hex);
-        }}
-      />
-
+    <div className={classes.root}>
       <ValidatorForm onSubmit={createNewColor} onError={(errors) => {}}>
+        <ChromePicker
+          color={currentColor}
+          onChangeComplete={(newColor) => {
+            setCurrentColor(newColor.hex);
+          }}
+          className={classes.colorPicker}
+        />
+
         <TextValidator
           value={newColorName}
           onChange={handleColorNameChange}
           name='newColorName'
           label='color name'
+          className={classes.colorNameInput}
+          autoComplete='off'
           validators={['required', 'isColorNameUnique', 'isColorUnique']}
           errorMessages={[
             'Please enter a color name',
             'Color name already exsits',
             'This color already exists',
           ]}
+          fullWidth
         />
 
         <Button
@@ -68,6 +71,8 @@ const NewPaletteColorPicker = ({
           color='primary'
           type='submit'
           disabled={isPaletteFull}
+          className={classes.addColorButton}
+          fullWidth
           style={{
             backgroundColor: currentColor,
             color:
@@ -79,7 +84,7 @@ const NewPaletteColorPicker = ({
           {isPaletteFull ? 'Palette Full' : 'Add Color'}
         </Button>
       </ValidatorForm>
-    </Fragment>
+    </div>
   );
 };
 

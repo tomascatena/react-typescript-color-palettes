@@ -150,6 +150,8 @@ const NewPaletteForm = ({
         }}
       >
         <div className={classes.drawerHeader}>
+          <Typography>Design Your Palette</Typography>
+
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
@@ -161,30 +163,36 @@ const NewPaletteForm = ({
 
         <Divider />
 
-        <Typography variant='h4'>Design Your Palette</Typography>
+        <div className={classes.colorPickerContainer}>
+          <div className={classes.buttons}>
+            <NewPaletteColorPicker
+              currentColor={currentColor}
+              isPaletteFull={isPaletteFull}
+              setCurrentColor={setCurrentColor}
+              newColorName={newColorName}
+              colors={colors}
+              setNewColorName={setNewColorName}
+              setColors={setColors}
+            />
 
-        <Button variant='contained' color='secondary' onClick={clearNewPalette}>
-          Clear Palette
-        </Button>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={pickRandomHexColor}
+              disabled={isPaletteFull}
+            >
+              Random Color
+            </Button>
 
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={pickRandomHexColor}
-          disabled={isPaletteFull}
-        >
-          Random Color
-        </Button>
-
-        <NewPaletteColorPicker
-          currentColor={currentColor}
-          isPaletteFull={isPaletteFull}
-          setCurrentColor={setCurrentColor}
-          newColorName={newColorName}
-          colors={colors}
-          setNewColorName={setNewColorName}
-          setColors={setColors}
-        />
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={clearNewPalette}
+            >
+              Clear Palette
+            </Button>
+          </div>
+        </div>
       </Drawer>
       <main
         className={clsx(classes.content, {
