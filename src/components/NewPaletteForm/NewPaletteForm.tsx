@@ -31,9 +31,13 @@ interface ColorPalette {
 
 interface NewPaletteFormProps {
   savePalette: (newPlaette: ColorPalette) => void;
+  palettes: ColorPalette[];
 }
 
-const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
+const NewPaletteForm = ({
+  savePalette,
+  palettes,
+}: NewPaletteFormProps): JSX.Element => {
   const history = useHistory();
 
   const classes = useStyles();
@@ -43,6 +47,7 @@ const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
   const [currentColor, setCurrentColor] = useState<string>('blue');
   const [colors, setColors] = useState<{ color: string; name: string }[]>([]);
   const [newColorName, setNewColorName] = useState<string>('');
+  const [newPaletteName, setNewPaletteName] = useState<string>('');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -57,16 +62,23 @@ const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
     setColors([...colors, newColor]);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleColorNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setNewColorName(event.target.value);
   };
 
-  const handleSubmit = (): void => {
-    let newName = 'New Test Palette';
+  const handlePaletteNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setNewPaletteName(event.target.value);
+  };
+
+  const handleCreateNewPalette = (): void => {
     const newPalette: ColorPalette = {
-      paletteName: newName,
+      paletteName: newPaletteName,
       emoji: '',
-      id: newName.toLowerCase().replaceAll(' ', '-'),
+      id: newPaletteName.toLowerCase().replaceAll(' ', '-'),
       colors,
     };
 
@@ -84,15 +96,22 @@ const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
         );
       }
     );
+    ValidatorForm.addValidationRule('isColorUnique', (): boolean => {
+      return colors.every(
+        ({ color }) => color.toLowerCase() !== currentColor.toLowerCase()
+      );
+    });
     ValidatorForm.addValidationRule(
-      'isColorUnique',
+      'isPaletteNameUnique',
       (value: string): boolean => {
-        return colors.every(
-          ({ color }) => color.toLowerCase() !== currentColor.toLowerCase()
+        return palettes.every(
+          ({ paletteName, id }) =>
+            paletteName.toLowerCase() !== value.toLowerCase() &&
+            id !== value.toLowerCase().replaceAll(' ', '-')
         );
       }
     );
-  }, [colors, currentColor]);
+  }, [colors, currentColor, palettes]);
 
   return (
     <div className={classes.root}>
@@ -119,9 +138,26 @@ const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
             Persistent drawer
           </Typography>
 
-          <Button variant='contained' color='secondary' onClick={handleSubmit}>
-            Save Palette
-          </Button>
+          <ValidatorForm
+            onSubmit={handleCreateNewPalette}
+            onError={(errors) => console.log(errors)}
+          >
+            <TextValidator
+              value={newPaletteName}
+              onChange={handlePaletteNameChange}
+              name='newPaletteName'
+              label='palette name'
+              validators={['required', 'isPaletteNameUnique']}
+              errorMessages={[
+                'Please enter a name for the palette',
+                'The name is already taken by another palette',
+              ]}
+            />
+
+            <Button variant='contained' color='secondary' type='submit'>
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -168,7 +204,7 @@ const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
         >
           <TextValidator
             value={newColorName}
-            onChange={handleChange}
+            onChange={handleColorNameChange}
             name='newColorName'
             label='color name'
             validators={['required', 'isColorNameUnique', 'isColorUnique']}

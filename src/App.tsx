@@ -39,7 +39,9 @@ const App = (): JSX.Element => {
         exact
         path='/palette/new'
         render={() => {
-          return <NewPaletteForm savePalette={savePalette} />;
+          return (
+            <NewPaletteForm savePalette={savePalette} palettes={palettes} />
+          );
         }}
       />
       <Route
