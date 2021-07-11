@@ -20,15 +20,28 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import { ChromePicker } from 'react-color';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-interface NewPaletteFormProps {}
+interface ColorPalette {
+  paletteName: string;
+  id: string;
+  emoji: string;
+  colors: { name: string; color: string }[];
+}
 
-const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
+interface NewPaletteFormProps {
+  savePalette: (newPlaette: ColorPalette) => void;
+}
+
+const NewPaletteForm = ({ savePalette }: NewPaletteFormProps): JSX.Element => {
+  const history = useHistory();
+
   const classes = useStyles();
+
   const theme = useTheme();
   const [open, setOpen] = useState<boolean>(true);
   const [currentColor, setCurrentColor] = useState<string>('blue');
-  const [colors, setColors] = useState<{ hex: string; name: string }[]>([]);
+  const [colors, setColors] = useState<{ color: string; name: string }[]>([]);
   const [newColorName, setNewColorName] = useState<string>('');
 
   const handleDrawerOpen = () => {
@@ -40,12 +53,26 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
   };
 
   const createNewColor = () => {
-    const newColor = { hex: currentColor, name: newColorName };
+    const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewColorName(event.target.value);
+  };
+
+  const handleSubmit = (): void => {
+    let newName = 'New Test Palette';
+    const newPalette: ColorPalette = {
+      paletteName: newName,
+      emoji: '',
+      id: newName.toLowerCase().replaceAll(' ', '-'),
+      colors,
+    };
+
+    savePalette(newPalette);
+
+    history.push('/');
   };
 
   useEffect(() => {
@@ -61,7 +88,7 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
       'isColorUnique',
       (value: string): boolean => {
         return colors.every(
-          ({ hex }) => hex.toLowerCase() !== currentColor.toLowerCase()
+          ({ color }) => color.toLowerCase() !== currentColor.toLowerCase()
         );
       }
     );
@@ -71,6 +98,7 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color='default'
         position='fixed'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -90,6 +118,10 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
           <Typography variant='h6' noWrap>
             Persistent drawer
           </Typography>
+
+          <Button variant='contained' color='secondary' onClick={handleSubmit}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -171,7 +203,10 @@ const NewPaletteForm = ({}: NewPaletteFormProps): JSX.Element => {
         <div className={classes.drawerHeader} />
 
         {colors.map((color) => (
-          <DraggableColorBox key={`${color.name}-${color.hex}`} color={color} />
+          <DraggableColorBox
+            key={`${color.name}-${color.color}`}
+            color={color}
+          />
         ))}
       </main>
     </div>

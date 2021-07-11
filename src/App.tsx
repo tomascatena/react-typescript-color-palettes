@@ -6,6 +6,7 @@ import { generatePalette } from './colorHelpers';
 import PaletteList from './components/PaletteList/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette';
 import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
+import { useState } from 'react';
 
 interface ColorPalette {
   paletteName: string;
@@ -15,8 +16,14 @@ interface ColorPalette {
 }
 
 const App = (): JSX.Element => {
+  const [palettes, setPalettes] = useState<ColorPalette[]>(seedPalettes);
+
   const findPalette = (id: string): ColorPalette => {
-    return seedPalettes.find((palette) => palette.id === id) as ColorPalette;
+    return palettes.find((palette) => palette.id === id) as ColorPalette;
+  };
+
+  const savePalette = (newPalette: ColorPalette): void => {
+    setPalettes([...palettes, newPalette]);
   };
 
   return (
@@ -25,14 +32,14 @@ const App = (): JSX.Element => {
         exact
         path='/'
         render={() => {
-          return <PaletteList palettes={seedPalettes} />;
+          return <PaletteList palettes={palettes} />;
         }}
       />
       <Route
         exact
         path='/palette/new'
         render={() => {
-          return <NewPaletteForm />;
+          return <NewPaletteForm savePalette={savePalette} />;
         }}
       />
       <Route

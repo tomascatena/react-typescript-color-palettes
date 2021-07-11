@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'inline-block',
       position: 'relative',
       cursor: 'pointer',
-      marginBottom: '-4px',
+      marginBottom: '-3.5px',
     },
   })
 );
