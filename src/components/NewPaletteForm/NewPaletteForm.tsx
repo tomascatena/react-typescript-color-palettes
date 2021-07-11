@@ -87,6 +87,10 @@ const NewPaletteForm = ({
     history.push('/');
   };
 
+  const handleRemoveColorFromPalette = (colorName: string): void => {
+    setColors(colors.filter((color) => color.name !== colorName));
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule(
       'isColorNameUnique',
@@ -242,6 +246,7 @@ const NewPaletteForm = ({
           <DraggableColorBox
             key={`${color.name}-${color.color}`}
             color={color}
+            removeColorFromPalette={handleRemoveColorFromPalette}
           />
         ))}
       </main>
