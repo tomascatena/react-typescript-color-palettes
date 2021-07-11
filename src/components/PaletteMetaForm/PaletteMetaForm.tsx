@@ -40,23 +40,26 @@ const PaletteMetaForm = ({
 
   return (
     <div>
-      <Button variant='outlined' color='primary' onClick={handleClickOpen}>
+      <Button variant='contained' color='primary' onClick={handleClickOpen}>
         Save Palette
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby='form-dialog-title'
+        PaperProps={{
+          style: {},
+        }}
       >
-        <DialogTitle id='form-dialog-title'>Save Your Palette</DialogTitle>
+        <DialogTitle id='form-dialog-title'>Save Your Palette 🎨</DialogTitle>
         <ValidatorForm
           onSubmit={handleSubmit}
           onError={(errors) => console.log(errors)}
         >
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
+              <p>Please enter a name for your new palette.</p>
+              <p>Make sure is unique! 🦄</p>
             </DialogContentText>
 
             <TextValidator
@@ -65,6 +68,8 @@ const PaletteMetaForm = ({
               name='newPaletteName'
               autoComplete='off'
               label='palette name'
+              fullWidth
+              className={classes.paletteNameInput}
               validators={['required', 'isPaletteNameUnique']}
               errorMessages={[
                 'Please enter a name for the palette',
