@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
 
 interface ColorPalette {
   paletteName: string;
@@ -83,27 +83,11 @@ const PaletteFormNav = ({
         </Toolbar>
 
         <div className={classes.navButtons}>
-          <ValidatorForm
-            onSubmit={handleCreateNewPalette}
-            onError={(errors) => console.log(errors)}
-          >
-            <TextValidator
-              value={newPaletteName}
-              onChange={handlePaletteNameChange}
-              name='newPaletteName'
-              autoComplete='off'
-              label='palette name'
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Please enter a name for the palette',
-                'The name is already taken by another palette',
-              ]}
-            />
-
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm
+            newPaletteName={newPaletteName}
+            handlePaletteNameChange={handlePaletteNameChange}
+            handleCreateNewPalette={handleCreateNewPalette}
+          />
 
           <Link to='/'>
             <Button variant='contained' color='secondary'>

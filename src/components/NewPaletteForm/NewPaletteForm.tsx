@@ -176,7 +176,7 @@ const NewPaletteForm = ({
             />
 
             <Button
-              variant='contained'
+              variant='outlined'
               color='primary'
               onClick={pickRandomHexColor}
               disabled={isPaletteFull}
@@ -185,7 +185,7 @@ const NewPaletteForm = ({
             </Button>
 
             <Button
-              variant='contained'
+              variant='outlined'
               color='secondary'
               onClick={clearNewPalette}
             >
