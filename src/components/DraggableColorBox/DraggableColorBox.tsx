@@ -1,17 +1,27 @@
-import useStyles from './DraggableColorBoxStyles';
+import DraggableColorBoxStyles from './DraggableColorBoxStyles';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import { withStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
-interface DraggableColorBoxProps {
+interface DraggableColorBoxProps
+  extends WithStyles<typeof DraggableColorBoxStyles> {
   color: { color: string; name: string };
 }
 
-const DraggableColorBox = ({ color }: DraggableColorBoxProps): JSX.Element => {
-  const classes = useStyles();
-
+const DraggableColorBox = ({
+  classes,
+  color,
+}: DraggableColorBoxProps): JSX.Element => {
   return (
     <div className={classes.root} style={{ backgroundColor: color.color }}>
-      {color.name}
+      <div className={classes.boxContent}>
+        <span>{color.name}</span>
+        <span className={classes.deleteIcon}>
+          <DeleteForeverOutlinedIcon className={classes.deleteIcon} />
+        </span>
+      </div>
     </div>
   );
 };
 
-export default DraggableColorBox;
+export default withStyles(DraggableColorBoxStyles)(DraggableColorBox);
