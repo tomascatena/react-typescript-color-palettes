@@ -40,15 +40,19 @@ const NewPaletteForm = ({
   palettes,
 }: NewPaletteFormProps): JSX.Element => {
   const history = useHistory();
-
   const classes = useStyles();
-
   const theme = useTheme();
+
   const [open, setOpen] = useState<boolean>(true);
   const [currentColor, setCurrentColor] = useState<string>('blue');
-  const [colors, setColors] = useState<{ color: string; name: string }[]>([]);
+  const [colors, setColors] = useState<{ color: string; name: string }[]>(
+    palettes[0].colors
+  );
   const [newColorName, setNewColorName] = useState<string>('');
   const [newPaletteName, setNewPaletteName] = useState<string>('');
+
+  const maxColors = 20;
+  const isPaletteFull = colors.length >= maxColors;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -62,7 +66,7 @@ const NewPaletteForm = ({
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
 
-    setCurrentColor('ffffff');
+    setCurrentColor('#0000FF');
     setNewColorName('');
   };
 
@@ -95,6 +99,44 @@ const NewPaletteForm = ({
     setColors(colors.filter((color) => color.name !== colorName));
   };
 
+  const clearNewPalette = () => {
+    setColors([]);
+  };
+
+  const pickRandomHexColor = async (): Promise<void> => {
+    const isRnadomColorInNewPalette = (randomHexColor: string): boolean => {
+      return colors.some((color) => {
+        return color.color.toLowerCase() === randomHexColor.toLowerCase();
+      });
+    };
+
+    const generateRandomHexColor = (): string => {
+      return (
+        '#' + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, '0')
+      ).toLowerCase();
+    };
+
+    let randomHexColor = generateRandomHexColor();
+
+    while (isRnadomColorInNewPalette(randomHexColor)) {
+      randomHexColor = generateRandomHexColor();
+    }
+
+    try {
+      const response = await fetch(
+        `https://www.thecolorapi.com/id?hex=${randomHexColor.replace('#', '')}`
+      );
+
+      const data = await response.json();
+
+      setNewColorName(data.name.value);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setCurrentColor(randomHexColor);
+  };
+
   const onSortEnd = ({
     oldIndex,
     newIndex,
@@ -115,7 +157,9 @@ const NewPaletteForm = ({
       }
     );
     ValidatorForm.addValidationRule('isColorUnique', (): boolean => {
-      return colors.every(({ color }) => color !== currentColor);
+      return colors.every(
+        ({ color }) => color.toLowerCase() !== currentColor.toLowerCase()
+      );
     });
     ValidatorForm.addValidationRule(
       'isPaletteNameUnique',
@@ -199,11 +243,16 @@ const NewPaletteForm = ({
 
         <Typography variant='h4'>Design Your Palette</Typography>
 
-        <Button variant='contained' color='secondary'>
+        <Button variant='contained' color='secondary' onClick={clearNewPalette}>
           Clear Palette
         </Button>
 
-        <Button variant='contained' color='primary'>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={pickRandomHexColor}
+          disabled={isPaletteFull}
+        >
           Random Color
         </Button>
 
@@ -214,10 +263,7 @@ const NewPaletteForm = ({
           }}
         />
 
-        <ValidatorForm
-          onSubmit={createNewColor}
-          onError={(errors) => console.log(errors)}
-        >
+        <ValidatorForm onSubmit={createNewColor} onError={(errors) => {}}>
           <TextValidator
             value={newColorName}
             onChange={handleColorNameChange}
@@ -235,6 +281,7 @@ const NewPaletteForm = ({
             variant='contained'
             color='primary'
             type='submit'
+            disabled={isPaletteFull}
             style={{
               backgroundColor: currentColor,
               color:
@@ -243,7 +290,7 @@ const NewPaletteForm = ({
                   : '#fff',
             }}
           >
-            Add Color
+            {isPaletteFull ? 'Palette Full' : 'Add Color'}
           </Button>
         </ValidatorForm>
       </Drawer>
