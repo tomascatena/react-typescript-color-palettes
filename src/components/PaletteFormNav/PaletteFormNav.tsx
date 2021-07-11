@@ -42,10 +42,10 @@ const PaletteFormNav = ({
     setNewPaletteName(event.target.value);
   };
 
-  const handleCreateNewPalette = (): void => {
+  const handleCreateNewPalette = (emoji: string): void => {
     const newPalette: ColorPalette = {
       paletteName: newPaletteName,
-      emoji: '',
+      emoji,
       id: newPaletteName.toLowerCase().replaceAll(' ', '-'),
       colors,
     };

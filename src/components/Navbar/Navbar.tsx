@@ -47,7 +47,7 @@ const Navbar = ({
   return (
     <header className={classes.navbar}>
       <div className={classes.logo}>
-        <Link to='/'>ReactTSColorPalette</Link>
+        <Link to='/'>React Colors</Link>
       </div>
 
       {changeLevel && (
