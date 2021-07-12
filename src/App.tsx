@@ -1,12 +1,14 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Palette from './components/Palette/Palette';
-import seedPalettes from './seedPalettes';
+import seedPalettes from './data/seedPalettes';
 import './App.css';
-import { generatePalette } from './colorHelpers';
+import { generatePalette } from './utils/colorHelpers';
 import PaletteList from './components/PaletteList/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette';
 import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
 import { useState } from 'react';
+import useLocalStorage from './utils/useLocalStorage';
+import { useEffect } from 'react';
 
 interface ColorPalette {
   paletteName: string;
@@ -16,14 +18,20 @@ interface ColorPalette {
 }
 
 const App = (): JSX.Element => {
+  const [savedPalettes, setSavedPalettes] = useLocalStorage<ColorPalette[]>(
+    'palettes',
+    seedPalettes
+  );
+
   const [palettes, setPalettes] = useState<ColorPalette[]>(seedPalettes);
 
   const findPalette = (id: string): ColorPalette => {
-    return palettes.find((palette) => palette.id === id) as ColorPalette;
+    return savedPalettes.find((palette) => palette.id === id) as ColorPalette;
   };
 
   const savePalette = (newPalette: ColorPalette): void => {
     setPalettes([...palettes, newPalette]);
+    setSavedPalettes([...savedPalettes, newPalette]);
   };
 
   return (
@@ -32,7 +40,7 @@ const App = (): JSX.Element => {
         exact
         path='/'
         render={() => {
-          return <PaletteList palettes={palettes} />;
+          return <PaletteList palettes={savedPalettes} />;
         }}
       />
       <Route
@@ -40,7 +48,10 @@ const App = (): JSX.Element => {
         path='/palette/new'
         render={() => {
           return (
-            <NewPaletteForm savePalette={savePalette} palettes={palettes} />
+            <NewPaletteForm
+              savePalette={savePalette}
+              palettes={savedPalettes}
+            />
           );
         }}
       />
