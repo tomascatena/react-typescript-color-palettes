@@ -30,7 +30,9 @@ const styles = createStyles({
   },
   colorName: {
     color: (props: Props) =>
-      chroma(props.background).luminance() <= 0.1 ? '#fff' : 'rgba(0, 0, 0, 1)',
+      chroma(props.background).luminance() <= 0.15
+        ? '#fff'
+        : 'rgba(0, 0, 0, 1)',
     fontSize: '.9rem',
   },
   seeMore: {

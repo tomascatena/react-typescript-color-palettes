@@ -30,7 +30,7 @@ const styles = createStyles({
     left: 0,
     bottom: 0,
     color: (props: Props) =>
-      chroma(props.color.color).luminance() <= 0.1
+      chroma(props.color.color).luminance() <= 0.15
         ? '#fff'
         : 'rgba(0, 0, 0, 1)',
     textTransform: 'uppercase',
@@ -43,7 +43,7 @@ const styles = createStyles({
   deleteIcon: {
     transition: 'all 0.3s ease-in-out',
     color: (props: Props) =>
-      chroma(props.color.color).luminance() <= 0.1
+      chroma(props.color.color).luminance() <= 0.15
         ? 'rgba(255, 255, 255, 0.7)'
         : 'rgba(0, 0, 0, 0.5)',
   },
