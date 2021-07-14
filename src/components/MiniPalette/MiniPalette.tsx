@@ -10,6 +10,7 @@ interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   id: string;
   emoji: string;
   colors: { name: string; color: string }[];
+  deletePalette: (id: string) => void;
 }
 
 const MiniPalette = ({
@@ -18,6 +19,7 @@ const MiniPalette = ({
   paletteName,
   emoji,
   id,
+  deletePalette,
 }: MiniPaletteProps): JSX.Element => {
   const history = useHistory();
 
@@ -35,9 +37,17 @@ const MiniPalette = ({
     history.push(`/palette/${id}`);
   };
 
+  const handleDeletePalette = (e: MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
+    deletePalette(id);
+  };
+
   return (
     <div className={classes.root} onClick={(e) => goToPalette(e, id)}>
-      <div className={classes.deleteIconContainer}>
+      <div
+        className={classes.deleteIconContainer}
+        onClick={handleDeletePalette}
+      >
         <DeleteIcon className={classes.deleteIcon} />
       </div>
       <div className={classes.colors}>{miniColorBoxes}</div>

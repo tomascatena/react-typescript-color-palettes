@@ -33,13 +33,22 @@ const App = (): JSX.Element => {
     setSavedPalettes([...savedPalettes, newPalette]);
   };
 
+  const deletePalette = (id: string): void => {
+    setSavedPalettes(savedPalettes.filter((palette) => palette.id !== id));
+  };
+
   return (
     <Switch>
       <Route
         exact
         path='/'
         render={() => {
-          return <PaletteList palettes={savedPalettes} />;
+          return (
+            <PaletteList
+              deletePalette={deletePalette}
+              palettes={savedPalettes}
+            />
+          );
         }}
       />
       <Route

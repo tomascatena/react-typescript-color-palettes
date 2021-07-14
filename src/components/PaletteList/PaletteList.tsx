@@ -13,9 +13,14 @@ interface ColorPalette {
 
 interface PaletteListProps extends WithStyles<typeof PaletteListStyles> {
   palettes: ColorPalette[];
+  deletePalette: (id: string) => void;
 }
 
-const PaletteList = ({ classes, palettes }: PaletteListProps): JSX.Element => {
+const PaletteList = ({
+  classes,
+  palettes,
+  deletePalette,
+}: PaletteListProps): JSX.Element => {
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -26,7 +31,13 @@ const PaletteList = ({ classes, palettes }: PaletteListProps): JSX.Element => {
 
         <div className={classes.palettes}>
           {palettes.map((palette) => {
-            return <MiniPalette key={palette.id} {...palette} />;
+            return (
+              <MiniPalette
+                key={palette.id}
+                {...palette}
+                deletePalette={deletePalette}
+              />
+            );
           })}
         </div>
       </div>
