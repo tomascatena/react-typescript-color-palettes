@@ -3,6 +3,7 @@ import { WithStyles } from '@material-ui/core';
 import { MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import MiniPaletteStyles from './MiniPaletteStyles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   paletteName: string;
@@ -36,6 +37,9 @@ const MiniPalette = ({
 
   return (
     <div className={classes.root} onClick={(e) => goToPalette(e, id)}>
+      <div className={classes.deleteIconContainer}>
+        <DeleteIcon className={classes.deleteIcon} />
+      </div>
       <div className={classes.colors}>{miniColorBoxes}</div>
 
       <h5 className={classes.title}>

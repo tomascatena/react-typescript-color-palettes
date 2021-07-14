@@ -8,8 +8,9 @@ const styles = createStyles({
     padding: '.5rem',
     position: 'relative',
     overflow: 'hidden',
-    '&:hover': {
-      cursor: 'pointer',
+    cursor: 'pointer',
+    '&:hover svg': {
+      opacity: 1,
     },
   },
   colors: {
@@ -40,6 +41,26 @@ const styles = createStyles({
     margin: '0 auto',
     position: 'relative',
     marginBottom: '-5px',
+  },
+  deleteIconContainer: {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    transform: 'translate(50%,-50%)',
+    zIndex: 1,
+  },
+  deleteIcon: {
+    color: '#fff',
+    backgroundColor: '#eb3d30',
+    width: '2.4rem',
+    height: '2.4rem',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    opacity: 0,
+    zIndex: 1,
+    padding: '.3rem',
+    transition: 'all 0.3s ease-in-out',
   },
 });
 

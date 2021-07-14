@@ -8,7 +8,6 @@ import SingleColorPalette from './components/SingleColorPalette/SingleColorPalet
 import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
 import { useState } from 'react';
 import useLocalStorage from './utils/useLocalStorage';
-import { useEffect } from 'react';
 
 interface ColorPalette {
   paletteName: string;
