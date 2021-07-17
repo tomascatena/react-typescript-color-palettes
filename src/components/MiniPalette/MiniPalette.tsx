@@ -10,7 +10,7 @@ interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   id: string;
   emoji: string;
   colors: { name: string; color: string }[];
-  deletePalette: (id: string) => void;
+  openDialog: (id: string) => void;
 }
 
 const MiniPalette = ({
@@ -19,7 +19,7 @@ const MiniPalette = ({
   paletteName,
   emoji,
   id,
-  deletePalette,
+  openDialog,
 }: MiniPaletteProps): JSX.Element => {
   const history = useHistory();
 
@@ -39,7 +39,7 @@ const MiniPalette = ({
 
   const handleDeletePalette = (e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
-    deletePalette(id);
+    openDialog(id);
   };
 
   return (

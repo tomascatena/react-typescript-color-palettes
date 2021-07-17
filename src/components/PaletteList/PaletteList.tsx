@@ -4,6 +4,18 @@ import { WithStyles } from '@material-ui/core';
 import PaletteListStyles from './PaletteListStyles';
 import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from '@material-ui/icons/Close';
+import Avatar from '@material-ui/core/Avatar';
+import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
+import { useState } from 'react';
 
 interface ColorPalette {
   paletteName: string;
@@ -22,6 +34,24 @@ const PaletteList = ({
   palettes,
   deletePalette,
 }: PaletteListProps): JSX.Element => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [paletteId, setPaletteId] = useState<string>('');
+
+  const openDialog = (id: string): void => {
+    setOpen(true);
+    setPaletteId(id);
+  };
+
+  const closeDialog = (): void => {
+    setOpen(false);
+    setPaletteId('');
+  };
+
+  const removePalette = (): void => {
+    closeDialog();
+    deletePalette(paletteId);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -38,13 +68,39 @@ const PaletteList = ({
                 <MiniPalette
                   key={palette.id}
                   {...palette}
-                  deletePalette={deletePalette}
+                  openDialog={openDialog}
                 />
               </CSSTransition>
             );
           })}
         </TransitionGroup>
       </div>
+
+      <Dialog open={open}>
+        <DialogTitle>Delete This Palette?</DialogTitle>
+
+        <List>
+          <ListItem button onClick={removePalette}>
+            <ListItemAvatar>
+              <Avatar style={{ backgroundColor: blue[100], color: blue[600] }}>
+                <CheckIcon />
+              </Avatar>
+            </ListItemAvatar>
+
+            <ListItemText primary='Delete' />
+          </ListItem>
+
+          <ListItem button onClick={closeDialog}>
+            <ListItemAvatar>
+              <Avatar style={{ backgroundColor: red[100], color: red[600] }}>
+                <CloseIcon />
+              </Avatar>
+            </ListItemAvatar>
+
+            <ListItemText primary='Cancel' />
+          </ListItem>
+        </List>
+      </Dialog>
     </div>
   );
 };
