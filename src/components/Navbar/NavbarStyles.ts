@@ -1,4 +1,5 @@
 import { createStyles } from '@material-ui/core';
+import mediaQueries from '../../utils/mediaQueries';
 
 const styles = createStyles({
   navbar: {
@@ -23,7 +24,7 @@ const styles = createStyles({
     },
   },
   slider: {
-    width: 340,
+    width: '340px',
     margin: '0 10px',
     display: 'inline-block',
 
@@ -52,6 +53,18 @@ const styles = createStyles({
   },
   formatChangeMessage: {
     fontSize: '1rem',
+  },
+  [mediaQueries.down('m')]: {},
+  [mediaQueries.down('s')]: {
+    logo: {
+      display: 'none',
+    },
+    slider: {
+      width: '150px',
+    },
+    sliderContainer: {
+      marginLeft: '1rem',
+    },
   },
 });
 

@@ -51,7 +51,7 @@ const Navbar = ({
       </div>
 
       {changeLevel && (
-        <div>
+        <div className={classes.sliderContainer}>
           <span>Level: {level}</span>
 
           <div className={classes.slider}>

@@ -1,3 +1,5 @@
+import mediaQueries from '../../utils/mediaQueries';
+
 import { createStyles } from '@material-ui/core';
 
 const styles = createStyles({
@@ -34,6 +36,31 @@ const styles = createStyles({
       color: '#fff',
       alignSelf: 'center',
       fontSize: '1rem',
+    },
+  },
+  [mediaQueries.up('xl')]: {
+    container: {
+      flex: '0 0 50%',
+      alignItems: 'flex-start',
+      flexWrap: 'wrap',
+    },
+  },
+  [mediaQueries.down('m')]: {
+    palettes: {
+      boxSizing: 'border-box',
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridGap: '2rem',
+    },
+  },
+  [mediaQueries.down('s')]: {
+    palettes: {
+      boxSizing: 'border-box',
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(1, 1fr)',
+      gridGap: '2rem',
     },
   },
 });
