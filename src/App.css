@@ -33,3 +33,23 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+.page {
+  height: 100%;
+  width: 100%;
+}
