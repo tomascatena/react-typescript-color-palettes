@@ -1,14 +1,13 @@
 import { createStyles } from '@material-ui/core';
 
 const styles = createStyles({
-  palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden',
+  root: {
+    display: 'grid',
+    gridTemplateRows: '7vh auto 5vh',
   },
   paletteColors: {
-    height: '88%',
+    minHeight: '88vh',
+    height: '100%',
   },
 });
 

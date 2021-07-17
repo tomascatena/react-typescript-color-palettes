@@ -43,7 +43,7 @@ const Palette = ({ classes, colorPalette }: PaletteProps): JSX.Element => {
   };
 
   return (
-    <div className={classes.palette}>
+    <div className={classes.root}>
       <Navbar
         level={level}
         changeLevel={changeLevel}
@@ -51,7 +51,10 @@ const Palette = ({ classes, colorPalette }: PaletteProps): JSX.Element => {
         colorFormat={colorFormat}
       />
 
-      <div className={classes.paletteColors}>
+      <div
+        className={classes.paletteColors}
+        style={{ height: `calc(${document.body.scrollHeight} - 5vh)` }}
+      >
         {colorPalette.colors[level].map(
           (colorObj, index): JSX.Element => (
             <ColorBox

@@ -1,20 +1,23 @@
 import { createStyles } from '@material-ui/core';
+import mediaQueries from '../../utils/mediaQueries';
 
 const styles = createStyles({
   root: {
-    minHeight: '100vh',
-    height: '100vh',
-    overflow: 'hidden',
+    display: 'grid',
+    gridTemplateRows: '7vh auto 5vh',
   },
   singleColorPalette: {
-    height: '88%',
+    minHeight: '88vh',
+    height: '100%',
   },
   goBack: {
+    margin: '0 auto',
     display: 'inline-block',
+    position: 'relative',
     cursor: 'pointer',
-    position: 'absolute',
-    height: '44%',
+    height: '50%',
     width: '20%',
+    marginBottom: '-5px',
   },
   goBackButton: {
     width: '100px',
@@ -33,6 +36,20 @@ const styles = createStyles({
     border: 'none',
     textDecoration: 'none',
     color: '#fff',
+  },
+  [mediaQueries.down('m')]: {
+    goBack: {
+      width: '50% !important',
+      height: '6rem !important',
+      display: 'inline-block',
+    },
+  },
+  [mediaQueries.down('s')]: {
+    goBack: {
+      width: '100% !important',
+      height: '4rem !important',
+      display: 'block',
+    },
   },
 });
 

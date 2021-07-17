@@ -1,5 +1,6 @@
 import chroma from 'chroma-js';
 import { createStyles } from '@material-ui/core';
+import mediaQueries from '../../utils/mediaQueries';
 
 interface Props {
   background: string;
@@ -127,12 +128,29 @@ const styles = createStyles({
     height: '100%',
     transition: 'transform 0.6s ease-in-out',
     transform: 'scale(0.1)',
+    display: 'none',
   },
   showOverlay: {
     opacity: '1',
     transform: 'scale(50)',
     zIndex: 1,
     position: 'absolute',
+    display: 'block',
+  },
+  [mediaQueries.down('m')]: {
+    colorBox: {
+      width: '50% !important',
+      height: '6rem !important',
+    },
+  },
+  [mediaQueries.down('s')]: {
+    colorBox: {
+      width: '100% !important',
+      height: '4rem !important',
+    },
+    seeMore: {
+      bottom: '25%',
+    },
   },
 });
 

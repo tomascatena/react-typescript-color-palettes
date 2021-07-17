@@ -94,7 +94,10 @@ const SingleColorPalette = ({
     <div className={classes.root}>
       <Navbar colorFormat={colorFormat} setColorFormat={setColorFormat} />
 
-      <div className={classes.singleColorPalette}>
+      <div
+        className={classes.singleColorPalette}
+        style={{ height: `calc(${document.body.scrollHeight} - 5vh)` }}
+      >
         {colorBoxes}
         <div className={classes.goBack} style={{ background: '#000' }}>
           <Link
