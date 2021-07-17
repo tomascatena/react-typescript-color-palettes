@@ -206,6 +206,7 @@ const NewPaletteForm = ({
           handleRemoveColorFromPalette={handleRemoveColorFromPalette}
           onSortEnd={onSortEnd}
           axis='xy'
+          distance={20}
         />
       </main>
     </div>
