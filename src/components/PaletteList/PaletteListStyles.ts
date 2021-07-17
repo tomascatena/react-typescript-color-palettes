@@ -1,10 +1,28 @@
 import mediaQueries from '../../utils/mediaQueries';
-
+import bg from './Confetti-Doodles-Background.svg';
 import { createStyles } from '@material-ui/core';
 
 const styles = createStyles({
+  '@global': {
+    '.fade-enter': {
+      opacity: '0',
+    },
+    '.fade-enter-active': {
+      opacity: '1',
+      transition: 'opacity 300ms ease-in',
+    },
+    '.fade-exit': {
+      opacity: '1',
+    },
+    '.fade-exit-active': {
+      opacity: '0',
+      transition: 'opacity 300ms ease-in',
+    },
+  },
   root: {
+    // background by SVGBackgrounds.com
     backgroundColor: 'blue',
+    backgroundImage: `url(${bg})`,
     minHeight: '100vh',
     display: 'flex',
     flexWrap: 'wrap',
@@ -37,6 +55,9 @@ const styles = createStyles({
       alignSelf: 'center',
       fontSize: '1rem',
     },
+  },
+  title: {
+    fontSize: '2rem',
   },
   [mediaQueries.up('xl')]: {
     container: {
