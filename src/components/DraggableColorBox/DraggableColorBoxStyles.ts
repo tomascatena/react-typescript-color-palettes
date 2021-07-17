@@ -1,4 +1,5 @@
 import { createStyles } from '@material-ui/core/styles';
+import mediaQueries from '../../utils/mediaQueries';
 import chroma from 'chroma-js';
 
 interface Props {
@@ -49,6 +50,18 @@ const styles = createStyles({
   },
   colorName: {
     fontSize: '.9rem',
+  },
+  [mediaQueries.down('m')]: {
+    root: {
+      width: '25%',
+      height: '20%',
+    },
+  },
+  [mediaQueries.down('s')]: {
+    root: {
+      width: '50%',
+      height: '10%',
+    },
   },
 });
 

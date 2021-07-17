@@ -1,5 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { drawerWidth } from '../NewPaletteForm/NewPaletteFormStyles';
+import mediaQueries from '../../utils/mediaQueries';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,6 +40,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
       '& a': {
         textDecoration: 'none',
+      },
+    },
+    [mediaQueries.down('m')]: {},
+    [mediaQueries.down('s')]: {
+      navButtons: {
+        marginRight: '0',
+        fontSize: '0.8rem',
+      },
+      menuButton: {
+        marginRight: '0',
       },
     },
   })

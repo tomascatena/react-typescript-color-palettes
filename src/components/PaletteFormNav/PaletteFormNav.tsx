@@ -78,7 +78,7 @@ const PaletteFormNav = ({
           </IconButton>
 
           <Typography variant='h6' noWrap>
-            Create A Palette
+            Create Palette
           </Typography>
         </Toolbar>
 

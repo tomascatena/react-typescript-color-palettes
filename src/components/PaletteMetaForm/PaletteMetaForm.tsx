@@ -52,7 +52,7 @@ const PaletteMetaForm = ({
       </Dialog>
 
       <Button variant='contained' color='primary' onClick={handleClickOpen}>
-        Save Palette
+        Save
       </Button>
 
       <Dialog
