@@ -46,7 +46,7 @@ const App = (): JSX.Element => {
       render={(): JSX.Element => {
         return (
           <TransitionGroup>
-            <CSSTransition key={location.key} timeout={800} classNames='page'>
+            <CSSTransition key={location.key} timeout={500} classNames='page'>
               <Switch location={location}>
                 <Route
                   exact
