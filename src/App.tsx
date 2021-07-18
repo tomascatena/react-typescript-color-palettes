@@ -9,6 +9,8 @@ import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
 import { useState } from 'react';
 import useLocalStorage from './utils/useLocalStorage';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Page from './components/Page/Page';
+import { Location } from 'history';
 
 interface ColorPalette {
   paletteName: string;
@@ -23,8 +25,8 @@ const App = (): JSX.Element => {
     seedPalettes
   );
 
+  const location = useLocation<Location>();
   const [palettes, setPalettes] = useState<ColorPalette[]>(seedPalettes);
-  const location = useLocation();
 
   const findPalette = (id: string): ColorPalette => {
     return savedPalettes.find((palette) => palette.id === id) as ColorPalette;
@@ -44,19 +46,19 @@ const App = (): JSX.Element => {
       render={(): JSX.Element => {
         return (
           <TransitionGroup>
-            <CSSTransition timeout={300} classNames='fade' key={location.key}>
+            <CSSTransition key={location.key} timeout={800} classNames='page'>
               <Switch location={location}>
                 <Route
                   exact
                   path='/'
                   render={() => {
                     return (
-                      <div className='page'>
+                      <Page>
                         <PaletteList
                           deletePalette={deletePalette}
                           palettes={savedPalettes}
                         />
-                      </div>
+                      </Page>
                     );
                   }}
                 />
@@ -65,12 +67,12 @@ const App = (): JSX.Element => {
                   path='/palette/new'
                   render={() => {
                     return (
-                      <div className='page'>
+                      <Page>
                         <NewPaletteForm
                           savePalette={savePalette}
                           palettes={savedPalettes}
                         />
-                      </div>
+                      </Page>
                     );
                   }}
                 />
@@ -82,13 +84,13 @@ const App = (): JSX.Element => {
                       return <Redirect to='/'></Redirect>;
                     } else {
                       return (
-                        <div className='page'>
+                        <Page>
                           <Palette
                             colorPalette={generatePalette(
                               findPalette(routeProps.match.params.id)
                             )}
                           />
-                        </div>
+                        </Page>
                       );
                     }
                   }}
@@ -100,14 +102,14 @@ const App = (): JSX.Element => {
                       return <Redirect to='/'></Redirect>;
                     } else {
                       return (
-                        <div className='page'>
+                        <Page>
                           <SingleColorPalette
                             colorPalette={generatePalette(
                               findPalette(routeProps.match.params.paletteId)
                             )}
                             colorId={routeProps.match.params.colorId}
                           />
-                        </div>
+                        </Page>
                       );
                     }
                   }}
