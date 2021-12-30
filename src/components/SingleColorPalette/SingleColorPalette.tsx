@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ColorBox from '../ColorBox/ColorBox';
 import Navbar from '../Navbar/Navbar';
 import PaletteFooter from '../PaletteFooter/PaletteFooter';

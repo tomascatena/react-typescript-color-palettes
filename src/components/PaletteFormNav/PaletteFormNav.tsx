@@ -1,15 +1,15 @@
 import useStyles from './PaletteFormNavStyles';
 import clsx from 'clsx';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
+import { drawerWidth } from '../NewPaletteForm/NewPaletteFormStyles';
 
 interface ColorPalette {
   paletteName: string;
@@ -57,11 +57,15 @@ const PaletteFormNav = ({
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <AppBar
         color='default'
         position='fixed'
         elevation={0}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: open ? `calc(100% - ${drawerWidth}px)` : '100%',
+        }}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}

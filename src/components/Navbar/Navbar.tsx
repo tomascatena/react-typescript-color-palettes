@@ -1,6 +1,6 @@
 import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';

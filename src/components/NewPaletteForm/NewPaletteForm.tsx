@@ -1,5 +1,5 @@
 import useStyles from './NewPaletteFormStyles';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -194,6 +194,7 @@ const NewPaletteForm = ({
           </div>
         </div>
       </Drawer>
+
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,

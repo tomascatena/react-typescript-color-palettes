@@ -4,15 +4,11 @@ import mediaQueries from '../../utils/mediaQueries';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: 'flex',
-    },
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
       height: '4rem',

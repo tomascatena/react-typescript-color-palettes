@@ -11,6 +11,7 @@ import useLocalStorage from './utils/useLocalStorage';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from './components/Page/Page';
 import { Location } from 'history';
+import React from 'react';
 
 interface ColorPalette {
   paletteName: string;

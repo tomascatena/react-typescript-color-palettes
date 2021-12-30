@@ -1,6 +1,6 @@
 import './ColorBoxStyles.ts';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';

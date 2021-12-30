@@ -1,6 +1,6 @@
 import ColorBox from '../ColorBox/ColorBox';
 import './PaletteStyles.ts';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import PaletteFooter from '../PaletteFooter/PaletteFooter';
 import { withStyles } from '@material-ui/styles';

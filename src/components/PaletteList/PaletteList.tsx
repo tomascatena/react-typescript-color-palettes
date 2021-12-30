@@ -15,7 +15,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Avatar from '@material-ui/core/Avatar';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface ColorPalette {
   paletteName: string;

@@ -3,6 +3,7 @@ import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined'
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
 import { SortableElement } from 'react-sortable-hoc';
+import React from 'react';
 
 interface DraggableColorBoxProps
   extends WithStyles<typeof DraggableColorBoxStyles> {
