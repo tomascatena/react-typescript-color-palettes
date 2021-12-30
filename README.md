@@ -1,4 +1,4 @@
-# React Typescript Color Palettes App
+# Color Palettes App
 
 ## Available Scripts
 
