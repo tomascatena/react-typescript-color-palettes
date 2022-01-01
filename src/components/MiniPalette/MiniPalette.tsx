@@ -25,15 +25,15 @@ const MiniPalette = React.memo(
   }: MiniPaletteProps): JSX.Element => {
     const history = useHistory();
 
-    const miniColorBoxes = colors.map(({ color, name }): JSX.Element => {
-      return (
+    const miniColorBoxes = colors.map(
+      ({ color, name }): JSX.Element => (
         <div
           className={classes.miniColorBox}
           style={{ backgroundColor: color }}
           key={name}
         ></div>
-      );
-    });
+      )
+    );
 
     const goToPalette = (e: MouseEvent<HTMLDivElement>, id: string): void => {
       history.push(`/palette/${id}`);

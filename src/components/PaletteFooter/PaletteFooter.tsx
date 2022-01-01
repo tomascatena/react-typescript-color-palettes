@@ -16,6 +16,7 @@ const PaletteFooter = ({ classes, colorPalette }: PaletteFooterProps) => {
   return (
     <footer className={classes.paletteFooter}>
       {colorPalette.paletteName}
+
       <span className={classes.emoji}>{colorPalette.emoji}</span>
     </footer>
   );

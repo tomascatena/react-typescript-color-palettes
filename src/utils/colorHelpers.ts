@@ -26,10 +26,10 @@ interface ColorPaletteWithShades {
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
 export const generatePalette = (
-  starterPaletter: ColorPalette
+  starterPalette: ColorPalette
 ): ColorPaletteWithShades => {
   let newPalette: ColorPaletteWithShades = {
-    ...starterPaletter,
+    ...starterPalette,
     colors: {},
   };
 
@@ -37,7 +37,7 @@ export const generatePalette = (
     newPalette.colors[level] = [];
   });
 
-  starterPaletter.colors.forEach(
+  starterPalette.colors.forEach(
     (colorObj: { name: string; color: string }): void => {
       const { name, color } = colorObj;
       let scale: string[] = generateScale(color, 10).reverse();

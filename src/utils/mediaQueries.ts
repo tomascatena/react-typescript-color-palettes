@@ -3,9 +3,11 @@ interface MediaQueries {
   down: (size: string) => string;
 }
 
+type Sizes = { [key: string]: string };
+
 const mediaQueries: MediaQueries = {
   up(size: string) {
-    const sizes: { [key: string]: string } = {
+    const sizes: Sizes = {
       xs: '575.98px',
       s: '767.98px',
       m: '991.98px',
@@ -17,7 +19,7 @@ const mediaQueries: MediaQueries = {
   },
 
   down(size: string) {
-    const sizes: { [key: string]: string } = {
+    const sizes: Sizes = {
       xs: '575.98px',
       s: '767.98px',
       m: '991.98px',

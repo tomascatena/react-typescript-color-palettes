@@ -6,10 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
 import { drawerWidth } from '../NewPaletteForm/NewPaletteFormStyles';
+import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
+import { Emoji } from 'emoji-mart/dist-es';
 
 interface ColorPalette {
   paletteName: string;
@@ -35,6 +36,18 @@ const PaletteFormNav = ({
   const history = useHistory();
 
   const [newPaletteName, setNewPaletteName] = useState<string>('');
+
+  const preFetchEmojisSheet = async () => {
+    if (Emoji.defaultProps?.backgroundImageFn) {
+      const url = Emoji.defaultProps?.backgroundImageFn('apple', 32);
+
+      await fetch(url);
+    }
+  };
+
+  useEffect(() => {
+    preFetchEmojisSheet();
+  }, []);
 
   const handlePaletteNameChange = (
     event: React.ChangeEvent<HTMLInputElement>

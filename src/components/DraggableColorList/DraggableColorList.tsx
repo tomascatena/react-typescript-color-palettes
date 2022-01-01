@@ -17,20 +17,16 @@ const DraggableColorList = SortableContainer(
     colors,
     handleRemoveColorFromPalette,
   }: DraggableColorListProps): JSX.Element => {
-    return (
-      <div className={classes.root}>
-        {colors.map((color, index) => (
-          <DraggableColorBox
-            index={index}
-            key={`${color.name}-${color.color}`}
-            color={color}
-            removeColorFromPalette={() =>
-              handleRemoveColorFromPalette(color.name)
-            }
-          />
-        ))}
-      </div>
-    );
+    const DraggableColorBoxes = colors.map((color, index) => (
+      <DraggableColorBox
+        index={index}
+        key={`${color.name}-${color.color}`}
+        color={color}
+        removeColorFromPalette={() => handleRemoveColorFromPalette(color.name)}
+      />
+    ));
+
+    return <div className={classes.root}>{DraggableColorBoxes}</div>;
   }
 );
 

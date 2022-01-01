@@ -61,7 +61,7 @@ const NewPaletteColorPicker = ({
           validators={['required', 'isColorNameUnique', 'isColorUnique']}
           errorMessages={[
             'Please enter a color name',
-            'Color name already exsits',
+            'Color name already exists',
             'This color already exists',
           ]}
           fullWidth

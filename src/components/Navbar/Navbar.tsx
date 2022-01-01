@@ -40,9 +40,26 @@ const Navbar = ({
     setOpen(true);
   };
 
-  const closeSnakbar = (): void => {
+  const closeSnackbar = (): void => {
     setOpen(false);
   };
+
+  const snackbarMessage = () => (
+    <span className={classes.formatChangeMessage} id='message-id'>
+      Format Changed To {colorFormat.toUpperCase()}!
+    </span>
+  );
+
+  const snackbarActionIcon = () => (
+    <IconButton
+      onClick={closeSnackbar}
+      color='inherit'
+      key='close'
+      aria-label='close'
+    >
+      <CloseIcon />
+    </IconButton>
+  );
 
   return (
     <header className={classes.navbar}>
@@ -78,25 +95,12 @@ const Navbar = ({
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={open}
         autoHideDuration={3000}
-        message={
-          <span className={classes.formatChangeMessage} id='message-id'>
-            Format Changed To {colorFormat.toUpperCase()}!
-          </span>
-        }
+        message={snackbarMessage()}
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
-        onClose={closeSnakbar}
-        action={[
-          <IconButton
-            onClick={closeSnakbar}
-            color='inherit'
-            key='close'
-            aria-label='close'
-          >
-            <CloseIcon />
-          </IconButton>,
-        ]}
+        onClose={closeSnackbar}
+        action={[snackbarActionIcon()]}
       />
     </header>
   );

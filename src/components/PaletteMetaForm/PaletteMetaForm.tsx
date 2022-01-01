@@ -9,7 +9,7 @@ import PaletteMetaFormStyles from './PaletteMetaFormStyles';
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { Picker, BaseEmoji } from 'emoji-mart';
+import { BaseEmoji, Picker } from 'emoji-mart/dist-es';
 import 'emoji-mart/css/emoji-mart.css';
 
 interface PaletteMetaFormProps
@@ -48,7 +48,12 @@ const PaletteMetaForm = ({
   return (
     <div>
       <Dialog open={stage === 'emoji'} onClose={handleClickClose}>
-        <Picker onSelect={handleSubmitPalette} title='Pick a Palette Emoji' />
+        <Picker
+          onSelect={handleSubmitPalette}
+          title='Pick a Palette Emoji'
+          set='apple'
+          sheetSize={32}
+        />
       </Dialog>
 
       <Button variant='contained' color='primary' onClick={handleClickOpen}>
@@ -71,8 +76,9 @@ const PaletteMetaForm = ({
         >
           <DialogContent>
             <DialogContentText>
-              <p>Please enter a name for your new palette.</p>
-              <p>Make sure is unique! 🦄</p>
+              Please enter a name for your new palette.
+              <br />
+              Make sure is unique! 🦄
             </DialogContentText>
 
             <TextValidator

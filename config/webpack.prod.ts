@@ -11,6 +11,7 @@ const prodConfig: Configuration = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, '../dist'),
   },
+  devtool: 'source-map',
 };
 
 export default merge(commonConfig, prodConfig);

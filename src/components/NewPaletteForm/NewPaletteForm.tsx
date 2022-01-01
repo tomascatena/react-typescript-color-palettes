@@ -42,8 +42,8 @@ const NewPaletteForm = ({
     palettes[0].colors
   );
 
-  const maxColors = 20;
-  const isPaletteFull = colors.length >= maxColors;
+  const MAX_COLORS = 20;
+  const isPaletteFull = colors.length >= MAX_COLORS;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -62,7 +62,7 @@ const NewPaletteForm = ({
   };
 
   const pickRandomHexColor = async (): Promise<void> => {
-    const isRnadomColorInNewPalette = (randomHexColor: string): boolean => {
+    const isRandomColorInNewPalette = (randomHexColor: string): boolean => {
       return colors.some((color) => {
         return color.color.toLowerCase() === randomHexColor.toLowerCase();
       });
@@ -76,7 +76,7 @@ const NewPaletteForm = ({
 
     let randomHexColor = generateRandomHexColor();
 
-    while (isRnadomColorInNewPalette(randomHexColor)) {
+    while (isRandomColorInNewPalette(randomHexColor)) {
       randomHexColor = generateRandomHexColor();
     }
 
