@@ -16,7 +16,7 @@ const commonConfig: Configuration = {
               '@babel/preset-typescript',
               '@babel/preset-env',
             ],
-            plugins: ['react-refresh/babel', '@babel/plugin-transform-runtime'],
+            plugins: ['@babel/plugin-transform-runtime'],
           },
         },
       },
