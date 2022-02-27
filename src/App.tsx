@@ -1,4 +1,4 @@
-import React, { lazy, useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import {
   Redirect,
   Route,
@@ -12,15 +12,10 @@ import { Location } from 'history';
 import seedPalettes from './data/seedPalettes';
 import useLocalStorage from './utils/useLocalStorage';
 import Page from './components/Page/Page';
-
-const Palette = lazy(() => import('./components/Palette/Palette'));
-const PaletteList = lazy(() => import('./components/PaletteList/PaletteList'));
-const SingleColorPalette = lazy(
-  () => import('./components/SingleColorPalette/SingleColorPalette')
-);
-const NewPaletteForm = lazy(
-  () => import('./components/NewPaletteForm/NewPaletteForm')
-);
+import Palette from './components/Palette/Palette';
+import PaletteList from './components/PaletteList/PaletteList';
+import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette';
+import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
 
 import './App.css';
 
@@ -55,21 +50,17 @@ const App = (): JSX.Element => {
 
   const PaletteListRoute = () => {
     return (
-      <Suspense fallback='Loading...'>
-        <Page>
-          <PaletteList deletePalette={deletePalette} palettes={savedPalettes} />
-        </Page>
-      </Suspense>
+      <Page>
+        <PaletteList deletePalette={deletePalette} palettes={savedPalettes} />
+      </Page>
     );
   };
 
   const NewPaletteFormRoute = () => {
     return (
-      <Suspense fallback='Loading...'>
-        <Page>
-          <NewPaletteForm savePalette={savePalette} palettes={savedPalettes} />
-        </Page>
-      </Suspense>
+      <Page>
+        <NewPaletteForm savePalette={savePalette} palettes={savedPalettes} />
+      </Page>
     );
   };
 
@@ -78,15 +69,13 @@ const App = (): JSX.Element => {
       return <Redirect to='/'></Redirect>;
     } else {
       return (
-        <Suspense fallback='Loading...'>
-          <Page>
-            <Palette
-              colorPalette={generatePalette(
-                findPalette(routeProps.match.params.id)
-              )}
-            />
-          </Page>
-        </Suspense>
+        <Page>
+          <Palette
+            colorPalette={generatePalette(
+              findPalette(routeProps.match.params.id)
+            )}
+          />
+        </Page>
       );
     }
   };
@@ -98,16 +87,14 @@ const App = (): JSX.Element => {
       return <Redirect to='/'></Redirect>;
     } else {
       return (
-        <Suspense fallback='Loading...'>
-          <Page>
-            <SingleColorPalette
-              colorPalette={generatePalette(
-                findPalette(routeProps.match.params.paletteId)
-              )}
-              colorId={routeProps.match.params.colorId}
-            />
-          </Page>
-        </Suspense>
+        <Page>
+          <SingleColorPalette
+            colorPalette={generatePalette(
+              findPalette(routeProps.match.params.paletteId)
+            )}
+            colorId={routeProps.match.params.colorId}
+          />
+        </Page>
       );
     }
   };
