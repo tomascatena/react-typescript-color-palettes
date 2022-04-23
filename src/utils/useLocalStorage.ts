@@ -16,7 +16,7 @@ function useLocalStorage<T>(
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.warn(`Error reading localStorage key “${key}”:`, error);
+      console.warn(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
   };
@@ -29,9 +29,9 @@ function useLocalStorage<T>(
   // ... persists the new value to localStorage.
   const setValue: Dispatch<SetStateAction<T>> = (value) => {
     // Prevent build error "window is undefined" but keeps working
-    if (typeof window == 'undefined') {
+    if (typeof window === 'undefined') {
       console.warn(
-        `Tried setting localStorage key “${key}” even though environment is not a client`
+        `Tried setting localStorage key "${key}" even though environment is not a client`
       );
     }
 
@@ -48,13 +48,13 @@ function useLocalStorage<T>(
       // We dispatch a custom event so every useLocalStorage hook are notified
       window.dispatchEvent(new Event('local-storage'));
     } catch (error) {
-      console.warn(`Error setting localStorage key “${key}”:`, error);
+      console.warn(`Error setting localStorage key "${key}":`, error);
     }
   };
 
   useEffect(() => {
     setStoredValue(readValue());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ function useLocalStorage<T>(
       window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('local-storage', handleStorageChange);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   return [storedValue, setValue];

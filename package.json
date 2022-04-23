@@ -6,7 +6,10 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.ts",
-    "build": "webpack --config config/webpack.prod.ts"
+    "build": "webpack --config config/webpack.prod.ts",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "lint:fix": "eslint src/**/*.ts src/**/*.tsx --fix",
+    "lint:quiet": "eslint src/**/*.ts src/**/*.tsx --quiet"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.0",
@@ -51,8 +54,14 @@
     "@types/react-transition-group": "^4.4.2",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^4.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-react": "^7.29.4",
     "html-webpack-plugin": "^5.5.0",
     "react-refresh": "^0.11.0",
     "style-loader": "^3.3.1",

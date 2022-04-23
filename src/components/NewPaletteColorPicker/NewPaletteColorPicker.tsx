@@ -40,7 +40,10 @@ const NewPaletteColorPicker: FC<NewPaletteColorPickerProps> = ({
 
   return (
     <div className={classes.root}>
-      <ValidatorForm onSubmit={createNewColor} onError={(errors) => {}}>
+      <ValidatorForm
+        onSubmit={createNewColor}
+        onError={() => {}}
+      >
         <ChromePicker
           color={currentColor}
           onChangeComplete={(newColor) => {

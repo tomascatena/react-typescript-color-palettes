@@ -25,8 +25,17 @@ interface ColorPaletteWithShades {
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
+const getRange = (hexColor: string): string[] => {
+  const end = '#fff';
+  return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
+};
+
+const generateScale = (hexColor: string, numberOfColorsToGenerate = 10): string[] => {
+  return chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColorsToGenerate);
+};
+
 export const generatePalette = (starterPalette: ColorPalette): ColorPaletteWithShades => {
-  let newPalette: ColorPaletteWithShades = {
+  const newPalette: ColorPaletteWithShades = {
     ...starterPalette,
     colors: {},
   };
@@ -37,9 +46,9 @@ export const generatePalette = (starterPalette: ColorPalette): ColorPaletteWithS
 
   starterPalette.colors.forEach((colorObj: { name: string; color: string }): void => {
     const { name, color } = colorObj;
-    let scale: string[] = generateScale(color, 10).reverse();
+    const scale: string[] = generateScale(color, 10).reverse();
 
-    for (let i in scale) {
+    for (const i in scale) {
       newPalette.colors[levels[i]].push({
         id: name.toLowerCase().replace(/ /g, '-'),
         name: `${name} ${levels[i]}`,
@@ -52,13 +61,4 @@ export const generatePalette = (starterPalette: ColorPalette): ColorPaletteWithS
   });
 
   return newPalette;
-};
-
-const getRange = (hexColor: string): string[] => {
-  const end = '#fff';
-  return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
-};
-
-const generateScale = (hexColor: string, numberOfColorsToGenerate: number = 10): string[] => {
-  return chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColorsToGenerate);
 };

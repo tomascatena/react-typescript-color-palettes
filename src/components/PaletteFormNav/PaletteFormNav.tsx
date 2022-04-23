@@ -92,7 +92,10 @@ const PaletteFormNav: FC<PaletteFormNavProps> = ({
             <AddCircleIcon />
           </IconButton>
 
-          <Typography variant='h6' noWrap>
+          <Typography
+            variant='h6'
+            noWrap
+          >
             Create Palette
           </Typography>
         </Toolbar>

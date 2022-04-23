@@ -51,7 +51,10 @@ const App = (): JSX.Element => {
   const PaletteListRoute = () => {
     return (
       <Page>
-        <PaletteList deletePalette={deletePalette} palettes={savedPalettes} />
+        <PaletteList
+          deletePalette={deletePalette}
+          palettes={savedPalettes}
+        />
       </Page>
     );
   };
@@ -59,7 +62,10 @@ const App = (): JSX.Element => {
   const NewPaletteFormRoute = () => {
     return (
       <Page>
-        <NewPaletteForm savePalette={savePalette} palettes={savedPalettes} />
+        <NewPaletteForm
+          savePalette={savePalette}
+          palettes={savedPalettes}
+        />
       </Page>
     );
   };
@@ -104,13 +110,29 @@ const App = (): JSX.Element => {
       render={(): JSX.Element => {
         return (
           <TransitionGroup>
-            <CSSTransition key={location.key} timeout={500} classNames='page'>
+            <CSSTransition
+              key={location.key}
+              timeout={500}
+              classNames='page'
+            >
               <Switch location={location}>
-                <Route exact path='/' render={PaletteListRoute} />
+                <Route
+                  exact
+                  path='/'
+                  render={PaletteListRoute}
+                />
 
-                <Route exact path='/palette/new' render={NewPaletteFormRoute} />
+                <Route
+                  exact
+                  path='/palette/new'
+                  render={NewPaletteFormRoute}
+                />
 
-                <Route exact path='/palette/:id' render={PaletteRoute} />
+                <Route
+                  exact
+                  path='/palette/:id'
+                  render={PaletteRoute}
+                />
 
                 <Route
                   path='/palette/:paletteId/:colorId'

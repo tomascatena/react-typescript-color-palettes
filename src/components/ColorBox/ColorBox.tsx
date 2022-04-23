@@ -16,7 +16,7 @@ interface ColorBoxProps extends WithStyles<typeof ColorBoxStyles> {
 const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLink = true }) => {
   const location = useLocation();
 
-  const [copied, setCopied] = useState<Boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
 
   const changeCopyState = (): void => {
     setCopied(true);
@@ -27,8 +27,14 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
   };
 
   return (
-    <CopyToClipboard text={background} onCopy={changeCopyState}>
-      <div className={classes.colorBox} style={{ background }}>
+    <CopyToClipboard
+      text={background}
+      onCopy={changeCopyState}
+    >
+      <div
+        className={classes.colorBox}
+        style={{ background }}
+      >
         <div
           className={`${classes.copyOverlay} ${copied && classes.showOverlay}`}
           style={{ background }}
@@ -48,7 +54,10 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
         </div>
 
         {showMoreLink && (
-          <Link to={`${location.pathname}/${id}`} onClick={(e) => e.stopPropagation()}>
+          <Link
+            to={`${location.pathname}/${id}`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <span className={classes.seeMore}>More</span>
           </Link>
         )}

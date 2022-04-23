@@ -1,10 +1,9 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
-import { MouseEvent } from 'react';
+import React, { MouseEvent, FC, memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import MiniPaletteStyles from './MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import React, { FC, memo } from 'react';
 
 interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   paletteName: string;
@@ -26,7 +25,11 @@ const MiniPalette: FC<MiniPaletteProps> = ({
 
   const miniColorBoxes = colors.map(
     ({ color, name }): JSX.Element => (
-      <div className={classes.miniColorBox} style={{ backgroundColor: color }} key={name}></div>
+      <div
+        className={classes.miniColorBox}
+        style={{ backgroundColor: color }}
+        key={name}
+      ></div>
     )
   );
 
@@ -40,8 +43,14 @@ const MiniPalette: FC<MiniPaletteProps> = ({
   };
 
   return (
-    <div className={classes.root} onClick={(e) => goToPalette(e, id)}>
-      <div className={classes.deleteIconContainer} onClick={handleDeletePalette}>
+    <div
+      className={classes.root}
+      onClick={(e) => goToPalette(e, id)}
+    >
+      <div
+        className={classes.deleteIconContainer}
+        onClick={handleDeletePalette}
+      >
         <DeleteIcon className={classes.deleteIcon} />
       </div>
 

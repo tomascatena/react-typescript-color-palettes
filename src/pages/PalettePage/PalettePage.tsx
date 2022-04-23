@@ -53,17 +53,19 @@ const Palette: FC<PaletteProps> = ({ classes, colorPalette }) => {
         className={classes.paletteColors}
         style={{ height: `calc(${document.body.scrollHeight} - 5vh)` }}
       >
-        {colorPalette.colors[level].map(
-          (colorObj, index): JSX.Element => (
-            <ColorBox
-              key={`${index}-${colorObj.name}-${colorObj.id}`}
-              background={colorObj[colorFormat]}
-              name={colorObj.name}
-              id={colorObj.id}
-              showMoreLink
-            />
+        {
+          colorPalette.colors[level].map(
+            (colorObj, index): JSX.Element => (
+              <ColorBox
+                key={`${index}-${colorObj.name}-${colorObj.id}`}
+                background={colorObj[colorFormat]}
+                name={colorObj.name}
+                id={colorObj.id}
+                showMoreLink
+              />
+            )
           )
-        )}
+        }
       </div>
 
       <PaletteFooter colorPalette={colorPalette} />

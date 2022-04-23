@@ -1,5 +1,5 @@
 import useStyles from './CreatePalettePage.styled';
-import React, { useState, FC } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -10,7 +10,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm } from 'react-material-ui-form-validator';
-import { useEffect } from 'react';
 import DraggableColorList from '../../components/DraggableColorList/DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from '../../components/PaletteFormNav/PaletteFormNav';
@@ -60,7 +59,7 @@ const NewPaletteForm: FC<NewPaletteFormProps> = ({ savePalette, palettes }) => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value: string): boolean => {
       return colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase());
     });
-    ValidatorForm;
+
     ValidatorForm.addValidationRule('isColorUnique', (): boolean => {
       return colors.every(({ color }) => color.toLowerCase() !== currentColor.toLowerCase());
     });
@@ -123,7 +122,11 @@ const NewPaletteForm: FC<NewPaletteFormProps> = ({ savePalette, palettes }) => {
               Random Color
             </Button>
 
-            <Button variant='outlined' color='secondary' onClick={clearNewPalette}>
+            <Button
+              variant='outlined'
+              color='secondary'
+              onClick={clearNewPalette}
+            >
               Clear Palette
             </Button>
           </div>

@@ -46,7 +46,10 @@ const PaletteMetaForm: FC<PaletteMetaFormProps> = ({
 
   return (
     <div>
-      <Dialog open={stage === 'emoji'} onClose={handleClickClose}>
+      <Dialog
+        open={stage === 'emoji'}
+        onClose={handleClickClose}
+      >
         <Picker
           onSelect={handleSubmitPalette}
           title='Pick a Palette Emoji'
@@ -55,7 +58,11 @@ const PaletteMetaForm: FC<PaletteMetaFormProps> = ({
         />
       </Dialog>
 
-      <Button variant='contained' color='primary' onClick={handleClickOpen}>
+      <Button
+        variant='contained'
+        color='primary'
+        onClick={handleClickOpen}
+      >
         Save
       </Button>
 
@@ -69,7 +76,10 @@ const PaletteMetaForm: FC<PaletteMetaFormProps> = ({
       >
         <DialogTitle id='form-dialog-title'>Save Your Palette 🎨</DialogTitle>
 
-        <ValidatorForm onSubmit={handleSubmitName} onError={(errors) => console.log(errors)}>
+        <ValidatorForm
+          onSubmit={handleSubmitName}
+          onError={(errors) => console.log(errors)}
+        >
           <DialogContent>
             <DialogContentText>
               Please enter a name for your new palette.
@@ -94,11 +104,18 @@ const PaletteMetaForm: FC<PaletteMetaFormProps> = ({
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={handleClickClose} color='primary'>
+            <Button
+              onClick={handleClickClose}
+              color='primary'
+            >
               Cancel
             </Button>
 
-            <Button variant='contained' color='primary' type='submit'>
+            <Button
+              variant='contained'
+              color='primary'
+              type='submit'
+            >
               Save Palette
             </Button>
           </DialogActions>

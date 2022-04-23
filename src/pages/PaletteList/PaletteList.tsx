@@ -54,17 +54,27 @@ const PaletteList: FC<PaletteListProps> = ({ classes, palettes, deletePalette })
         <nav className={classes.nav}>
           <h1 className={classes.title}>React Colors</h1>
 
-          <Link to={`/palette/new`}>Create Palette</Link>
+          <Link to={'/palette/new'}>Create Palette</Link>
         </nav>
 
         <TransitionGroup className={classes.palettes}>
-          {palettes.map((palette) => {
-            return (
-              <CSSTransition key={palette.id} classNames='fade' timeout={300}>
-                <MiniPalette key={palette.id} {...palette} openDialog={openDialog} />
-              </CSSTransition>
-            );
-          })}
+          {
+            palettes.map((palette) => {
+              return (
+                <CSSTransition
+                  key={palette.id}
+                  classNames='fade'
+                  timeout={300}
+                >
+                  <MiniPalette
+                    key={palette.id}
+                    {...palette}
+                    openDialog={openDialog}
+                  />
+                </CSSTransition>
+              );
+            })
+          }
         </TransitionGroup>
       </div>
 
@@ -72,7 +82,10 @@ const PaletteList: FC<PaletteListProps> = ({ classes, palettes, deletePalette })
         <DialogTitle>Delete This Palette?</DialogTitle>
 
         <List>
-          <ListItem button onClick={removePalette}>
+          <ListItem
+            button
+            onClick={removePalette}
+          >
             <ListItemAvatar>
               <Avatar style={{ backgroundColor: blue[100], color: blue[600] }}>
                 <CheckIcon />
@@ -82,7 +95,10 @@ const PaletteList: FC<PaletteListProps> = ({ classes, palettes, deletePalette })
             <ListItemText primary='Delete' />
           </ListItem>
 
-          <ListItem button onClick={closeDialog}>
+          <ListItem
+            button
+            onClick={closeDialog}
+          >
             <ListItemAvatar>
               <Avatar style={{ backgroundColor: red[100], color: red[600] }}>
                 <CloseIcon />

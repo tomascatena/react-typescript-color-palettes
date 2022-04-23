@@ -37,13 +37,21 @@ const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLevel, set
   };
 
   const snackbarMessage = () => (
-    <span className={classes.formatChangeMessage} id='message-id'>
+    <span
+      className={classes.formatChangeMessage}
+      id='message-id'
+    >
       Format Changed To {colorFormat.toUpperCase()}!
     </span>
   );
 
   const snackbarActionIcon = () => (
-    <IconButton onClick={closeSnackbar} color='inherit' key='close' aria-label='close'>
+    <IconButton
+      onClick={closeSnackbar}
+      color='inherit'
+      key='close'
+      aria-label='close'
+    >
       <CloseIcon />
     </IconButton>
   );
@@ -71,7 +79,10 @@ const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLevel, set
       )}
 
       <div className={classes.selectContainer}>
-        <Select onChange={handleFormatChange} value={colorFormat}>
+        <Select
+          onChange={handleFormatChange}
+          value={colorFormat}
+        >
           <MenuItem value='hex'>HEX - #ffffff</MenuItem>
           <MenuItem value='rgb'>RGB - rgb(255,255,255)</MenuItem>
           <MenuItem value='rgba'>RGBA - rgba(255,255,255,1)</MenuItem>
