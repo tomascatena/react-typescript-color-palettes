@@ -2,24 +2,24 @@ import { Color } from './CreatePalettePage';
 
 type SetStateString = React.Dispatch<React.SetStateAction<string>>;
 
+export const generateRandomHexColor = (): string => {
+  return ('#' + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, '0')).toLowerCase();
+};
+
+export const isRandomColorInNewPalette = (randomHexColor: string, colors: Color[]): boolean => {
+  return colors.some((color) => {
+    return color.color.toLowerCase() === randomHexColor.toLowerCase();
+  });
+};
+
 export const pickRandomHexColor = async (
   colors: Color[],
   setNewColorName: SetStateString,
   setCurrentColor: SetStateString
 ): Promise<void> => {
-  const isRandomColorInNewPalette = (randomHexColor: string): boolean => {
-    return colors.some((color) => {
-      return color.color.toLowerCase() === randomHexColor.toLowerCase();
-    });
-  };
-
-  const generateRandomHexColor = (): string => {
-    return ('#' + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, '0')).toLowerCase();
-  };
-
   let randomHexColor = generateRandomHexColor();
 
-  while (isRandomColorInNewPalette(randomHexColor)) {
+  while (isRandomColorInNewPalette(randomHexColor, colors)) {
     randomHexColor = generateRandomHexColor();
   }
 

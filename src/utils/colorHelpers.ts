@@ -25,12 +25,12 @@ interface ColorPaletteWithShades {
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-const getRange = (hexColor: string): string[] => {
+export const getRange = (hexColor: string): string[] => {
   const end = '#fff';
   return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
 };
 
-const generateScale = (hexColor: string, numberOfColorsToGenerate = 10): string[] => {
+export const generateScale = (hexColor: string, numberOfColorsToGenerate = 10): string[] => {
   return chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColorsToGenerate);
 };
 
