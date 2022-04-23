@@ -8,15 +8,14 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { generatePalette } from '@utils/colorHelpers';
+import CreatePalettePage from '@pages/CreatePalettePage/CreatePalettePage';
 import Page from '@components/Page/Page';
-import React, { Suspense, lazy, useState } from 'react';
+import PaletteListPage from '@pages/PaletteListPage/PaletteListPage';
+import PalettePage from '@pages/PalettePage/PalettePage';
+import React, { useState } from 'react';
+import SinglePalettePage from '@pages/SinglePalettePage/SinglePalettePage';
 import seedPalettes from '@data/seedPalettes';
 import useLocalStorage from '@utils/useLocalStorage';
-
-const CreatePalettePage = lazy(() => import('@pages/CreatePalettePage/CreatePalettePage'));
-const PaletteListPage = lazy(() => import('@pages/PaletteListPage/PaletteListPage'));
-const PalettePage = lazy(() => import('@pages/PalettePage/PalettePage'));
-const SinglePalettePage = lazy(() => import('@pages/SinglePalettePage/SinglePalettePage'));
 
 interface ColorPalette {
   paletteName: string;
@@ -58,7 +57,7 @@ const App = (): JSX.Element => {
     );
   };
 
-  const NewPaletteFormRoute = () => {
+  const CreatePaletteRoute = () => {
     return (
       <Page>
         <CreatePalettePage
@@ -85,7 +84,7 @@ const App = (): JSX.Element => {
     }
   };
 
-  const SingleColorPaletteRoute = (
+  const SinglePaletteRoute = (
     routeProps: RouteComponentProps<{ paletteId: string; colorId: string }>
   ) => {
     if (!findPalette(routeProps.match.params.paletteId)) {
@@ -115,31 +114,28 @@ const App = (): JSX.Element => {
               classNames='page'
             >
               <Switch location={location}>
-                <Suspense fallback='Loading Page...'>
-                  <Route
-                    exact
-                    path='/'
-                    render={PaletteListRoute}
-                  />
+                <Route
+                  exact
+                  path='/'
+                  render={PaletteListRoute}
+                />
 
-                  <Route
-                    exact
-                    path='/palette/new'
-                    render={NewPaletteFormRoute}
-                  />
+                <Route
+                  exact
+                  path='/palette/new'
+                  render={CreatePaletteRoute}
+                />
 
-                  <Route
-                    exact
-                    path='/palette/:id'
-                    render={PaletteRoute}
-                  />
+                <Route
+                  exact
+                  path='/palette/:id'
+                  render={PaletteRoute}
+                />
 
-                  <Route
-                    path='/palette/:paletteId/:colorId'
-                    render={SingleColorPaletteRoute}
-                  />
-                </Suspense>
-
+                <Route
+                  path='/palette/:paletteId/:colorId'
+                  render={SinglePaletteRoute}
+                />
               </Switch>
             </CSSTransition>
           </TransitionGroup>
