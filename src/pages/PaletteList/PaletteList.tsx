@@ -1,4 +1,4 @@
-import MiniPalette from '../../components/MiniPalette/MiniPalette';
+import MiniPalette from '@components/MiniPalette/MiniPalette';
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
 import PaletteListStyles from './PaletteListStyles';

@@ -93,5 +93,12 @@
       "es2021",
       "DOM"
     ],
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@data/*": ["data/*"],
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"],
+    }
   }
 }

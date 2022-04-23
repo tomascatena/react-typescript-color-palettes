@@ -1,5 +1,6 @@
 import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
 const commonConfig: Configuration = {
   entry: './src/index.tsx',
@@ -16,7 +17,9 @@ const commonConfig: Configuration = {
               '@babel/preset-typescript',
               '@babel/preset-env',
             ],
-            plugins: ['@babel/plugin-transform-runtime'],
+            plugins: [
+              '@babel/plugin-transform-runtime',
+            ],
           },
         },
       },
@@ -37,6 +40,7 @@ const commonConfig: Configuration = {
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    plugins: [new TsconfigPathsPlugin({})]
   },
 };
 

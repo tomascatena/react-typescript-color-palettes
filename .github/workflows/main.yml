@@ -6,8 +6,11 @@ on:
       - main
     paths:
       - 'src/**'
+      - 'config/**'
+      - 'public/**'
       - 'package.json'
       - '.github/workflows/**'
+      - '.husky/**'
 
 defaults:
   run:

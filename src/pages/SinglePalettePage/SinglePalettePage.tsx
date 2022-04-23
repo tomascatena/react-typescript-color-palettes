@@ -1,9 +1,9 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
 import React, { useState, useEffect, FC } from 'react';
-import ColorBox from '../../components/ColorBox/ColorBox';
-import Navbar from '../../components/Navbar/Navbar';
-import PaletteFooter from '../../components/PaletteFooter/PaletteFooter';
+import ColorBox from '@components/ColorBox/ColorBox';
+import Navbar from '@components/Navbar/Navbar';
+import PaletteFooter from '@components/PaletteFooter/PaletteFooter';
 import { Link } from 'react-router-dom';
 import SingleColorPaletteStyles from './SinglePalettePage.styled';
 

@@ -10,10 +10,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm } from 'react-material-ui-form-validator';
-import DraggableColorList from '../../components/DraggableColorList/DraggableColorList';
+import DraggableColorList from '@components/DraggableColorList/DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
-import PaletteFormNav from '../../components/PaletteFormNav/PaletteFormNav';
-import NewPaletteColorPicker from '../../components/NewPaletteColorPicker/NewPaletteColorPicker';
+import PaletteFormNav from '@components/PaletteFormNav/PaletteFormNav';
+import NewPaletteColorPicker from '@components/NewPaletteColorPicker/NewPaletteColorPicker';
 import { pickRandomHexColor } from './pickRandomHexColor';
 
 interface ColorPalette {

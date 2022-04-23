@@ -7,15 +7,15 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { generatePalette } from './utils/colorHelpers';
+import { generatePalette } from '@utils/colorHelpers';
 import { Location } from 'history';
-import seedPalettes from './data/seedPalettes';
-import useLocalStorage from './utils/useLocalStorage';
-import Page from './components/Page/Page';
-import Palette from './pages/PalettePage/PalettePage';
-import PaletteList from './pages/PaletteList/PaletteList';
-import SingleColorPalette from './pages/SinglePalettePage/SinglePalettePage';
-import NewPaletteForm from './pages/CreatePalettePage/CreatePalettePage';
+import seedPalettes from '@data/seedPalettes';
+import useLocalStorage from '@utils/useLocalStorage';
+import Page from '@components/Page/Page';
+import Palette from '@pages/PalettePage/PalettePage';
+import PaletteList from '@pages/PaletteList/PaletteList';
+import SingleColorPalette from '@pages/SinglePalettePage/SinglePalettePage';
+import NewPaletteForm from '@pages/CreatePalettePage/CreatePalettePage';
 
 import './App.css';
 
@@ -50,23 +50,23 @@ const App = (): JSX.Element => {
 
   const PaletteListRoute = () => {
     return (
-      <Page>
-        <PaletteList
-          deletePalette={deletePalette}
-          palettes={savedPalettes}
-        />
-      </Page>
+			<Page>
+				<PaletteList
+  deletePalette={deletePalette}
+  palettes={savedPalettes}
+				/>
+			</Page>
     );
   };
 
   const NewPaletteFormRoute = () => {
     return (
-      <Page>
-        <NewPaletteForm
-          savePalette={savePalette}
-          palettes={savedPalettes}
-        />
-      </Page>
+			<Page>
+				<NewPaletteForm
+  savePalette={savePalette}
+  palettes={savedPalettes}
+				/>
+			</Page>
     );
   };
 
@@ -75,13 +75,13 @@ const App = (): JSX.Element => {
       return <Redirect to='/'></Redirect>;
     } else {
       return (
-        <Page>
-          <Palette
-            colorPalette={generatePalette(
-              findPalette(routeProps.match.params.id)
-            )}
-          />
-        </Page>
+				<Page>
+					<Palette
+  colorPalette={generatePalette(
+    findPalette(routeProps.match.params.id)
+  )}
+					/>
+				</Page>
       );
     }
   };
@@ -93,57 +93,57 @@ const App = (): JSX.Element => {
       return <Redirect to='/'></Redirect>;
     } else {
       return (
-        <Page>
-          <SingleColorPalette
-            colorPalette={generatePalette(
-              findPalette(routeProps.match.params.paletteId)
-            )}
-            colorId={routeProps.match.params.colorId}
-          />
-        </Page>
+				<Page>
+					<SingleColorPalette
+  colorPalette={generatePalette(
+    findPalette(routeProps.match.params.paletteId)
+  )}
+  colorId={routeProps.match.params.colorId}
+					/>
+				</Page>
       );
     }
   };
 
   return (
-    <Route
-      render={(): JSX.Element => {
-        return (
-          <TransitionGroup>
-            <CSSTransition
-              key={location.key}
-              timeout={500}
-              classNames='page'
-            >
-              <Switch location={location}>
-                <Route
-                  exact
-                  path='/'
-                  render={PaletteListRoute}
-                />
+		<Route
+  render={(): JSX.Element => {
+    return (
+					<TransitionGroup>
+						<CSSTransition
+  key={location.key}
+  timeout={500}
+  classNames='page'
+						>
+							<Switch location={location}>
+								<Route
+  exact
+  path='/'
+  render={PaletteListRoute}
+								/>
 
-                <Route
-                  exact
-                  path='/palette/new'
-                  render={NewPaletteFormRoute}
-                />
+								<Route
+  exact
+  path='/palette/new'
+  render={NewPaletteFormRoute}
+								/>
 
-                <Route
-                  exact
-                  path='/palette/:id'
-                  render={PaletteRoute}
-                />
+								<Route
+  exact
+  path='/palette/:id'
+  render={PaletteRoute}
+								/>
 
-                <Route
-                  path='/palette/:paletteId/:colorId'
-                  render={SingleColorPaletteRoute}
-                />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
-        );
-      }}
-    ></Route>
+								<Route
+  path='/palette/:paletteId/:colorId'
+  render={SingleColorPaletteRoute}
+								/>
+							</Switch>
+						</CSSTransition>
+					</TransitionGroup>
+    );
+  }}
+		></Route>
   );
 };
 
