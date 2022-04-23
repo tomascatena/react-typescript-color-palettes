@@ -1,11 +1,9 @@
-import React, { MouseEvent, FC, memo } from 'react';
-
 import { WithStyles } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { withStyles } from '@material-ui/styles';
 import { useHistory } from 'react-router-dom';
-
+import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 import MiniPaletteStyles from './MiniPaletteStyles';
+import React, { FC, MouseEvent, memo } from 'react';
 
 interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   paletteName: string;

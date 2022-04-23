@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
-
-import Button from '@material-ui/core/Button';
-import chroma from 'chroma-js';
 import { ChromePicker } from 'react-color';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import Button from '@material-ui/core/Button';
+import React, { FC } from 'react';
+import chroma from 'chroma-js';
 import useStyles from './NewPaletteColorPickerStyles';
 
 interface NewPaletteColorPickerProps {

@@ -1,17 +1,15 @@
-import React, { useEffect, useState, FC } from 'react';
-
-import PaletteMetaForm from '@components/PaletteMetaForm/PaletteMetaForm';
+import { Emoji } from 'emoji-mart/dist-es';
+import { Link, useHistory } from 'react-router-dom';
+import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styled';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import PaletteMetaForm from '@components/PaletteMetaForm/PaletteMetaForm';
+import React, { FC, useEffect, useState } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styled';
 import clsx from 'clsx';
-import { Emoji } from 'emoji-mart/dist-es';
-import { Link, useHistory } from 'react-router-dom';
-
 import useStyles from './PaletteFormNavStyles';
 
 interface ColorPalette {

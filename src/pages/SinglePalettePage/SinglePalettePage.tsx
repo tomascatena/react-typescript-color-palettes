@@ -1,12 +1,10 @@
-import React, { useState, useEffect, FC } from 'react';
-
+import { Link } from 'react-router-dom';
+import { WithStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 import ColorBox from '@components/ColorBox/ColorBox';
 import Navbar from '@components/Navbar/Navbar';
 import PaletteFooter from '@components/PaletteFooter/PaletteFooter';
-import { WithStyles } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
-import { Link } from 'react-router-dom';
-
+import React, { FC, useEffect, useState } from 'react';
 import SingleColorPaletteStyles from './SinglePalettePage.styled';
 
 interface ColorPaletteWithShades {

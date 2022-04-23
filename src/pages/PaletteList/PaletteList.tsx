@@ -1,21 +1,20 @@
-import React, { useState, FC } from 'react';
-
-import MiniPalette from '@components/MiniPalette/MiniPalette';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 import { WithStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 import Avatar from '@material-ui/core/Avatar';
-import blue from '@material-ui/core/colors/blue';
-import red from '@material-ui/core/colors/red';
+import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import CheckIcon from '@material-ui/icons/Check';
-import CloseIcon from '@material-ui/icons/Close';
-import { withStyles } from '@material-ui/styles';
-import { Link } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import MiniPalette from '@components/MiniPalette/MiniPalette';
+import React, { FC, useState } from 'react';
+import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
 
 import PaletteListStyles from './PaletteListStyles';
 

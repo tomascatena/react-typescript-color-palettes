@@ -1,18 +1,16 @@
-import React, { useState, FC } from 'react';
-
+import 'emoji-mart/css/emoji-mart.css';
+import { BaseEmoji, Picker } from 'emoji-mart/dist-es';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { WithStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { withStyles } from '@material-ui/styles';
-import { BaseEmoji, Picker } from 'emoji-mart/dist-es';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-
 import PaletteMetaFormStyles from './PaletteMetaFormStyles';
-import 'emoji-mart/css/emoji-mart.css';
+import React, { FC, useState } from 'react';
 
 interface PaletteMetaFormProps extends WithStyles<typeof PaletteMetaFormStyles> {
   newPaletteName: string;

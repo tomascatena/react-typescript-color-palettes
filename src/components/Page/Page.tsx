@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import './Page.css';
+import React, { FC } from 'react';
 
 interface PageProps {
   children: JSX.Element;

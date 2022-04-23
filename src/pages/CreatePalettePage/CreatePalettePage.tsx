@@ -1,22 +1,20 @@
-import React, { useState, FC, useEffect } from 'react';
-
-import DraggableColorList from '@components/DraggableColorList/DraggableColorList';
-import NewPaletteColorPicker from '@components/NewPaletteColorPicker/NewPaletteColorPicker';
-import PaletteFormNav from '@components/PaletteFormNav/PaletteFormNav';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import { useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import clsx from 'clsx';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import { arrayMove } from 'react-sortable-hoc';
-
-import useStyles from './CreatePalettePage.styled';
 import { pickRandomHexColor } from './pickRandomHexColor';
+import { useTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Divider from '@material-ui/core/Divider';
+import DraggableColorList from '@components/DraggableColorList/DraggableColorList';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import NewPaletteColorPicker from '@components/NewPaletteColorPicker/NewPaletteColorPicker';
+import PaletteFormNav from '@components/PaletteFormNav/PaletteFormNav';
+import React, { FC, useEffect, useState } from 'react';
+import Typography from '@material-ui/core/Typography';
+import clsx from 'clsx';
+import useStyles from './CreatePalettePage.styled';
 
 interface ColorPalette {
   paletteName: string;
