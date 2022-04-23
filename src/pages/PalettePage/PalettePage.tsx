@@ -1,6 +1,6 @@
 import ColorBox from '../../components/ColorBox/ColorBox';
 import './PalettePage.styled.ts';
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import PaletteFooter from '../../components/PaletteFooter/PaletteFooter';
 import { withStyles } from '@material-ui/styles';
@@ -32,11 +32,9 @@ interface PaletteProps extends WithStyles<typeof PaletteStyles> {
   colorPalette: ColorPaletteWithShades;
 }
 
-const Palette = ({ classes, colorPalette }: PaletteProps): JSX.Element => {
+const Palette: FC<PaletteProps> = ({ classes, colorPalette }) => {
   const [level, setLevel] = useState<number>(500);
-  const [colorFormat, setColorFormat] = useState<ColorFormats>(
-    ColorFormats.hex
-  );
+  const [colorFormat, setColorFormat] = useState<ColorFormats>(ColorFormats.hex);
 
   const changeLevel = (newLevel: number): void => {
     setLevel(newLevel);

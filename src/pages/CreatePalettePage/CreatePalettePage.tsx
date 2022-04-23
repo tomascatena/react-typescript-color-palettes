@@ -1,5 +1,5 @@
 import useStyles from './CreatePalettePage.styled';
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,6 +15,7 @@ import DraggableColorList from '../../components/DraggableColorList/DraggableCol
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from '../../components/PaletteFormNav/PaletteFormNav';
 import NewPaletteColorPicker from '../../components/NewPaletteColorPicker/NewPaletteColorPicker';
+import { pickRandomHexColor } from './pickRandomHexColor';
 
 interface ColorPalette {
   paletteName: string;
@@ -24,111 +25,53 @@ interface ColorPalette {
 }
 
 interface NewPaletteFormProps {
-  savePalette: (newPlaette: ColorPalette) => void;
+  savePalette: (newPalette: ColorPalette) => void;
   palettes: ColorPalette[];
 }
 
-const NewPaletteForm = ({
-  savePalette,
-  palettes,
-}: NewPaletteFormProps): JSX.Element => {
+export type Color = { color: string; name: string };
+
+const NewPaletteForm: FC<NewPaletteFormProps> = ({ savePalette, palettes }) => {
   const classes = useStyles();
   const theme = useTheme();
 
   const [open, setOpen] = useState<boolean>(true);
   const [newColorName, setNewColorName] = useState<string>('');
   const [currentColor, setCurrentColor] = useState<string>('blue');
-  const [colors, setColors] = useState<{ color: string; name: string }[]>(
-    palettes[0].colors
-  );
+  const [colors, setColors] = useState<Color[]>(palettes[0].colors);
 
   const MAX_COLORS = 20;
   const isPaletteFull = colors.length >= MAX_COLORS;
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
 
   const handleRemoveColorFromPalette = (colorName: string): void => {
     setColors(colors.filter((color) => color.name !== colorName));
   };
 
-  const clearNewPalette = () => {
-    setColors([]);
-  };
+  const clearNewPalette = () => setColors([]);
 
-  const pickRandomHexColor = async (): Promise<void> => {
-    const isRandomColorInNewPalette = (randomHexColor: string): boolean => {
-      return colors.some((color) => {
-        return color.color.toLowerCase() === randomHexColor.toLowerCase();
-      });
-    };
-
-    const generateRandomHexColor = (): string => {
-      return (
-        '#' + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, '0')
-      ).toLowerCase();
-    };
-
-    let randomHexColor = generateRandomHexColor();
-
-    while (isRandomColorInNewPalette(randomHexColor)) {
-      randomHexColor = generateRandomHexColor();
-    }
-
-    try {
-      const response = await fetch(
-        `https://www.thecolorapi.com/id?hex=${randomHexColor.replace('#', '')}`
-      );
-
-      const data = await response.json();
-
-      setNewColorName(data.name.value);
-    } catch (error) {
-      console.log(error);
-    }
-
-    setCurrentColor(randomHexColor);
-  };
-
-  const onSortEnd = ({
-    oldIndex,
-    newIndex,
-  }: {
-    oldIndex: number;
-    newIndex: number;
-  }) => {
+  const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }) => {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
 
   useEffect(() => {
-    ValidatorForm.addValidationRule(
-      'isColorNameUnique',
-      (value: string): boolean => {
-        return colors.every(
-          ({ name }) => name.toLowerCase() !== value.toLowerCase()
-        );
-      }
-    );
+    ValidatorForm.addValidationRule('isColorNameUnique', (value: string): boolean => {
+      return colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase());
+    });
+    ValidatorForm;
     ValidatorForm.addValidationRule('isColorUnique', (): boolean => {
-      return colors.every(
-        ({ color }) => color.toLowerCase() !== currentColor.toLowerCase()
+      return colors.every(({ color }) => color.toLowerCase() !== currentColor.toLowerCase());
+    });
+
+    ValidatorForm.addValidationRule('isPaletteNameUnique', (value: string): boolean => {
+      return palettes.every(
+        ({ paletteName, id }) =>
+          paletteName.toLowerCase() !== value.toLowerCase() &&
+          id !== value.toLowerCase().replaceAll(' ', '-')
       );
     });
-    ValidatorForm.addValidationRule(
-      'isPaletteNameUnique',
-      (value: string): boolean => {
-        return palettes.every(
-          ({ paletteName, id }) =>
-            paletteName.toLowerCase() !== value.toLowerCase() &&
-            id !== value.toLowerCase().replaceAll(' ', '-')
-        );
-      }
-    );
   }, [colors, currentColor, palettes]);
 
   return (
@@ -153,11 +96,7 @@ const NewPaletteForm = ({
           <Typography>Design Your Palette</Typography>
 
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
 
@@ -178,17 +117,13 @@ const NewPaletteForm = ({
             <Button
               variant='outlined'
               color='primary'
-              onClick={pickRandomHexColor}
+              onClick={() => pickRandomHexColor(colors, setNewColorName, setCurrentColor)}
               disabled={isPaletteFull}
             >
               Random Color
             </Button>
 
-            <Button
-              variant='outlined'
-              color='secondary'
-              onClick={clearNewPalette}
-            >
+            <Button variant='outlined' color='secondary' onClick={clearNewPalette}>
               Clear Palette
             </Button>
           </div>

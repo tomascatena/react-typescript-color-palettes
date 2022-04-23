@@ -3,19 +3,19 @@ import chroma from 'chroma-js';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { ChromePicker } from 'react-color';
-import React from 'react';
+import React, { FC } from 'react';
 
 interface NewPaletteColorPickerProps {
   currentColor: string;
   isPaletteFull: boolean;
   newColorName: string;
   colors: { color: string; name: string }[];
-  setCurrentColor: (newcolor: string) => void;
+  setCurrentColor: (newColor: string) => void;
   setNewColorName: (newColorName: string) => void;
   setColors: (colors: { color: string; name: string }[]) => void;
 }
 
-const NewPaletteColorPicker = ({
+const NewPaletteColorPicker: FC<NewPaletteColorPickerProps> = ({
   currentColor,
   isPaletteFull,
   newColorName,
@@ -23,7 +23,7 @@ const NewPaletteColorPicker = ({
   setCurrentColor,
   setNewColorName,
   setColors,
-}: NewPaletteColorPickerProps): JSX.Element => {
+}) => {
   const classes = useStyles();
 
   const createNewColor = () => {
@@ -34,9 +34,7 @@ const NewPaletteColorPicker = ({
     setNewColorName('');
   };
 
-  const handleColorNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleColorNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewColorName(event.target.value);
   };
 
@@ -76,10 +74,7 @@ const NewPaletteColorPicker = ({
           fullWidth
           style={{
             backgroundColor: currentColor,
-            color:
-              chroma(currentColor).luminance() >= 0.3
-                ? 'rgba(0, 0, 0, 0.7)'
-                : '#fff',
+            color: chroma(currentColor).luminance() >= 0.3 ? 'rgba(0, 0, 0, 0.7)' : '#fff',
           }}
         >
           {isPaletteFull ? 'Palette Full' : 'Add Color'}

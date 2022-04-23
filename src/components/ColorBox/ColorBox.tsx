@@ -1,6 +1,6 @@
 import './ColorBoxStyles.ts';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
@@ -13,13 +13,7 @@ interface ColorBoxProps extends WithStyles<typeof ColorBoxStyles> {
   showMoreLink?: boolean;
 }
 
-const ColorBox = ({
-  classes,
-  background,
-  name,
-  id,
-  showMoreLink = true,
-}: ColorBoxProps): JSX.Element => {
+const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLink = true }) => {
   const location = useLocation();
 
   const [copied, setCopied] = useState<Boolean>(false);
@@ -40,11 +34,7 @@ const ColorBox = ({
           style={{ background }}
         />
 
-        <div
-          className={`${classes.copyMessage} ${
-            copied && classes.showCopyMessage
-          }`}
-        >
+        <div className={`${classes.copyMessage} ${copied && classes.showCopyMessage}`}>
           <h1>copied!</h1>
           <p className={classes.copyText}>{background}</p>
         </div>
@@ -58,10 +48,7 @@ const ColorBox = ({
         </div>
 
         {showMoreLink && (
-          <Link
-            to={`${location.pathname}/${id}`}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <Link to={`${location.pathname}/${id}`} onClick={(e) => e.stopPropagation()}>
             <span className={classes.seeMore}>More</span>
           </Link>
         )}

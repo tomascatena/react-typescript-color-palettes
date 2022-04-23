@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FC } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { drawerWidth } from '../../pages/CreatePalettePage/CreatePalettePage.styled';
 import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
@@ -26,12 +26,12 @@ interface PaletteFormNavProps {
   colors: { name: string; color: string }[];
 }
 
-const PaletteFormNav = ({
+const PaletteFormNav: FC<PaletteFormNavProps> = ({
   open,
   handleDrawerOpen,
   savePalette,
   colors,
-}: PaletteFormNavProps): JSX.Element => {
+}) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -49,9 +49,7 @@ const PaletteFormNav = ({
     preFetchEmojisSheet();
   }, []);
 
-  const handlePaletteNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handlePaletteNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewPaletteName(event.target.value);
   };
 

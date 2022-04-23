@@ -15,7 +15,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Avatar from '@material-ui/core/Avatar';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 
 interface ColorPalette {
   paletteName: string;
@@ -29,11 +29,7 @@ interface PaletteListProps extends WithStyles<typeof PaletteListStyles> {
   deletePalette: (id: string) => void;
 }
 
-const PaletteList = ({
-  classes,
-  palettes,
-  deletePalette,
-}: PaletteListProps): JSX.Element => {
+const PaletteList: FC<PaletteListProps> = ({ classes, palettes, deletePalette }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [paletteId, setPaletteId] = useState<string>('');
 
@@ -65,11 +61,7 @@ const PaletteList = ({
           {palettes.map((palette) => {
             return (
               <CSSTransition key={palette.id} classNames='fade' timeout={300}>
-                <MiniPalette
-                  key={palette.id}
-                  {...palette}
-                  openDialog={openDialog}
-                />
+                <MiniPalette key={palette.id} {...palette} openDialog={openDialog} />
               </CSSTransition>
             );
           })}

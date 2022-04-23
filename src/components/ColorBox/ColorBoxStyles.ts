@@ -25,15 +25,11 @@ const styles = createStyles({
   },
   copyText: {
     color: (props: Props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? 'rgba(0, 0, 0, 0.7)'
-        : '#fff',
+      chroma(props.background).luminance() >= 0.3 ? 'rgba(0, 0, 0, 0.7)' : '#fff',
   },
   colorName: {
     color: (props: Props) =>
-      chroma(props.background).luminance() <= 0.15
-        ? '#fff'
-        : 'rgba(0, 0, 0, 1)',
+      chroma(props.background).luminance() <= 0.15 ? '#fff' : 'rgba(0, 0, 0, 1)',
     fontSize: '.9rem',
   },
   seeMore: {
@@ -43,9 +39,7 @@ const styles = createStyles({
     right: 0,
     border: 'none',
     color: (props: Props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? 'rgba(0, 0, 0, 0.7)'
-        : '#fff',
+      chroma(props.background).luminance() >= 0.3 ? 'rgba(0, 0, 0, 0.7)' : '#fff',
     width: '60px',
     height: '30px',
     textAlign: 'center',
@@ -53,8 +47,7 @@ const styles = createStyles({
     textTransform: 'uppercase',
   },
   copyButton: {
-    color: (props: Props) =>
-      chroma(props.background).luminance() >= 0.3 ? '#000' : '#fff',
+    color: (props: Props) => (chroma(props.background).luminance() >= 0.3 ? '#000' : '#fff'),
     width: '100px',
     height: '30px',
     position: 'absolute',

@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import ColorBox from '../../components/ColorBox/ColorBox';
 import Navbar from '../../components/Navbar/Navbar';
 import PaletteFooter from '../../components/PaletteFooter/PaletteFooter';
@@ -29,8 +29,7 @@ enum ColorFormats {
   rgba = 'rgba',
 }
 
-interface SingleColorPaletteProps
-  extends WithStyles<typeof SingleColorPaletteStyles> {
+interface SingleColorPaletteProps extends WithStyles<typeof SingleColorPaletteStyles> {
   colorPalette: ColorPaletteWithShades;
   colorId: string;
 }
@@ -46,31 +45,20 @@ type SingleColor = {
 
 type ColorShades = SingleColor[];
 
-const SingleColorPalette = ({
-  classes,
-  colorPalette,
-  colorId,
-}: SingleColorPaletteProps) => {
+const SingleColorPalette: FC<SingleColorPaletteProps> = ({ classes, colorPalette, colorId }) => {
   const [shades, setShades] = useState<ColorShades>([]);
-  const [colorFormat, setColorFormat] = useState<ColorFormats>(
-    ColorFormats.hex
-  );
+  const [colorFormat, setColorFormat] = useState<ColorFormats>(ColorFormats.hex);
 
   useEffect(() => {
     setShades(gatherShades(colorPalette, colorId));
   }, [colorPalette, colorId]);
 
-  const gatherShades = (
-    palette: ColorPaletteWithShades,
-    colorToFilterBy: string
-  ): ColorShades => {
+  const gatherShades = (palette: ColorPaletteWithShades, colorToFilterBy: string): ColorShades => {
     let colorShades: ColorShades = [];
     let allColors = palette.colors;
 
     for (let key in allColors) {
-      let singleColor = allColors[key].find(
-        (color) => color.id === colorToFilterBy
-      );
+      let singleColor = allColors[key].find((color) => color.id === colorToFilterBy);
 
       colorShades.push(singleColor as SingleColor);
     }
@@ -100,10 +88,7 @@ const SingleColorPalette = ({
       >
         {colorBoxes}
         <div className={classes.goBack} style={{ background: '#000' }}>
-          <Link
-            className={classes.goBackButton}
-            to={`/palette/${colorPalette.id}`}
-          >
+          <Link className={classes.goBackButton} to={`/palette/${colorPalette.id}`}>
             Go Back
           </Link>
         </div>

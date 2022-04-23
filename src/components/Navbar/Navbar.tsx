@@ -1,6 +1,6 @@
 import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Link } from 'react-router-dom';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -24,18 +24,10 @@ interface NavbarProps extends WithStyles<typeof NavbarStyles> {
   setColorFormat: (colorFormat: ColorFormats) => void;
 }
 
-const Navbar = ({
-  classes,
-  level,
-  colorFormat,
-  changeLevel,
-  setColorFormat,
-}: NavbarProps): JSX.Element => {
+const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLevel, setColorFormat }) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleFormatChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ): void => {
+  const handleFormatChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
     setColorFormat(event.target.value as ColorFormats);
     setOpen(true);
   };
@@ -51,12 +43,7 @@ const Navbar = ({
   );
 
   const snackbarActionIcon = () => (
-    <IconButton
-      onClick={closeSnackbar}
-      color='inherit'
-      key='close'
-      aria-label='close'
-    >
+    <IconButton onClick={closeSnackbar} color='inherit' key='close' aria-label='close'>
       <CloseIcon />
     </IconButton>
   );
