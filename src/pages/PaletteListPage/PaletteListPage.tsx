@@ -12,11 +12,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import MiniPalette from '@components/MiniPalette/MiniPalette';
+import PaletteListPageStyles from './PaletteListPage.styles';
 import React, { FC, useState } from 'react';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
-
-import PaletteListStyles from './PaletteListStyles';
 
 interface ColorPalette {
   paletteName: string;
@@ -25,12 +24,12 @@ interface ColorPalette {
   colors: { name: string; color: string }[];
 }
 
-interface PaletteListProps extends WithStyles<typeof PaletteListStyles> {
+interface PaletteListPageProps extends WithStyles<typeof PaletteListPageStyles> {
   palettes: ColorPalette[];
   deletePalette: (id: string) => void;
 }
 
-const PaletteList: FC<PaletteListProps> = ({ classes, palettes, deletePalette }) => {
+const PaletteListPage: FC<PaletteListPageProps> = ({ classes, palettes, deletePalette }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [paletteId, setPaletteId] = useState<string>('');
 
@@ -114,4 +113,4 @@ const PaletteList: FC<PaletteListProps> = ({ classes, palettes, deletePalette })
   );
 };
 
-export default withStyles(PaletteListStyles)(PaletteList);
+export default withStyles(PaletteListPageStyles)(PaletteListPage);

@@ -1,10 +1,10 @@
-import './PalettePage.styled.ts';
+import './PalettePage.styles.ts';
 import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import ColorBox from '@components/ColorBox/ColorBox';
 import Navbar from '@components/Navbar/Navbar';
 import PaletteFooter from '@components/PaletteFooter/PaletteFooter';
-import PaletteStyles from './PalettePage.styled';
+import PalettePageStyles from './PalettePage.styles';
 import React, { FC, useState } from 'react';
 
 enum ColorFormats {
@@ -28,11 +28,11 @@ interface ColorPaletteWithShades {
   };
 }
 
-interface PaletteProps extends WithStyles<typeof PaletteStyles> {
+interface PalettePageProps extends WithStyles<typeof PalettePageStyles> {
   colorPalette: ColorPaletteWithShades;
 }
 
-const Palette: FC<PaletteProps> = ({ classes, colorPalette }) => {
+const PalettePage: FC<PalettePageProps> = ({ classes, colorPalette }) => {
   const [level, setLevel] = useState<number>(500);
   const [colorFormat, setColorFormat] = useState<ColorFormats>(ColorFormats.hex);
 
@@ -73,4 +73,4 @@ const Palette: FC<PaletteProps> = ({ classes, colorPalette }) => {
   );
 };
 
-export default withStyles(PaletteStyles)(Palette);
+export default withStyles(PalettePageStyles)(PalettePage);
