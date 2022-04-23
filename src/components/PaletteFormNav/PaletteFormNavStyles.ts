@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { drawerWidth } from '../NewPaletteForm/NewPaletteFormStyles';
+import { drawerWidth } from '../../pages/CreatePalettePage/CreatePalettePage.styled';
 import mediaQueries from '../../utils/mediaQueries';
 
 const useStyles = makeStyles((theme: Theme) =>

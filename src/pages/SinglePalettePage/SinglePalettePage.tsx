@@ -1,11 +1,11 @@
 import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-import ColorBox from '../ColorBox/ColorBox';
-import Navbar from '../Navbar/Navbar';
-import PaletteFooter from '../PaletteFooter/PaletteFooter';
+import ColorBox from '../../components/ColorBox/ColorBox';
+import Navbar from '../../components/Navbar/Navbar';
+import PaletteFooter from '../../components/PaletteFooter/PaletteFooter';
 import { Link } from 'react-router-dom';
-import SingleColorPaletteStyles from './SingleColorPaletteStyles';
+import SingleColorPaletteStyles from './SinglePalettePage.styled';
 
 interface ColorPaletteWithShades {
   paletteName: string;

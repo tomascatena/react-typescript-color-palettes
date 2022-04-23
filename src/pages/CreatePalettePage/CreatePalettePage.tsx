@@ -1,4 +1,4 @@
-import useStyles from './NewPaletteFormStyles';
+import useStyles from './CreatePalettePage.styled';
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
@@ -11,10 +11,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import { useEffect } from 'react';
-import DraggableColorList from '../DraggableColorList/DraggableColorList';
+import DraggableColorList from '../../components/DraggableColorList/DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
-import PaletteFormNav from '../PaletteFormNav/PaletteFormNav';
-import NewPaletteColorPicker from '../NewPaletteColorPicker/NewPaletteColorPicker';
+import PaletteFormNav from '../../components/PaletteFormNav/PaletteFormNav';
+import NewPaletteColorPicker from '../../components/NewPaletteColorPicker/NewPaletteColorPicker';
 
 interface ColorPalette {
   paletteName: string;

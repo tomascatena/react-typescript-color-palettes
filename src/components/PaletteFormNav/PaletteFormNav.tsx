@@ -8,7 +8,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Button from '@material-ui/core/Button';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { drawerWidth } from '../NewPaletteForm/NewPaletteFormStyles';
+import { drawerWidth } from '../../pages/CreatePalettePage/CreatePalettePage.styled';
 import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
 import { Emoji } from 'emoji-mart/dist-es';
 

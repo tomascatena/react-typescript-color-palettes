@@ -12,10 +12,10 @@ import { Location } from 'history';
 import seedPalettes from './data/seedPalettes';
 import useLocalStorage from './utils/useLocalStorage';
 import Page from './components/Page/Page';
-import Palette from './components/Palette/Palette';
-import PaletteList from './components/PaletteList/PaletteList';
-import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette';
-import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm';
+import Palette from './pages/PalettePage/PalettePage';
+import PaletteList from './pages/PaletteList/PaletteList';
+import SingleColorPalette from './pages/SinglePalettePage/SinglePalettePage';
+import NewPaletteForm from './pages/CreatePalettePage/CreatePalettePage';
 
 import './App.css';
 
@@ -107,8 +107,11 @@ const App = (): JSX.Element => {
             <CSSTransition key={location.key} timeout={500} classNames='page'>
               <Switch location={location}>
                 <Route exact path='/' render={PaletteListRoute} />
+
                 <Route exact path='/palette/new' render={NewPaletteFormRoute} />
+
                 <Route exact path='/palette/:id' render={PaletteRoute} />
+
                 <Route
                   path='/palette/:paletteId/:colorId'
                   render={SingleColorPaletteRoute}

@@ -1,4 +1,6 @@
 import webpack, { Configuration } from 'webpack';
+// Empty import to fix devServer prop in Configuration
+import {} from 'webpack-dev-server';
 import { merge } from 'webpack-merge';
 import commonConfig from './webpack.common';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
