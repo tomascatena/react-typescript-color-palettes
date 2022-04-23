@@ -1,11 +1,11 @@
 import './App.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import {
-  Redirect,
+  Navigate,
   Route,
-  RouteComponentProps,
-  Switch,
+  Routes,
   useLocation,
+  useParams
 } from 'react-router-dom';
 import { generatePalette } from '@utils/colorHelpers';
 import CreatePalettePage from '@pages/CreatePalettePage/CreatePalettePage';
@@ -68,15 +68,17 @@ const App = (): JSX.Element => {
     );
   };
 
-  const PaletteRoute = (routeProps: RouteComponentProps<{ id: string }>) => {
-    if (!findPalette(routeProps.match.params.id)) {
-      return <Redirect to='/'></Redirect>;
+  const PaletteRoute = () => {
+    const { id } = useParams();
+
+    if (!id || !findPalette(id)) {
+      return <Navigate to='/'></Navigate>;
     } else {
       return (
         <Page>
           <PalettePage
             colorPalette={generatePalette(
-              findPalette(routeProps.match.params.id)
+              findPalette(id)
             )}
           />
         </Page>
@@ -84,19 +86,19 @@ const App = (): JSX.Element => {
     }
   };
 
-  const SinglePaletteRoute = (
-    routeProps: RouteComponentProps<{ paletteId: string; colorId: string }>
-  ) => {
-    if (!findPalette(routeProps.match.params.paletteId)) {
-      return <Redirect to='/'></Redirect>;
+  const SinglePaletteRoute = () => {
+    const { paletteId, colorId } = useParams();
+
+    if (!paletteId || !colorId || !findPalette(paletteId)) {
+      return <Navigate to='/'></Navigate>;
     } else {
       return (
         <Page>
           <SinglePalettePage
             colorPalette={generatePalette(
-              findPalette(routeProps.match.params.paletteId)
+              findPalette(paletteId)
             )}
-            colorId={routeProps.match.params.colorId}
+            colorId={colorId}
           />
         </Page>
       );
@@ -105,7 +107,7 @@ const App = (): JSX.Element => {
 
   return (
     <Route
-      render={(): JSX.Element => {
+      element={(): JSX.Element => {
         return (
           <TransitionGroup>
             <CSSTransition
@@ -113,30 +115,27 @@ const App = (): JSX.Element => {
               timeout={500}
               classNames='page'
             >
-              <Switch location={location}>
+              <Routes location={location}>
                 <Route
-                  exact
                   path='/'
-                  render={PaletteListRoute}
+                  element={PaletteListRoute}
                 />
 
                 <Route
-                  exact
                   path='/palette/new'
-                  render={CreatePaletteRoute}
+                  element={CreatePaletteRoute}
                 />
 
                 <Route
-                  exact
                   path='/palette/:id'
-                  render={PaletteRoute}
+                  element={PaletteRoute}
                 />
 
                 <Route
                   path='/palette/:paletteId/:colorId'
-                  render={SinglePaletteRoute}
+                  element={SinglePaletteRoute}
                 />
-              </Switch>
+              </Routes>
             </CSSTransition>
           </TransitionGroup>
         );

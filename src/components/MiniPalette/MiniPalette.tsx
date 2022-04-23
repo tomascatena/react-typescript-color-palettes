@@ -1,5 +1,5 @@
 import { WithStyles } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MiniPaletteStyles from './MiniPaletteStyles';
@@ -21,7 +21,7 @@ const MiniPalette: FC<MiniPaletteProps> = ({
   id,
   openDialog,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const miniColorBoxes = colors.map(
     ({ color, name }): JSX.Element => (
@@ -34,7 +34,7 @@ const MiniPalette: FC<MiniPaletteProps> = ({
   );
 
   const goToPalette = (e: MouseEvent<HTMLDivElement>, id: string): void => {
-    history.push(`/palette/${id}`);
+    navigate(`/palette/${id}`);
   };
 
   const handleDeletePalette = (e: MouseEvent<HTMLDivElement>): void => {

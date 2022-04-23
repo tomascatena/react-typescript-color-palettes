@@ -1,5 +1,5 @@
 import { Emoji } from 'emoji-mart/dist-es';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styled';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AppBar from '@material-ui/core/AppBar';
@@ -33,7 +33,7 @@ const PaletteFormNav: FC<PaletteFormNavProps> = ({
   colors,
 }) => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [newPaletteName, setNewPaletteName] = useState<string>('');
 
@@ -63,7 +63,7 @@ const PaletteFormNav: FC<PaletteFormNavProps> = ({
 
     savePalette(newPalette);
 
-    history.push('/');
+    navigate('/');
   };
 
   return (
