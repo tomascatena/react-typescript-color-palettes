@@ -1,6 +1,5 @@
 import './App.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Location } from 'history';
 import {
   Redirect,
   Route,
@@ -31,7 +30,7 @@ const App = (): JSX.Element => {
     seedPalettes
   );
 
-  const location = useLocation<Location>();
+  const location = useLocation();
   const [palettes, setPalettes] = useState<ColorPalette[]>(seedPalettes);
 
   const findPalette = (id: string): ColorPalette => {

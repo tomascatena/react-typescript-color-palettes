@@ -23,14 +23,14 @@ interface ColorPalette {
   colors: { name: string; color: string }[];
 }
 
-interface NewPaletteFormProps {
+interface CreatePalettePageProps {
   savePalette: (newPalette: ColorPalette) => void;
   palettes: ColorPalette[];
 }
 
 export type Color = { color: string; name: string };
 
-const NewPaletteForm: FC<NewPaletteFormProps> = ({ savePalette, palettes }) => {
+const CreatePalettePage: FC<CreatePalettePageProps> = ({ savePalette, palettes }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -152,4 +152,4 @@ const NewPaletteForm: FC<NewPaletteFormProps> = ({ savePalette, palettes }) => {
   );
 };
 
-export default NewPaletteForm;
+export default CreatePalettePage;

@@ -66,4 +66,6 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
   );
 };
 
+export { ColorBox };
+
 export default withStyles(ColorBoxStyles)(ColorBox);

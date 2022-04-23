@@ -3,37 +3,36 @@ import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import DraggableColorBoxStyles from './DraggableColorBoxStyles';
-import React from 'react';
+import React, { FC } from 'react';
 
-interface DraggableColorBoxProps extends WithStyles<typeof DraggableColorBoxStyles> {
+interface ColorBoxProps extends WithStyles<typeof DraggableColorBoxStyles> {
   color: { color: string; name: string };
   removeColorFromPalette: (colorName: string) => void;
 }
+const ColorBox:FC<ColorBoxProps> = ({ classes, color, removeColorFromPalette }) => {
+  const handleDeleteColor = (): void => {
+    removeColorFromPalette(color.name);
+  };
 
-const DraggableColorBox = SortableElement(
-  ({ classes, color, removeColorFromPalette }: DraggableColorBoxProps): JSX.Element => {
-    const handleDeleteColor = (): void => {
-      removeColorFromPalette(color.name);
-    };
+  return (
+    <div
+      className={classes.root}
+      style={{ backgroundColor: color.color }}
+    >
+      <div className={classes.boxContent}>
+        <span className={classes.colorName}>{color.name}</span>
 
-    return (
-      <div
-        className={classes.root}
-        style={{ backgroundColor: color.color }}
-      >
-        <div className={classes.boxContent}>
-          <span className={classes.colorName}>{color.name}</span>
-
-          <span className={classes.deleteIcon}>
-            <DeleteForeverOutlinedIcon
-              className={classes.deleteIcon}
-              onClick={handleDeleteColor}
-            />
-          </span>
-        </div>
+        <span className={classes.deleteIcon}>
+          <DeleteForeverOutlinedIcon
+            className={classes.deleteIcon}
+            onClick={handleDeleteColor}
+          />
+        </span>
       </div>
-    );
-  }
-);
+    </div>
+  );
+};
+
+const DraggableColorBox = SortableElement(ColorBox);
 
 export default withStyles(DraggableColorBoxStyles)(DraggableColorBox);

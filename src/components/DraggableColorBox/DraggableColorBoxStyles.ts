@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
-import mediaQueries from '../../utils/mediaQueries';
 import chroma from 'chroma-js';
+import mediaQueries from '../../utils/mediaQueries';
 
 interface Props {
   color: { color: string; name: string };
@@ -15,14 +15,6 @@ const styles = createStyles({
     position: 'relative',
     cursor: 'pointer',
     marginBottom: '-5px',
-
-    '&:hover svg': {
-      color: (props: Props) =>
-        chroma(props.color.color).luminance() <= 0.1
-          ? 'rgba(255, 255, 255, 1)'
-          : 'rgba(0, 0, 0, 1)',
-      transform: 'scale(1.3)',
-    },
   },
   boxContent: {
     position: 'absolute',
@@ -47,6 +39,14 @@ const styles = createStyles({
       chroma(props.color.color).luminance() <= 0.15
         ? 'rgba(255, 255, 255, 0.7)'
         : 'rgba(0, 0, 0, 0.5)',
+
+    '&:hover svg': {
+      color: (props: Props) =>
+        chroma(props.color.color).luminance() <= 0.1
+          ? 'rgba(255, 255, 255, 1)'
+          : 'rgba(0, 0, 0, 1)',
+      transform: 'scale(1.3)',
+    },
   },
   colorName: {
     fontSize: '.9rem',

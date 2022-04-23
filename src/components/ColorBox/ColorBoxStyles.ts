@@ -1,5 +1,5 @@
-import chroma from 'chroma-js';
 import { createStyles } from '@material-ui/core';
+import chroma from 'chroma-js';
 import mediaQueries from '../../utils/mediaQueries';
 
 interface Props {
@@ -31,6 +31,8 @@ const styles = createStyles({
     color: (props: Props) =>
       chroma(props.background).luminance() <= 0.15 ? '#fff' : 'rgba(0, 0, 0, 1)',
     fontSize: '.9rem',
+    display: 'block',
+    overflowWrap: 'break-word'
   },
   seeMore: {
     background: 'rgba(255, 255, 255, 0.3)',
@@ -75,6 +77,7 @@ const styles = createStyles({
     textTransform: 'uppercase',
     letterSpacing: '1px',
     fontSize: '12px',
+    paddingRight: '70px'
   },
   copyMessage: {
     position: 'fixed',
