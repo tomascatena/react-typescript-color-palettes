@@ -1,16 +1,18 @@
-import useStyles from './PaletteFormNavStyles';
-import clsx from 'clsx';
+import React, { useEffect, useState, FC } from 'react';
+
+import PaletteMetaForm from '@components/PaletteMetaForm/PaletteMetaForm';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Button from '@material-ui/core/Button';
-import React, { useEffect, useState, FC } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styled';
-import PaletteMetaForm from '@components/PaletteMetaForm/PaletteMetaForm';
+import clsx from 'clsx';
 import { Emoji } from 'emoji-mart/dist-es';
+import { Link, useHistory } from 'react-router-dom';
+
+import useStyles from './PaletteFormNavStyles';
 
 interface ColorPalette {
   paletteName: string;

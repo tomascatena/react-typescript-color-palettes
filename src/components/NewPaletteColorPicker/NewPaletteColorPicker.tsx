@@ -1,9 +1,11 @@
-import useStyles from './NewPaletteColorPickerStyles';
-import chroma from 'chroma-js';
-import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { ChromePicker } from 'react-color';
 import React, { FC } from 'react';
+
+import Button from '@material-ui/core/Button';
+import chroma from 'chroma-js';
+import { ChromePicker } from 'react-color';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
+import useStyles from './NewPaletteColorPickerStyles';
 
 interface NewPaletteColorPickerProps {
   currentColor: string;

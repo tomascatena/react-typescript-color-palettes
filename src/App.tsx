@@ -1,4 +1,14 @@
 import React, { useState } from 'react';
+
+import Page from '@components/Page/Page';
+import seedPalettes from '@data/seedPalettes';
+import NewPaletteForm from '@pages/CreatePalettePage/CreatePalettePage';
+import PaletteList from '@pages/PaletteList/PaletteList';
+import Palette from '@pages/PalettePage/PalettePage';
+import SingleColorPalette from '@pages/SinglePalettePage/SinglePalettePage';
+import { generatePalette } from '@utils/colorHelpers';
+import useLocalStorage from '@utils/useLocalStorage';
+import { Location } from 'history';
 import {
   Redirect,
   Route,
@@ -7,15 +17,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { generatePalette } from '@utils/colorHelpers';
-import { Location } from 'history';
-import seedPalettes from '@data/seedPalettes';
-import useLocalStorage from '@utils/useLocalStorage';
-import Page from '@components/Page/Page';
-import Palette from '@pages/PalettePage/PalettePage';
-import PaletteList from '@pages/PaletteList/PaletteList';
-import SingleColorPalette from '@pages/SinglePalettePage/SinglePalettePage';
-import NewPaletteForm from '@pages/CreatePalettePage/CreatePalettePage';
 
 import './App.css';
 

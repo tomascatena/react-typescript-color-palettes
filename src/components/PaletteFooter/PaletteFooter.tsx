@@ -1,7 +1,9 @@
-import { withStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
-import PaletteFooterStyles from './PaletteFooterStyles';
 import React, { FC } from 'react';
+
+import { WithStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
+
+import PaletteFooterStyles from './PaletteFooterStyles';
 
 interface ColorPalette {
   paletteName: string;

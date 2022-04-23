@@ -1,10 +1,12 @@
-import ColorBox from '@components/ColorBox/ColorBox';
 import './PalettePage.styled.ts';
 import React, { useState, FC } from 'react';
+
+import ColorBox from '@components/ColorBox/ColorBox';
 import Navbar from '@components/Navbar/Navbar';
 import PaletteFooter from '@components/PaletteFooter/PaletteFooter';
-import { withStyles } from '@material-ui/styles';
 import { WithStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
+
 import PaletteStyles from './PalettePage.styled';
 
 enum ColorFormats {

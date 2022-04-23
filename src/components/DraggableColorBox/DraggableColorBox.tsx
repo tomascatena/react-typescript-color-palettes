@@ -1,9 +1,11 @@
-import DraggableColorBoxStyles from './DraggableColorBoxStyles';
+import React from 'react';
+
+import { WithStyles } from '@material-ui/core';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import { withStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
 import { SortableElement } from 'react-sortable-hoc';
-import React from 'react';
+
+import DraggableColorBoxStyles from './DraggableColorBoxStyles';
 
 interface DraggableColorBoxProps extends WithStyles<typeof DraggableColorBoxStyles> {
   color: { color: string; name: string };

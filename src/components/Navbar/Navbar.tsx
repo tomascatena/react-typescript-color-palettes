@@ -1,14 +1,16 @@
 import 'rc-slider/assets/index.css';
-import Slider from 'rc-slider';
 import React, { useState, FC } from 'react';
-import { Link } from 'react-router-dom';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Snackbar from '@material-ui/core/Snackbar';
+
+import { WithStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
+import Slider from 'rc-slider';
+import { Link } from 'react-router-dom';
+
 import NavbarStyles from './NavbarStyles';
 
 enum ColorFormats {
