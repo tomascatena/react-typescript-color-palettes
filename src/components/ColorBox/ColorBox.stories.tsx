@@ -7,8 +7,6 @@ const COLOR = {
   id: 'merchantmarineblue',
   level: 500,
   name: 'MerchantMarineBlue 500',
-  rgb: 'rgb(6,76,213)',
-  rgba: 'rgba(6,76,213,1.0)',
 };
 
 export default {

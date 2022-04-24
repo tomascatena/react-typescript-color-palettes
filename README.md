@@ -38,7 +38,7 @@ Runs all the test files with jest in watch mode
 
 ### Storybook
 
-Open [Project's Storybook](https://www.chromatic.com/setup?appId=62654b5babdb4b004aad2d72) to view the published Storybook of the project in Chromatic.
+Open [Project's Storybook](https://main--62654b5babdb4b004aad2d72.chromatic.com) to view the published Storybook of the project in Chromatic.
 
 ### `npm run storybook`
 

@@ -15,7 +15,8 @@
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=fd9f772d9ad7"
+    "chromatic": "npx chromatic --project-token=CHROMATIC_PROJECT_TOKEN",
+    "chromatic:rebuild": "npx chromatic --project-token=CHROMATIC_PROJECT_TOKEN --force-rebuild"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.0",
