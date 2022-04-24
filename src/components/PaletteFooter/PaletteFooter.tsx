@@ -1,6 +1,6 @@
 import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import PaletteFooterStyles from './PaletteFooterStyles';
+import PaletteFooterStyles from './PaletteFooter.styles';
 import React, { FC } from 'react';
 
 interface ColorPalette {
@@ -12,7 +12,7 @@ interface PaletteFooterProps extends WithStyles<typeof PaletteFooterStyles> {
   colorPalette: ColorPalette;
 }
 
-const PaletteFooter: FC<PaletteFooterProps> = ({ classes, colorPalette }) => {
+export const PaletteFooter: FC<PaletteFooterProps> = ({ classes, colorPalette }) => {
   return (
     <footer className={classes.paletteFooter}>
       {colorPalette.paletteName}

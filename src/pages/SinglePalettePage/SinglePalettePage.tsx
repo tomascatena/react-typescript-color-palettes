@@ -45,7 +45,7 @@ type SingleColor = {
 
 type ColorShades = SingleColor[];
 
-const SinglePalettePage: FC<SinglePalettePageProps> = ({ classes, colorPalette, colorId }) => {
+export const SinglePalettePage: FC<SinglePalettePageProps> = ({ classes, colorPalette, colorId }) => {
   const [shades, setShades] = useState<ColorShades>([]);
   const [colorFormat, setColorFormat] = useState<ColorFormats>(ColorFormats.hex);
 

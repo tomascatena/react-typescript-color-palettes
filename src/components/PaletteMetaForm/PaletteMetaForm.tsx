@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import PaletteMetaFormStyles from './PaletteMetaFormStyles';
+import PaletteMetaFormStyles from './PaletteMetaForm.styles';
 import React, { FC, useState } from 'react';
 
 interface PaletteMetaFormProps extends WithStyles<typeof PaletteMetaFormStyles> {
@@ -18,7 +18,7 @@ interface PaletteMetaFormProps extends WithStyles<typeof PaletteMetaFormStyles> 
   handleCreateNewPalette: (emoji: string) => void;
 }
 
-const PaletteMetaForm: FC<PaletteMetaFormProps> = ({
+export const PaletteMetaForm: FC<PaletteMetaFormProps> = ({
   classes,
   newPaletteName,
   handlePaletteNameChange,

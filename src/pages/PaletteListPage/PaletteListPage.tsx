@@ -29,7 +29,7 @@ interface PaletteListPageProps extends WithStyles<typeof PaletteListPageStyles> 
   deletePalette: (id: string) => void;
 }
 
-const PaletteListPage: FC<PaletteListPageProps> = ({ classes, palettes, deletePalette }) => {
+export const PaletteListPage: FC<PaletteListPageProps> = ({ classes, palettes, deletePalette }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [paletteId, setPaletteId] = useState<string>('');
 

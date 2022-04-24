@@ -11,7 +11,7 @@ import Select from '@material-ui/core/Select';
 import Slider from 'rc-slider';
 import Snackbar from '@material-ui/core/Snackbar';
 
-enum ColorFormats {
+export enum ColorFormats {
   hex = 'hex',
   rgb = 'rgb',
   rgba = 'rgba',
@@ -24,7 +24,7 @@ interface NavbarProps extends WithStyles<typeof NavbarStyles> {
   setColorFormat: (colorFormat: ColorFormats) => void;
 }
 
-const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLevel, setColorFormat }) => {
+export const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLevel, setColorFormat }) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleFormatChange = (event: React.ChangeEvent<{ value: unknown }>): void => {

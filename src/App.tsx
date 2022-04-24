@@ -17,7 +17,7 @@ import SinglePalettePage from '@pages/SinglePalettePage/SinglePalettePage';
 import seedPalettes from '@data/seedPalettes';
 import useLocalStorage from '@utils/useLocalStorage'; ;
 
-interface ColorPalette {
+export interface ColorPalette {
   paletteName: string;
   id: string;
   emoji: string;

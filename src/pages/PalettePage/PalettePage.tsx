@@ -32,8 +32,8 @@ interface PalettePageProps extends WithStyles<typeof PalettePageStyles> {
   colorPalette: ColorPaletteWithShades;
 }
 
-const PalettePage: FC<PalettePageProps> = ({ classes, colorPalette }) => {
-  const [level, setLevel] = useState<number>(500);
+export const PalettePage: FC<PalettePageProps> = ({ classes, colorPalette }) => {
+  const [level, setLevel] = useState(500);
   const [colorFormat, setColorFormat] = useState<ColorFormats>(ColorFormats.hex);
 
   const changeLevel = (newLevel: number): void => {

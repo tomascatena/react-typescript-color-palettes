@@ -14,7 +14,7 @@ import PaletteFormNav from '@components/PaletteFormNav/PaletteFormNav';
 import React, { FC, useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
-import useStyles from './CreatePalettePage.styled';
+import useStyles from './CreatePalettePage.styles';
 
 interface ColorPalette {
   paletteName: string;
@@ -34,9 +34,9 @@ const CreatePalettePage: FC<CreatePalettePageProps> = ({ savePalette, palettes }
   const classes = useStyles();
   const theme = useTheme();
 
-  const [open, setOpen] = useState<boolean>(true);
-  const [newColorName, setNewColorName] = useState<string>('');
-  const [currentColor, setCurrentColor] = useState<string>('blue');
+  const [open, setOpen] = useState(true);
+  const [newColorName, setNewColorName] = useState('');
+  const [currentColor, setCurrentColor] = useState('blue');
   const [colors, setColors] = useState<Color[]>(palettes[0].colors);
 
   const MAX_COLORS = 20;

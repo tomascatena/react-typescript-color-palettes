@@ -1,6 +1,6 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: '100%',
@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme: Theme) =>
     addColorButton: {
       marginTop: '1rem',
       width: '100%',
+
+      '&:disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'all !important',
+        backgroundColor: '#aaa !important'
+      }
     },
     colorNameInput: {
       width: '100%',

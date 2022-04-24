@@ -3,7 +3,7 @@ import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
 import React, { FC } from 'react';
 import chroma from 'chroma-js';
-import useStyles from './NewPaletteColorPickerStyles';
+import useStyles from './NewPaletteColorPicker.styles';
 
 interface NewPaletteColorPickerProps {
   currentColor: string;
@@ -15,7 +15,7 @@ interface NewPaletteColorPickerProps {
   setColors: (colors: { color: string; name: string }[]) => void;
 }
 
-const NewPaletteColorPicker: FC<NewPaletteColorPickerProps> = ({
+export const NewPaletteColorPicker: FC<NewPaletteColorPickerProps> = ({
   currentColor,
   isPaletteFull,
   newColorName,
@@ -46,9 +46,7 @@ const NewPaletteColorPicker: FC<NewPaletteColorPickerProps> = ({
       >
         <ChromePicker
           color={currentColor}
-          onChangeComplete={(newColor) => {
-            setCurrentColor(newColor.hex);
-          }}
+          onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
           className={classes.colorPicker}
         />
 

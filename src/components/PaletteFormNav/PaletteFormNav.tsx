@@ -1,6 +1,6 @@
 import { Emoji } from 'emoji-mart/dist-es';
 import { Link, useNavigate } from 'react-router-dom';
-import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styled';
+import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
-import useStyles from './PaletteFormNavStyles';
+import useStyles from './PaletteFormNav.styles';
 
 interface ColorPalette {
   paletteName: string;
@@ -35,7 +35,7 @@ const PaletteFormNav: FC<PaletteFormNavProps> = ({
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const [newPaletteName, setNewPaletteName] = useState<string>('');
+  const [newPaletteName, setNewPaletteName] = useState('');
 
   const preFetchEmojisSheet = async () => {
     if (Emoji.defaultProps?.backgroundImageFn) {
