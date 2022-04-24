@@ -1,5 +1,7 @@
 # Color Palettes App
 
+## Visit live demo in [React Color Palettes](https://color-palettes-tomascatena.vercel.app/).
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -38,7 +40,7 @@ Runs all the test files with jest in watch mode
 
 ### Storybook
 
-Open <a href="https://main--62654b5babdb4b004aad2d72.chromatic.com" target="_blank" rel="noopener"><span>Project's Storybook</span> </a> to view the published Storybook of the project in Chromatic.
+Open [Project's Storybook](https://main--62654b5babdb4b004aad2d72.chromatic.com) to view the published Storybook of the project in Chromatic.
 
 ### `npm run storybook`
 
