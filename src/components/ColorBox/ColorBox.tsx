@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import ColorBoxStyles from './ColorBoxStyles';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 interface ColorBoxProps extends WithStyles<typeof ColorBoxStyles> {
   background: string;
@@ -25,6 +25,10 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
       setCopied(false);
     }, 1500);
   };
+
+  useEffect(() => {
+    document.body.classList.toggle('hide-scroll-bars', copied);
+  }, [copied]);
 
   return (
     <CopyToClipboard

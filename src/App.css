@@ -33,3 +33,7 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.hide-scroll-bars {
+  overflow: hidden;
+}

@@ -15,7 +15,7 @@ import PalettePage from '@pages/PalettePage/PalettePage';
 import React, { useState } from 'react';
 import SinglePalettePage from '@pages/SinglePalettePage/SinglePalettePage';
 import seedPalettes from '@data/seedPalettes';
-import useLocalStorage from '@utils/useLocalStorage';
+import useLocalStorage from '@utils/useLocalStorage'; ;
 
 interface ColorPalette {
   paletteName: string;
@@ -106,9 +106,10 @@ const App = (): JSX.Element => {
   };
 
   return (
-    <Route
-      element={(): JSX.Element => {
-        return (
+    <Routes location={location}>
+      <Route
+        path='*'
+        element={
           <TransitionGroup>
             <CSSTransition
               key={location.key}
@@ -118,29 +119,29 @@ const App = (): JSX.Element => {
               <Routes location={location}>
                 <Route
                   path='/'
-                  element={PaletteListRoute}
+                  element={<PaletteListRoute/>}
                 />
 
                 <Route
                   path='/palette/new'
-                  element={CreatePaletteRoute}
+                  element={<CreatePaletteRoute/>}
                 />
 
                 <Route
                   path='/palette/:id'
-                  element={PaletteRoute}
+                  element={<PaletteRoute/>}
                 />
 
                 <Route
                   path='/palette/:paletteId/:colorId'
-                  element={SinglePaletteRoute}
+                  element={<SinglePaletteRoute/>}
                 />
               </Routes>
             </CSSTransition>
           </TransitionGroup>
-        );
-      }}
-    ></Route>
+        }
+      ></Route>
+    </Routes>
   );
 };
 

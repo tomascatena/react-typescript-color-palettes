@@ -3,7 +3,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import {
   BrowserRouter,
   Route,
-  Switch,
+  Routes,
+  useLocation
 } from 'react-router-dom';
 import '../src/App.css';
 
@@ -24,43 +25,12 @@ export const parameters = {
 
 
 export const decorators = [
-  // MUI Theme
+  // React Router
   (Story, context) => {
     return (
-      <TransitionGroup>
-        <CSSTransition
-          key={location.key}
-          timeout={500}
-          classNames='page'
-        >
-          <Story {...context} />
-        </CSSTransition>
-      </TransitionGroup>
+      <BrowserRouter>
+        {<Story {...context} />}
+      </BrowserRouter>
     );
   },
-  // React Router
-  (Story, context) => (
-    <BrowserRouter>
-      <Route
-        render={() => {
-          return (
-            <TransitionGroup>
-              <CSSTransition
-                key={location.key}
-                timeout={500}
-                classNames='page'
-              >
-                <Switch location={location}>
-                  <Route
-                    path='*'
-                    render={() => <Story {...context} />}
-                  />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          );
-        }}
-      ></Route>
-    </BrowserRouter>
-  ),
 ];
