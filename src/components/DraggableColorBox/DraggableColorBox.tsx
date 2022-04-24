@@ -2,13 +2,14 @@ import { SortableElement } from 'react-sortable-hoc';
 import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
-import DraggableColorBoxStyles from './DraggableColorBoxStyles';
+import DraggableColorBoxStyles from './DraggableColorBox.styles';
 import React, { FC } from 'react';
 
 interface ColorBoxProps extends WithStyles<typeof DraggableColorBoxStyles> {
   color: { color: string; name: string };
   removeColorFromPalette: (colorName: string) => void;
 }
+
 const ColorBox:FC<ColorBoxProps> = ({ classes, color, removeColorFromPalette }) => {
   const handleDeleteColor = (): void => {
     removeColorFromPalette(color.name);
@@ -33,6 +34,6 @@ const ColorBox:FC<ColorBoxProps> = ({ classes, color, removeColorFromPalette }) 
   );
 };
 
-const DraggableColorBox = SortableElement(ColorBox);
+export const DraggableColorBox = SortableElement(ColorBox);
 
 export default withStyles(DraggableColorBoxStyles)(DraggableColorBox);

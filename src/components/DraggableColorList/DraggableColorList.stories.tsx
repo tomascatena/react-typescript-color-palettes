@@ -31,7 +31,3 @@ const Template: ComponentStory<typeof Default> = (args) => {
 };
 
 export const Standard = Template.bind({});
-
-Standard.args = {
-  handleRemoveColorFromPalette: () => {}
-};

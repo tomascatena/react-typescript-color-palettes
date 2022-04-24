@@ -1,9 +1,9 @@
-import './ColorBoxStyles.ts';
+import './ColorBox.styles.ts';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link, useLocation } from 'react-router-dom';
 import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import ColorBoxStyles from './ColorBoxStyles';
+import ColorBoxStyles from './ColorBox.styles';
 import React, { FC, useEffect, useState } from 'react';
 
 interface ColorBoxProps extends WithStyles<typeof ColorBoxStyles> {

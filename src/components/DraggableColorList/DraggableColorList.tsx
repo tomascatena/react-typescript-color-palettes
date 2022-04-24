@@ -2,7 +2,7 @@ import { SortableContainer } from 'react-sortable-hoc';
 import { WithStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import DraggableColorBox from '@components/DraggableColorBox/DraggableColorBox';
-import DraggableColorListStyles from './DraggableColorListStyles';
+import DraggableColorListStyles from './DraggableColorList.styles';
 import React, { FC } from 'react';
 
 interface ColorListProps extends WithStyles<typeof DraggableColorListStyles> {

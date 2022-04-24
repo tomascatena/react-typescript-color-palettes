@@ -13,7 +13,7 @@ interface MiniPaletteProps extends WithStyles<typeof MiniPaletteStyles> {
   openDialog: (id: string) => void;
 }
 
-const MiniPalette: FC<MiniPaletteProps> = ({
+export const MiniPalette: FC<MiniPaletteProps> = ({
   classes,
   colors,
   paletteName,
