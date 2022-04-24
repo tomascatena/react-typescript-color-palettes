@@ -105,6 +105,14 @@ const App = (): JSX.Element => {
     }
   };
 
+  const addHideScrollBarClass = () => {
+    document.body.classList.add('hide-scroll-bars');
+  };
+
+  const removeHideScrollBarClass = () => {
+    document.body.classList.remove('hide-scroll-bars');
+  };
+
   return (
     <Routes location={location}>
       <Route
@@ -112,6 +120,12 @@ const App = (): JSX.Element => {
         element={
           <TransitionGroup>
             <CSSTransition
+              onEnter={() => addHideScrollBarClass()}
+              onEntering={() => addHideScrollBarClass()}
+              onExit={() => addHideScrollBarClass()}
+              onExiting={() => addHideScrollBarClass()}
+              onExited={() => removeHideScrollBarClass()}
+              onEntered={() => removeHideScrollBarClass()}
               key={location.key}
               timeout={500}
               classNames='page'

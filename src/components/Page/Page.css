@@ -13,6 +13,7 @@
 .page-enter-active {
   transform: translateX(0);
   transition: transform 500ms ease-in-out;
+  overflow: hidden !important;
 }
 
 .page-exit-active {
