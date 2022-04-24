@@ -25,13 +25,26 @@ interface ColorPaletteWithShades {
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
+const isValidHexColor = (hexColor: string) => {
+  return hexColor.match(/#[0-9a-f]{6}|#[0-9a-f]{3}/gi);
+};
+
 export const getRange = (hexColor: string): string[] => {
   const end = '#fff';
-  return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
+
+  if (isValidHexColor(hexColor)) {
+    return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
+  }
+
+  return [chroma(end).darken(1.4).hex(), end, end];
 };
 
 export const generateScale = (hexColor: string, numberOfColorsToGenerate = 10): string[] => {
-  return chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColorsToGenerate);
+  if (isValidHexColor(hexColor)) {
+    return chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColorsToGenerate);
+  }
+
+  return chroma.scale(getRange('#fff')).mode('lab').colors(numberOfColorsToGenerate);
 };
 
 export const generatePalette = (starterPalette: ColorPalette): ColorPaletteWithShades => {

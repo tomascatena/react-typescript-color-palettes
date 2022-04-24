@@ -7,7 +7,7 @@ import {
   useLocation,
   useParams
 } from 'react-router-dom';
-import { generatePalette } from '@utils/colorHelpers';
+import { generatePalette } from '@utils/colorHelpers/colorHelpers';
 import CreatePalettePage from '@pages/CreatePalettePage/CreatePalettePage';
 import Page from '@components/Page/Page';
 import PaletteListPage from '@pages/PaletteListPage/PaletteListPage';
@@ -15,7 +15,7 @@ import PalettePage from '@pages/PalettePage/PalettePage';
 import React, { useState } from 'react';
 import SingleColorShadesPage from '@pages/SingleColorShadesPage/SingleColorShadesPage';
 import seedPalettes from '@data/seedPalettes';
-import useLocalStorage from '@utils/useLocalStorage'; ;
+import useLocalStorage from '@utils/useLocalStorage/useLocalStorage';
 
 export interface ColorPalette {
   paletteName: string;

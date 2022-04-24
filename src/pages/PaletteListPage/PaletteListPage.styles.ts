@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core';
 import bg from './Confetti-Doodles-Background.svg';
-import mediaQueries from '../../utils/mediaQueries';
+import mediaQueries from '../../utils/mediaQueries/mediaQueries';
 
 const styles = createStyles({
   '@global': {

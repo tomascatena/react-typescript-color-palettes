@@ -1,6 +1,6 @@
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { drawerWidth } from '@pages/CreatePalettePage/CreatePalettePage.styles';
-import mediaQueries from '@utils/mediaQueries';
+import mediaQueries from '@utils/mediaQueries/mediaQueries';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

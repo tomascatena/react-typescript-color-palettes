@@ -191,4 +191,10 @@ export default {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  moduleNameMapper: {
+    "^@data/(.+)": "<rootDir>/src/data/$1",
+    "^@utils/(.+)": "<rootDir>/src/utils/$1",
+    "^@pages/(.+)": "<rootDir>/src/pages/$1",
+    "^@components/(.+)": "<rootDir>/src/components/$1"
+  }
 };

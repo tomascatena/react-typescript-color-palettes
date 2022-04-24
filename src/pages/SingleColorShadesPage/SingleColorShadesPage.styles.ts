@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core';
-import mediaQueries from '@utils/mediaQueries';
+import mediaQueries from '@utils/mediaQueries/mediaQueries';
 
 const styles = createStyles({
   root: {

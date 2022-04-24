@@ -2,7 +2,7 @@ import { Color } from '@pages/CreatePalettePage/CreatePalettePage';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import NewPaletteColorPicker from './NewPaletteColorPicker';
 import React, { useState } from 'react';
-import seedPalettes from '@data/seedPalettes'; ;
+import seedPalettes from '@data/seedPalettes';
 
 export default {
   title: 'Components/NewPaletteColorPicker',
