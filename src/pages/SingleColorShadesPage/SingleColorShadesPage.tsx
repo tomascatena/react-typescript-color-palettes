@@ -5,7 +5,7 @@ import ColorBox from '@components/ColorBox/ColorBox';
 import Navbar from '@components/Navbar/Navbar';
 import PaletteFooter from '@components/PaletteFooter/PaletteFooter';
 import React, { FC, useEffect, useState } from 'react';
-import SinglePalettePageStyles from './SinglePalettePage.styles';
+import SinglePalettePageStyles from './SingleColorShadesPage.styles';
 
 interface ColorPaletteWithShades {
   paletteName: string;
@@ -45,7 +45,7 @@ type SingleColor = {
 
 type ColorShades = SingleColor[];
 
-export const SinglePalettePage: FC<SinglePalettePageProps> = ({ classes, colorPalette, colorId }) => {
+export const SingleColorShadesPage: FC<SinglePalettePageProps> = ({ classes, colorPalette, colorId }) => {
   const [shades, setShades] = useState<ColorShades>([]);
   const [colorFormat, setColorFormat] = useState<ColorFormats>(ColorFormats.hex);
 
@@ -108,4 +108,4 @@ export const SinglePalettePage: FC<SinglePalettePageProps> = ({ classes, colorPa
   );
 };
 
-export default withStyles(SinglePalettePageStyles)(SinglePalettePage);
+export default withStyles(SinglePalettePageStyles)(SingleColorShadesPage);

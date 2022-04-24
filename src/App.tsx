@@ -13,7 +13,7 @@ import Page from '@components/Page/Page';
 import PaletteListPage from '@pages/PaletteListPage/PaletteListPage';
 import PalettePage from '@pages/PalettePage/PalettePage';
 import React, { useState } from 'react';
-import SinglePalettePage from '@pages/SinglePalettePage/SinglePalettePage';
+import SingleColorShadesPage from '@pages/SingleColorShadesPage/SingleColorShadesPage';
 import seedPalettes from '@data/seedPalettes';
 import useLocalStorage from '@utils/useLocalStorage'; ;
 
@@ -86,7 +86,7 @@ const App = (): JSX.Element => {
     }
   };
 
-  const SinglePaletteRoute = () => {
+  const SingleColorShadesRoute = () => {
     const { paletteId, colorId } = useParams();
 
     if (!paletteId || !colorId || !findPalette(paletteId)) {
@@ -94,7 +94,7 @@ const App = (): JSX.Element => {
     } else {
       return (
         <Page>
-          <SinglePalettePage
+          <SingleColorShadesPage
             colorPalette={generatePalette(
               findPalette(paletteId)
             )}
@@ -148,7 +148,7 @@ const App = (): JSX.Element => {
 
                 <Route
                   path='/palette/:paletteId/:colorId'
-                  element={<SinglePaletteRoute/>}
+                  element={<SingleColorShadesRoute/>}
                 />
               </Routes>
             </CSSTransition>
