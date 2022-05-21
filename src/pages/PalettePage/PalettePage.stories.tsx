@@ -1,6 +1,6 @@
 import { ColorPalette } from '../../App';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { generatePalette } from '@utils/colorHelpers';
+import { generatePalette } from '@utils/colorHelpers/colorHelpers';
 import Default, { PalettePage } from './PalettePage';
 import React from 'react';
 import seedPalettes from '@data/seedPalettes';

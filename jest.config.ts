@@ -173,6 +173,10 @@ export default {
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
+  transform: {
+    '\\.tsx?$': 'ts-jest',
+    '\\.jsx?$': 'babel-jest', // if you have jsx tests too
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -192,9 +196,9 @@ export default {
   // Whether to use watchman for file crawling
   // watchman: true,
   moduleNameMapper: {
-    "^@data/(.+)": "<rootDir>/src/data/$1",
-    "^@utils/(.+)": "<rootDir>/src/utils/$1",
-    "^@pages/(.+)": "<rootDir>/src/pages/$1",
-    "^@components/(.+)": "<rootDir>/src/components/$1"
+    '^@data/(.+)': '<rootDir>/src/data/$1',
+    '^@utils/(.+)': '<rootDir>/src/utils/$1',
+    '^@pages/(.+)': '<rootDir>/src/pages/$1',
+    '^@components/(.+)': '<rootDir>/src/components/$1',
   }
 };

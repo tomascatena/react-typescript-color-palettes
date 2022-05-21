@@ -40,12 +40,17 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
         style={{ background }}
       >
         <div
+          data-testid='copy-overlay'
           className={`${classes.copyOverlay} ${copied && classes.showOverlay}`}
           style={{ background }}
         />
 
-        <div className={`${classes.copyMessage} ${copied && classes.showCopyMessage}`}>
+        <div
+          data-testid='copy-message'
+          className={`${classes.copyMessage} ${copied && classes.showCopyMessage}`}
+        >
           <h1>copied!</h1>
+
           <p className={classes.copyText}>{background}</p>
         </div>
 
