@@ -25,6 +25,7 @@ const ColorBox:FC<ColorBoxProps> = ({ classes, color, removeColorFromPalette }) 
 
         <span className={classes.deleteIcon}>
           <DeleteForeverOutlinedIcon
+            data-testid='delete-icon'
             className={classes.deleteIcon}
             onClick={handleDeleteColor}
           />
