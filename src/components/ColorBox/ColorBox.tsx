@@ -18,10 +18,10 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
 
   const [copied, setCopied] = useState<boolean>(false);
 
-  const changeCopyState = (): void => {
+  const changeCopyState = () => {
     setCopied(true);
 
-    setTimeout((): void => {
+    setTimeout(() => {
       setCopied(false);
     }, 1500);
   };

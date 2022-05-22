@@ -1,0 +1,21 @@
+# First stage - React App
+FROM node:16-alpine as react-build
+
+RUN mkdir -p /project
+WORKDIR /project
+
+COPY package.json .
+
+RUN npm install --verbose
+
+COPY . .
+
+ARG REACT_APP_NAME
+ENV REACT_APP_NAME=${REACT_APP_NAME}
+
+RUN npm run build
+
+# Second stage - server
+FROM nginx:alpine
+COPY --from=react-build /project/dist /usr/share/nginx/html
+
