@@ -1,6 +1,6 @@
 # Color Palettes App
 
-## Visit live demo in [React Color Palettes](https://color-palettes-tomascatena.vercel.app/).
+## Visit live demo in [React Color Palettes](https://color-palettes-tomascatena.vercel.app/)
 
 ## Available Scripts
 

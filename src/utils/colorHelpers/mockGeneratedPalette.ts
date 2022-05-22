@@ -1544,4 +1544,4 @@ export const mockGeneratedPalette = {
       }
     ]
   }
-};
+} as const;

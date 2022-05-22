@@ -23,7 +23,7 @@ interface ColorPaletteWithShades {
   };
 }
 
-const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] as const;
 
 const isValidHexColor = (hexColor: string) => {
   return hexColor.match(/#[0-9a-f]{6}|#[0-9a-f]{3}/gi);
