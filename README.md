@@ -87,8 +87,7 @@ Build image (development)\
 `-f: Dockerfile to use`
 
 Run container (development)\
-`docker run -v $(pwd)/src:/project/src:ro -d -p 3000:3000 --env-file ./.env --name`
-`react-color-palettes-app react-color-palettes-image`
+`docker run -v $(pwd)/src:/project/src:ro -d -p 3000:3000 --env-file ./.env --name react-color-palettes-app react-color-palettes-image`
 
 `-d: run container in background and print container id`\
 `-p: map port in host (3000, left side) to port in container (3000, right side)`\
