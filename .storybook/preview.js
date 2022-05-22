@@ -1,10 +1,6 @@
 import React from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import {
   BrowserRouter,
-  Route,
-  Routes,
-  useLocation
 } from 'react-router-dom';
 import '../src/App.css';
 
