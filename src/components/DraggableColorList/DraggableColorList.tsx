@@ -20,7 +20,14 @@ const ColorList:FC<ColorListProps> = ({ classes, colors, handleRemoveColorFromPa
     />
   ));
 
-  return <div className={classes.root}>{DraggableColorBoxes}</div>;
+  return (
+    <div
+      data-testid='draggable-color-boxes'
+      className={classes.root}
+    >
+      {DraggableColorBoxes}
+    </div>
+  );
 };
 
 export const DraggableColorList = SortableContainer(ColorList);
