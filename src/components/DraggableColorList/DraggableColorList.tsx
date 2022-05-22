@@ -21,12 +21,12 @@ const ColorList:FC<ColorListProps> = ({ classes, colors, handleRemoveColorFromPa
   ));
 
   return (
-    <div
+    <section
       data-testid='draggable-color-boxes'
       className={classes.root}
     >
       {DraggableColorBoxes}
-    </div>
+    </section>
   );
 };
 

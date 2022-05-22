@@ -24,7 +24,7 @@ export const MiniPalette: FC<MiniPaletteProps> = ({
   const navigate = useNavigate();
 
   const miniColorBoxes = colors.map(
-    ({ color, name }): JSX.Element => (
+    ({ color, name }) => (
       <div
         className={classes.miniColorBox}
         style={{ backgroundColor: color }}
@@ -33,25 +33,29 @@ export const MiniPalette: FC<MiniPaletteProps> = ({
     )
   );
 
-  const goToPalette = (e: MouseEvent<HTMLDivElement>, id: string): void => {
+  const goToPalette = (e: MouseEvent<HTMLElement>, id: string): void => {
     navigate(`/palette/${id}`);
   };
 
-  const handleDeletePalette = (e: MouseEvent<HTMLDivElement>): void => {
+  const handleDeletePalette = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     openDialog(id);
   };
 
   return (
-    <div
+    <section
+      data-testid='mini-palette'
       className={classes.root}
       onClick={(e) => goToPalette(e, id)}
     >
       <div
+        data-testid='delete-palette'
         className={classes.deleteIconContainer}
         onClick={handleDeletePalette}
       >
-        <DeleteIcon className={classes.deleteIcon} />
+        <DeleteIcon
+          className={classes.deleteIcon}
+        />
       </div>
 
       <div className={classes.colors}>{miniColorBoxes}</div>
@@ -59,7 +63,7 @@ export const MiniPalette: FC<MiniPaletteProps> = ({
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>
       </h5>
-    </div>
+    </section>
   );
 };
 

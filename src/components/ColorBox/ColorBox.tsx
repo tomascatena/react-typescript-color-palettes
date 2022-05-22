@@ -54,13 +54,13 @@ const ColorBox: FC<ColorBoxProps> = ({ classes, background, name, id, showMoreLi
           <p className={classes.copyText}>{background}</p>
         </div>
 
-        <div>
+        <details>
           <div className={classes.boxContent}>
             <span className={classes.colorName}>{name}</span>
           </div>
 
           <button className={classes.copyButton}>Copy</button>
-        </div>
+        </details>
 
         {showMoreLink && (
           <Link

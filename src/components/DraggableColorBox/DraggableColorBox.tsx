@@ -16,7 +16,7 @@ const ColorBox:FC<ColorBoxProps> = ({ classes, color, removeColorFromPalette }) 
   };
 
   return (
-    <div
+    <section
       data-testid='draggable-color-box'
       className={classes.root}
       style={{ backgroundColor: color.color }}
@@ -32,7 +32,7 @@ const ColorBox:FC<ColorBoxProps> = ({ classes, color, removeColorFromPalette }) 
           />
         </span>
       </div>
-    </div>
+    </section>
   );
 };
 
