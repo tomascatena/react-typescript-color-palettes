@@ -47,6 +47,7 @@ export const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLev
 
   const snackbarActionIcon = () => (
     <IconButton
+      data-testid='close-snackbar-button'
       onClick={closeSnackbar}
       color='inherit'
       key='close'
@@ -57,7 +58,7 @@ export const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLev
   );
 
   return (
-    <header className={classes.navbar}>
+    <nav className={classes.navbar}>
       <div className={classes.logo}>
         <Link to='/'>React Colors</Link>
       </div>
@@ -82,6 +83,9 @@ export const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLev
         <Select
           onChange={handleFormatChange}
           value={colorFormat}
+          inputProps={{
+            'data-testid': 'select-color-format'
+          }}
         >
           <MenuItem value='hex'>HEX - #ffffff</MenuItem>
           <MenuItem value='rgb'>RGB - rgb(255,255,255)</MenuItem>
@@ -90,6 +94,7 @@ export const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLev
       </div>
 
       <Snackbar
+        data-testid='snackbar'
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={open}
         autoHideDuration={3000}
@@ -100,7 +105,7 @@ export const Navbar: FC<NavbarProps> = ({ classes, level, colorFormat, changeLev
         onClose={closeSnackbar}
         action={[snackbarActionIcon()]}
       />
-    </header>
+    </nav>
   );
 };
 

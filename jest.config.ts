@@ -200,5 +200,6 @@ export default {
     '^@utils/(.+)': '<rootDir>/src/utils/$1',
     '^@pages/(.+)': '<rootDir>/src/pages/$1',
     '^@components/(.+)': '<rootDir>/src/components/$1',
+    '\\.(css|less)$': '<rootDir>/jest/__mocks__/styleMock.js',
   }
 };
